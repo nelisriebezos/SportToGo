@@ -17,6 +17,9 @@ public class ObjectenMain
         geb1.addSchema(new Schema("testSchema1"));
         geb1.addSchema(new Schema("testSchema2"));
 
+        geb1.getSchema("testSchema1").addOefening(new Oefening(40, 10, squats));
+        geb1.getSchema("testSchema1").addOefening(new Oefening((10, 20, crunches));
 
+        geb1.getSchema("testSchema1").getOefening(Oefening(40,10, squats));
     }
 }
