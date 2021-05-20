@@ -1,6 +1,6 @@
-package hu.IPASS.Webservices;
+package hu.IPASS.webservices;
 
-import hu.IPASS.Domeinklassen.Gebruiker;
+import hu.IPASS.domeinklassen.Gebruiker;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Path("test")
-public class testding {
+public class Testding {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

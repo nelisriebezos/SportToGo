@@ -1,10 +1,9 @@
 package hu.IPASS;
 
-import hu.IPASS.Domeinklassen.Gebruiker;
-import hu.IPASS.Domeinklassen.Oefening;
-import hu.IPASS.Domeinklassen.OefeningType;
-import hu.IPASS.Domeinklassen.Schema;
-import hu.IPASS.Domeinklassen.Sessie;
+import hu.IPASS.domeinklassen.Gebruiker;
+import hu.IPASS.domeinklassen.Oefening;
+import hu.IPASS.domeinklassen.OefeningType;
+import hu.IPASS.domeinklassen.Schema;
 
 public class ObjectenMain
 {

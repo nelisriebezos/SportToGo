@@ -1,4 +1,4 @@
-package hu.IPASS.Domeinklassen;
+package hu.IPASS.domeinklassen;
 
 public class Sessie {
     private String naam;

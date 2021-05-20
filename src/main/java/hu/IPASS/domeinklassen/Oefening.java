@@ -1,4 +1,4 @@
-package hu.IPASS.Domeinklassen;
+package hu.IPASS.domeinklassen;
 
 public class Oefening {
     private int gewicht;

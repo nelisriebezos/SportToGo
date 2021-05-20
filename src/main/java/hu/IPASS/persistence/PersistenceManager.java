@@ -1,4 +1,4 @@
-package hu.IPASS.Persistence;
+package hu.IPASS.persistence;
 
 public class PersistenceManager {
 }
