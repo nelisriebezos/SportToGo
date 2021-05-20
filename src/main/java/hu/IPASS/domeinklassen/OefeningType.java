@@ -12,10 +12,12 @@ public class OefeningType {
         this.beschrijving = bs;
     }
 
-    public void addOefening(Oefening o) {
+    public boolean addOefening(Oefening o) {
         if (!this.oefeningLijst.contains(o)) {
             this.oefeningLijst.add(o);
+            return true;
         }
+        return false;
     }
 
     public String getNaam() {

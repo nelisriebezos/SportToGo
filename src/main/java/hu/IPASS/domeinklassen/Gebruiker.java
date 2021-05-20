@@ -15,10 +15,12 @@ public class Gebruiker {
         this.wachtwoord = ww;
     }
 
-    public void addSchema(Schema s) {
+    public boolean addSchema(Schema s) {
         if (!this.schemaLijst.contains(s)) {
             this.schemaLijst.add(s);
+            return true;
         }
+        return false;
     }
 
     public Schema getSchema(String nm) {
@@ -39,10 +41,12 @@ public class Gebruiker {
         return null;
     }
 
-    public void addSessie(Sessie s) {
+    public boolean addSessie(Sessie s) {
         if (!this.sessieLijst.contains(s)) {
             this.sessieLijst.add(s);
+            return true;
         }
+        return false;
     }
 
     public String getNaam() {
@@ -66,7 +70,7 @@ public class Gebruiker {
     }
 
     public boolean setWachtwoord(String wachtwoord) {
-        if (wachtwoord == this.wachtwoord) {
+        if (wachtwoord.equals(this.wachtwoord)) {
             return false;
         }
         this.wachtwoord = wachtwoord;
