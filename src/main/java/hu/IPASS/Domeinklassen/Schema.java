@@ -12,13 +12,6 @@ public class Schema {
         this.naam = nm;
     }
 
-    public Oefening getOefening(String nm) {
-         {
-            return o;
-        }
-        return null;
-    }
-
     public void addOefening(Oefening o) {
         if (!this.oefeningLijst.contains(o)) {
             this.oefeningLijst.add(o);

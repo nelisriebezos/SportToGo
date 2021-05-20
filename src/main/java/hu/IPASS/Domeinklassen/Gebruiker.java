@@ -65,8 +65,12 @@ public class Gebruiker {
         return wachtwoord;
     }
 
-    public void setWachtwoord(String wachtwoord) {
+    public boolean setWachtwoord(String wachtwoord) {
+        if (wachtwoord == this.wachtwoord) {
+            return false;
+        }
         this.wachtwoord = wachtwoord;
+        return true;
     }
 
     public ArrayList<Schema> getSchemaLijst() {
