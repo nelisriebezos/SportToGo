@@ -7,6 +7,6 @@ import javax.ws.rs.ApplicationPath;
 @ApplicationPath("restservices")
 public class JerseyConfig extends ResourceConfig {
     public JerseyConfig() {
-        packages("hu.IPASS.Webservices");
+        packages("hu.IPASS.webservices");
     }
 }
