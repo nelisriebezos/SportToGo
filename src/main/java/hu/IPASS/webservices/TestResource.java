@@ -11,14 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Path("test")
-public class Testding {
+public class TestResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response sendTest() {
-        Gebruiker g1 = new Gebruiker("testnaam", "testemail", "testwachtwoord");
+    public Response getTest() {
         List<Gebruiker> gebruikerList = new ArrayList<>();
-        gebruikerList.add(g1);
+        gebruikerList.add(new Gebruiker("testnaam", "testwachtwoor", "testemail"));
         return Response.ok(gebruikerList).build();
     }
 }

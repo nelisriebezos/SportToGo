@@ -4,6 +4,7 @@ import hu.IPASS.domeinklassen.Gebruiker;
 import hu.IPASS.domeinklassen.Oefening;
 import hu.IPASS.domeinklassen.OefeningType;
 import hu.IPASS.domeinklassen.Schema;
+import hu.IPASS.persistence.PersistenceManager;
 
 public class ObjectenMain
 {
@@ -19,5 +20,6 @@ public class ObjectenMain
         geb1.getSchema("testSchema1").addOefening(new Oefening(40, 10, squats));
         geb1.getSchema("testSchema1").addOefening(new Oefening(10, 20, crunches));
 
+        PersistenceManager.getPM().sendUserToAzure(geb1);
     }
 }
