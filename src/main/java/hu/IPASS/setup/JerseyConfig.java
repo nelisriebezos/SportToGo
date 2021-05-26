@@ -9,6 +9,6 @@ import javax.ws.rs.ApplicationPath;
 public class JerseyConfig extends ResourceConfig {
     public JerseyConfig() {
         packages("hu.IPASS.webservices, hu.IPASS.security");
-        register(RolesAllowedDynamicFeature .class);
+        register(RolesAllowedDynamicFeature.class);
     }
 }

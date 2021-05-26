@@ -1,5 +1,7 @@
 package hu.IPASS.domeinklassen;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 
 public class Gebruiker {
@@ -63,10 +65,6 @@ public class Gebruiker {
 
     public void setEmailAdres(String emailAdres) {
         this.emailAdres = emailAdres;
-    }
-
-    public String getWachtwoord() {
-        return wachtwoord;
     }
 
     public boolean setWachtwoord(String wachtwoord) {
