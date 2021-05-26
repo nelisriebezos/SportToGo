@@ -8,3 +8,27 @@
     float: left;
     width: 150px;
 }
+
+body {
+    background-color: aquamarine;
+    color: red;
+}
+
+h1 {
+    color: black;
+    text-decoration-line: underline;
+}
+a:link{
+    color: yellow;
+}
+
+a:visited{
+    color: green;
+}
+a:hover {
+    text-decoration-line: line-through;
+}
+
+#placeholder {
+    color: aqua;
+}

@@ -1,8 +1,9 @@
 package hu.IPASS.domeinklassen;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Schema {
+public class Schema implements Serializable {
     private String naam;
     private Sessie sessie;
     private Gebruiker gebruiker;

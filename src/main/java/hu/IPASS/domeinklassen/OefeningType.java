@@ -1,8 +1,9 @@
 package hu.IPASS.domeinklassen;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class OefeningType {
+public class OefeningType implements Serializable {
     private String naam;
     private String beschrijving;
     ArrayList<Oefening> oefeningLijst = new ArrayList<>();

@@ -1,6 +1,8 @@
 package hu.IPASS.domeinklassen;
 
-public class Sessie {
+import java.io.Serializable;
+
+public class Sessie implements Serializable {
     private String naam;
     private String dag;
     private String beginTijd;

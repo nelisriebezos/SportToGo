@@ -12,7 +12,7 @@ import java.io.ObjectOutputStream;
 
 public class PersistenceManager {
     private final static String ENDPOINT = "https://nelisriebezosopslag.blob.core.windows.net/";
-    private final static String SASTOKEN = "?sv=2020-02-10&ss=bfqt&srt=sco&sp=rwdlacuptfx&se=2022-05-26T01:09:42Z&st=2021-05-25T17:09:42Z&spr=https&sig=Zt05%2FI9dWePkDlfUtyoDpZIlSlsprNHL5rKBVsXGfac%3D";
+    private final static String SASTOKEN = "?sv=2020-02-10&ss=bfqt&srt=sco&sp=rwdlacuptfx&se=2022-05-26T16:43:03Z&st=2021-05-26T08:43:03Z&spr=https&sig=4jxxG0Zcv6IUv68tIbymLwAa41at16D%2Fr6x7vgR%2Feow%3D";
     private final static String CONTAINER = "sporttogocontainer";
 
     private static PersistenceManager PM;

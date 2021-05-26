@@ -2,9 +2,10 @@ package hu.IPASS.domeinklassen;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Gebruiker {
+public class Gebruiker implements Serializable {
     private String naam;
     private String emailAdres;
     private String wachtwoord;

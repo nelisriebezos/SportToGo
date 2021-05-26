@@ -1,6 +1,8 @@
 package hu.IPASS.domeinklassen;
 
-public class Oefening {
+import java.io.Serializable;
+
+public class Oefening implements Serializable {
     private int gewicht;
     private int setHoeveelheid;
     private Schema schema;
