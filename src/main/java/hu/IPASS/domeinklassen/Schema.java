@@ -2,6 +2,7 @@ package hu.IPASS.domeinklassen;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Schema implements Serializable {
     private String naam;
@@ -52,6 +53,18 @@ public class Schema implements Serializable {
     public void setOefeningLijst(ArrayList<Oefening> oefeningLijst) {
         this.oefeningLijst = oefeningLijst;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Schema)) return false;
+        Schema schema = (Schema) o;
+        return Objects.equals(getNaam(), schema.getNaam()) &&
+                Objects.equals(getSessie(), schema.getSessie()) &&
+                Objects.equals(getGebruiker(), schema.getGebruiker()) &&
+                Objects.equals(getOefeningLijst(), schema.getOefeningLijst());
+    }
+
 
     @Override
     public String toString() {

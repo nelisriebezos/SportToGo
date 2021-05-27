@@ -4,11 +4,13 @@ import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobContainerClientBuilder;
 import hu.IPASS.domeinklassen.Gebruiker;
+import hu.IPASS.domeinklassen.OefeningType;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 public class PersistenceManager {
     private final static String ENDPOINT = "https://nelisriebezosopslag.blob.core.windows.net/";
@@ -23,14 +25,19 @@ public class PersistenceManager {
             .containerName(CONTAINER)
             .buildClient();
 
-    private PersistenceManager() {}
+    private Gebruiker currentUser;
+    private ArrayList<Gebruiker> gebruikerList = new ArrayList<>();
+    private ArrayList<OefeningType> oefeningTypeList = new ArrayList<>();
+
+    private PersistenceManager() {
+    }
 
     public static PersistenceManager getPM() {
         if (PM == null) PM = new PersistenceManager();
         return PM;
     }
 
-    public void sendUserToAzure(Gebruiker geb) {
+    public void sendUsersToAzure(ArrayList gebruikerLijst) {
         if (!blobContainer.exists()) {
             blobContainer.create();
         }
@@ -40,7 +47,7 @@ public class PersistenceManager {
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(baos);
-            oos.writeObject(geb);
+            oos.writeObject(gebruikerLijst);
 
             byte[] bytez = baos.toByteArray();
 
@@ -49,5 +56,60 @@ public class PersistenceManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void sendLoggedInUserToAzure(Gebruiker ingelogdGebruiker) {
+        if (!blobContainer.exists()) {
+            blobContainer.create();
+        }
+
+        try {
+            BlobClient blob = blobContainer.getBlobClient("userblob");
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(ingelogdGebruiker);
+
+            byte[] bytez = baos.toByteArray();
+
+            ByteArrayInputStream bais = new ByteArrayInputStream(bytez);
+            blob.upload(bais, bytez.length, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Gebruiker getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(Gebruiker ingelogdGebruiker) {
+        this.currentUser = ingelogdGebruiker;
+    }
+
+    public ArrayList<Gebruiker> getGebruikerList() {
+        return gebruikerList;
+    }
+
+    public void setGebruikerList(ArrayList<Gebruiker> gebruikerLijst) {
+        this.gebruikerList = gebruikerLijst;
+    }
+
+    public ArrayList<OefeningType> getOefeningTypeList() {
+        return oefeningTypeList;
+    }
+
+    public void setOefeningTypeList(ArrayList<OefeningType> oefeningTypeLijst) {
+        this.oefeningTypeList = oefeningTypeLijst;
+    }
+
+    public void addGebruikerToList(Gebruiker g) {
+        if (!gebruikerList.contains(g))
+            this.gebruikerList.add(g);
+    }
+
+    public void addOefeningToList(OefeningType ot) {
+        if (!oefeningTypeList.contains(ot))
+            this.oefeningTypeList.add(ot);
     }
 }

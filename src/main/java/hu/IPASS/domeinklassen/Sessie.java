@@ -1,6 +1,7 @@
 package hu.IPASS.domeinklassen;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Sessie implements Serializable {
     private String naam;
@@ -63,6 +64,19 @@ public class Sessie implements Serializable {
 
     public void setSchema(Schema schema) {
         this.schema = schema;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Sessie)) return false;
+        Sessie sessie = (Sessie) o;
+        return Objects.equals(getNaam(), sessie.getNaam()) &&
+                Objects.equals(getDag(), sessie.getDag()) &&
+                Objects.equals(getBeginTijd(), sessie.getBeginTijd()) &&
+                Objects.equals(getEindTijd(), sessie.getEindTijd()) &&
+                Objects.equals(getGebruiker(), sessie.getGebruiker()) &&
+                Objects.equals(getSchema(), sessie.getSchema());
     }
 
     @Override

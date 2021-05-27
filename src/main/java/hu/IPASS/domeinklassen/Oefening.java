@@ -1,6 +1,7 @@
 package hu.IPASS.domeinklassen;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Oefening implements Serializable {
     private int gewicht;
@@ -44,6 +45,17 @@ public class Oefening implements Serializable {
 
     public void setOefeningType(OefeningType oefeningType) {
         this.oefeningType = oefeningType;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Oefening)) return false;
+        Oefening oefening = (Oefening) o;
+        return getGewicht() == oefening.getGewicht() &&
+                getSetHoeveelheid() == oefening.getSetHoeveelheid() &&
+                Objects.equals(getSchema(), oefening.getSchema()) &&
+                Objects.equals(getOefeningType(), oefening.getOefeningType());
     }
 
     @Override

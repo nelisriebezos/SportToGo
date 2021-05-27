@@ -2,6 +2,7 @@ package hu.IPASS.domeinklassen;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class OefeningType implements Serializable {
     private String naam;
@@ -44,6 +45,17 @@ public class OefeningType implements Serializable {
     public void setOefeningLijst(ArrayList<Oefening> oefeningLijst) {
         this.oefeningLijst = oefeningLijst;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OefeningType)) return false;
+        OefeningType that = (OefeningType) o;
+        return Objects.equals(getNaam(), that.getNaam()) &&
+                Objects.equals(getBeschrijving(), that.getBeschrijving()) &&
+                Objects.equals(getOefeningLijst(), that.getOefeningLijst());
+    }
+
 
     @Override
     public String toString() {

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Gebruiker implements Serializable {
     private String naam;
@@ -90,6 +91,18 @@ public class Gebruiker implements Serializable {
 
     public void setSessieLijst(ArrayList<Sessie> sessieLijst) {
         this.sessieLijst = sessieLijst;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Gebruiker)) return false;
+        Gebruiker gebruiker = (Gebruiker) o;
+        return Objects.equals(getNaam(), gebruiker.getNaam()) &&
+                Objects.equals(getEmailAdres(), gebruiker.getEmailAdres()) &&
+                Objects.equals(wachtwoord, gebruiker.wachtwoord) &&
+                Objects.equals(getSchemaLijst(), gebruiker.getSchemaLijst()) &&
+                Objects.equals(getSessieLijst(), gebruiker.getSessieLijst());
     }
 
     @Override
