@@ -6,10 +6,7 @@ import com.azure.storage.blob.BlobContainerClientBuilder;
 import hu.IPASS.domeinklassen.Gebruiker;
 import hu.IPASS.domeinklassen.OefeningType;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 public class PersistenceManager {
@@ -37,7 +34,7 @@ public class PersistenceManager {
         return PM;
     }
 
-    public void sendUsersToAzure(ArrayList gebruikerLijst) {
+    public void sendUsersToAzure() {
         if (!blobContainer.exists()) {
             blobContainer.create();
         }
@@ -47,7 +44,7 @@ public class PersistenceManager {
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(baos);
-            oos.writeObject(gebruikerLijst);
+            oos.writeObject(getPM().getGebruikerList());
 
             byte[] bytez = baos.toByteArray();
 
@@ -57,6 +54,46 @@ public class PersistenceManager {
             e.printStackTrace();
         }
     }
+
+    public void loadUsersFromAzure() {
+        if (blobContainer.exists()) {
+            BlobClient blob = blobContainer.getBlobClient("userblob");
+            try {
+                if (blob.exists()) {
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    blob.download(baos);
+
+                    ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+                    ObjectInputStream ois = new ObjectInputStream(bais);
+
+                    ArrayList<Gebruiker> gebruikerLijst = (ArrayList<Gebruiker>) ois.readObject();
+                    PM.setGebruikerList(gebruikerLijst);
+                }
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+//    public void loadUserFromAzure(String email, String wachtwoord) {
+//        if (blobContainer.exists()) {
+//            BlobClient blob = blobContainer.getBlobClient("userblob");
+//            try {
+//                if (blob.exists()) {
+//                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                    blob.download(baos);
+//
+//                    ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+//                    ObjectInputStream ois = new ObjectInputStream(bais);
+//
+//                    ArrayList<Gebruiker> gebruikerLijst = (ArrayList<Gebruiker>) ois.readObject();
+//                    PM.setGebruikerList(gebruikerLijst);
+//                }
+//            } catch (IOException | ClassNotFoundException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     public void sendLoggedInUserToAzure(Gebruiker ingelogdGebruiker) {
         if (!blobContainer.exists()) {

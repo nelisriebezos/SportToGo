@@ -8,6 +8,18 @@ function testknop() {
         .catch(error=>console.log(error));
 }
 
+
+
+
+// function loginPost() {
+//     const methodOptions = {
+//         method: 'POST',
+//         headers: {'Content-Type': 'application/json'},
+//         body: JSON.stringify({title: 'Stuur inloggegevens op'})
+//     };
+//     fetch()
+// }
+
 // var button = document.getElementById("account_aanmaken");
 //
 // button.addEventListener('click', function () {

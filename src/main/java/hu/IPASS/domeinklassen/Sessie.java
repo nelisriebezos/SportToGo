@@ -1,17 +1,18 @@
 package hu.IPASS.domeinklassen;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Sessie implements Serializable {
     private String naam;
-    private String dag;
+    private LocalDate dag;
     private String beginTijd;
     private String eindTijd;
     private Gebruiker gebruiker;
     private Schema schema;
 
-    public Sessie(String nm, String d, String bt, String et) {
+    public Sessie(String nm, LocalDate d, String bt, String et) {
         this.naam = nm;
         this.dag = d;
         this.beginTijd = bt;
@@ -26,11 +27,11 @@ public class Sessie implements Serializable {
         this.naam = naam;
     }
 
-    public String getDag() {
+    public LocalDate getDag() {
         return dag;
     }
 
-    public void setDag(String dag) {
+    public void setDag(LocalDate dag) {
         this.dag = dag;
     }
 
