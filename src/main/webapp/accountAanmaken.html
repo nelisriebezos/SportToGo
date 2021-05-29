@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <title>SportToGo</title>
     <link rel="stylesheet" href="css/accountAanmaken.css" type="text/css">
+    <script type="application/javascript" src="js/accountAanmakenScript.js"></script>
 </head>
 <body>
 <div id="main">
-  <form id="invoergegevensform" action="">
+  <form id="invoergegevensform">
     <label for="username">Gebruikersnaam    </label><input type="text" id="username" name="username"><br>
     <label for="emailadres">Email adres     </label><input type="email" id="emailadres" name="emailadres"><br>
     <label for="password">Wachtwoord        </label><input type="password" id="password" name="password"><br>
+
+      <input type="button" id="aanmaken" value="Aanmaken" onclick="sendFormData()">
+      <input type="button" id="terugknop" value="Terug" onclick="location.href='index.html';">
+      <span id="postresponse"></span>
+
+
   </form>
-    <input type="button" id="aanmaken" value="Aanmaken" onclick="sendData()">
-    <input type="button" id="terugknop" value="Terug" onclick="location.href='index.html';">
+
 </div>
 </body>
 </html>

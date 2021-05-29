@@ -1,39 +1,27 @@
 package hu.IPASS.webservices;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
-import javax.json.JsonReader;
-import javax.ws.rs.POST;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
-import java.io.StringReader;
+import hu.IPASS.domeinklassen.Gebruiker;
+import hu.IPASS.persistence.PersistenceManager;
 
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+@Path("/accounts")
 public class GebruikerResource {
 
     @POST
-    @Produces("application/json")
-    public String maakAccountAan(String jsonbody) {
-        JsonObjectBuilder responseObject = Json.createObjectBuilder();
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response maakAccountAan(@FormParam("username") String un, @FormParam("emailadres") String eM, @FormParam("password") String pW) {
+        Gebruiker geb = new Gebruiker(un, eM, pW);
 
-        try {
-            StringReader strReader = new StringReader(jsonbody);
-            JsonReader  jsonReader = Json.createReader(strReader);
-            JsonObject jsonObject = jsonReader.readObject();
-
-            String naam = jsonObject.getString("username");
-            String email = jsonObject.getString("emailadres");
-            String wachtwoord = jsonObject.getString("password");
-
-            System.out.println(naam);
-            System.out.println(email);
-            System.out.println(wachtwoord);
-
-            responseObject.add("message", "gelukt");
-
-        } catch (Exception e) {
-            responseObject.add("message", "Error: " + e.getMessage());
+        if (PersistenceManager.getPM().addGebruikerToList(geb)) {
+//            PersistenceManager.getPM().sendUserToAzure(geb);
+            System.out.println(geb);
+            return Response.ok(geb).build();
+        } else {
+            return Response.status(Response.Status.CONFLICT).build();
         }
-        return responseObject.build().toString();
     }
 }

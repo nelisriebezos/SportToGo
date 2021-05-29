@@ -34,7 +34,7 @@ public class PersistenceManager {
         return PM;
     }
 
-    public void sendUsersToAzure() {
+    public void sendUserToAzure(Gebruiker g) {
         if (!blobContainer.exists()) {
             blobContainer.create();
         }
@@ -44,7 +44,7 @@ public class PersistenceManager {
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(baos);
-            oos.writeObject(getPM().getGebruikerList());
+            oos.writeObject(g);
 
             byte[] bytez = baos.toByteArray();
 
@@ -140,13 +140,19 @@ public class PersistenceManager {
         this.oefeningTypeList = oefeningTypeLijst;
     }
 
-    public void addGebruikerToList(Gebruiker g) {
-        if (!gebruikerList.contains(g))
+    public boolean addGebruikerToList(Gebruiker g) {
+        if (!gebruikerList.contains(g)) {
             this.gebruikerList.add(g);
+            return true;
+        }
+         return false;
     }
 
-    public void addOefeningToList(OefeningType ot) {
-        if (!oefeningTypeList.contains(ot))
+    public boolean addOefeningToList(OefeningType ot) {
+        if (!oefeningTypeList.contains(ot)) {
             this.oefeningTypeList.add(ot);
+            return true;
+        }
+        return false;
     }
 }

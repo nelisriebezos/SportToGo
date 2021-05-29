@@ -19,6 +19,9 @@ public class Gebruiker implements Serializable {
         this.wachtwoord = ww;
     }
 
+    public Gebruiker() {
+    }
+
     public boolean addSchema(Schema s) {
         if (!this.schemaLijst.contains(s)) {
             this.schemaLijst.add(s);
