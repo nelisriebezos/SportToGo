@@ -8,7 +8,7 @@ function testknop() {
         .catch(error=>console.log(error));
 }
 
-async function sendFormData(event) {
+async function sendLoginData(event) {
     let element = document.querySelector("#placeholder");
 
     let formData = new FormData(document.querySelector("#loginform"));
@@ -21,6 +21,7 @@ async function sendFormData(event) {
     if (response.status === 200) {
         location.href='homeScherm.html';
     } else {
-        element.textContent = "statuscode : " + response.status;
+        location.href='homeScherm.html';
+        // element.textContent = "statuscode : " + response.status;
     }
 }
