@@ -36,13 +36,13 @@ public class ObjectenMain
         geb2.getSessie("sessie 1").setSchema(geb2.getSchema("onderlichaam"));
         geb2.getSessie("sessie 2").setSchema(geb2.getSchema("bovenlichaam"));
 
-//        PersistenceManager.getPM().addGebruikerToList(geb1);
-//        PersistenceManager.getPM().addGebruikerToList(geb2);
-//        PersistenceManager.getPM().addGebruikerToList(geb3);
-//        PersistenceManager.getPM().sendUsersToAzure();
+
+//        PersistenceManager.getPM().sendUserToAzure(geb1);
+//        PersistenceManager.getPM().sendUserToAzure(geb2);
+//        PersistenceManager.getPM().sendUserToAzure(geb3);
 
         PersistenceManager.getPM().loadUsersFromAzure();
-        System.out.println(PersistenceManager.getPM().getGebruikerList());
+//        System.out.println(PersistenceManager.getPM().getGebruikerList());
 
     }
 }

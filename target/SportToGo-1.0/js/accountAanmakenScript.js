@@ -14,3 +14,4 @@ async function sendFormData(event) {
         element.textContent = "statuscode : " + response.status;
     }
 }
+

@@ -65,9 +65,10 @@ public class PersistenceManager {
 
                     ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
                     ObjectInputStream ois = new ObjectInputStream(bais);
+                    Gebruiker gebruiker = (Gebruiker) ois.readObject();
 
-                    ArrayList<Gebruiker> gebruikerLijst = (ArrayList<Gebruiker>) ois.readObject();
-                    PM.setGebruikerList(gebruikerLijst);
+                    System.out.println(gebruiker);
+//                    PM.setGebruikerList(gebruikerLijst);
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
@@ -75,46 +76,6 @@ public class PersistenceManager {
         }
     }
 
-//    public void loadUserFromAzure(String email, String wachtwoord) {
-//        if (blobContainer.exists()) {
-//            BlobClient blob = blobContainer.getBlobClient("userblob");
-//            try {
-//                if (blob.exists()) {
-//                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//                    blob.download(baos);
-//
-//                    ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-//                    ObjectInputStream ois = new ObjectInputStream(bais);
-//
-//                    ArrayList<Gebruiker> gebruikerLijst = (ArrayList<Gebruiker>) ois.readObject();
-//                    PM.setGebruikerList(gebruikerLijst);
-//                }
-//            } catch (IOException | ClassNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-
-    public void sendLoggedInUserToAzure(Gebruiker ingelogdGebruiker) {
-        if (!blobContainer.exists()) {
-            blobContainer.create();
-        }
-
-        try {
-            BlobClient blob = blobContainer.getBlobClient("userblob");
-
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(baos);
-            oos.writeObject(ingelogdGebruiker);
-
-            byte[] bytez = baos.toByteArray();
-
-            ByteArrayInputStream bais = new ByteArrayInputStream(bytez);
-            blob.upload(bais, bytez.length, true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public Gebruiker getCurrentUser() {
         return currentUser;
@@ -141,11 +102,13 @@ public class PersistenceManager {
     }
 
     public boolean addGebruikerToList(Gebruiker g) {
-        if (!gebruikerList.contains(g)) {
-            this.gebruikerList.add(g);
-            return true;
+        for (Gebruiker geb : gebruikerList) {
+            if (geb.getEmailAdres().equals(g.getEmailAdres())) {
+                return false;
+            }
         }
-         return false;
+        this.gebruikerList.add(g);
+        return true;
     }
 
     public boolean addOefeningToList(OefeningType ot) {

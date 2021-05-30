@@ -8,20 +8,19 @@ function testknop() {
         .catch(error=>console.log(error));
 }
 
+async function sendFormData(event) {
+    let element = document.querySelector("#placeholder");
 
+    let formData = new FormData(document.querySelector("#loginform"));
+    let fetchOptions = {
+        method: "POST",
+        body: new URLSearchParams(formData)
+    }
+    let response = await fetch("/restservices/accounts", fetchOptions);
 
-
-// function loginPost() {
-//     const methodOptions = {
-//         method: 'POST',
-//         headers: {'Content-Type': 'application/json'},
-//         body: JSON.stringify({title: 'Stuur inloggegevens op'})
-//     };
-//     fetch()
-// }
-
-// var button = document.getElementById("account_aanmaken");
-//
-// button.addEventListener('click', function () {
-//     console.log("test")
-// })
+    if (response.status === 200) {
+        location.href='homeScherm.html';
+    } else {
+        element.textContent = "statuscode : " + response.status;
+    }
+}
