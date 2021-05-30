@@ -7,6 +7,9 @@ import hu.IPASS.utils.MakeUser;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.HashMap;
 
 @Path("/accounts")
 public class GebruikerResource {
@@ -15,7 +18,7 @@ public class GebruikerResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(@FormParam("email") String eM,
-                          @FormParam("password") String pW) {
+                          @FormParam("password") String pW) throws URISyntaxException {
 
 //        PersistenceManager.getPM().loadUsersFromAzure();
 
@@ -30,11 +33,13 @@ public class GebruikerResource {
 //        }
 
         PersistenceManager pm = PersistenceManager.getPM();
-        PersistenceManager.getPM().setCurrentUser(MakeUser.makeUserData());
+        Gebruiker g = pm.getUser(eM, pW);
 
-        if (pm.getCurrentUser().getEmailAdres().equals(eM)) {
-            System.out.println(pm.getCurrentUser());
-            return Response.ok(pm.getCurrentUser()).build();
+        if (g != null) {
+            HashMap userMap = new HashMap();
+            userMap.put("id", g.getId());
+            userMap.put("loggedin", "true");
+            return Response.ok(userMap).build();
         }
         return Response.status(Response.Status.CONFLICT).build();
     }

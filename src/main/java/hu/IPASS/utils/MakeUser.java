@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class MakeUser {
     public static Gebruiker makeUserData() {
-        Gebruiker geb1 = new Gebruiker("Niels Riezebos", "niels@ding.nl", "wachtwoord1");
+        Gebruiker geb1 = new Gebruiker("Niels Riezebos", "niels@ding.nl", "wachtwoord1", 1);
 
         OefeningType squats = new OefeningType("squats", "test OefeningType squats");
         OefeningType crunches = new OefeningType("crunches", "test OefeningType crunches");

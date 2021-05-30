@@ -21,7 +21,7 @@ public class domeintest {
 
     @BeforeEach
     public void initialize() {
-        g1 = new Gebruiker("naam1", "eadres1", "wachtwoord1");
+        g1 = new Gebruiker("naam1", "eadres1", "wachtwoord1", 1);
         s1 = new Schema("schema1");
         s2 = new Schema("schema2");
         ot1 = new OefeningType("squats", "beschrijving1");

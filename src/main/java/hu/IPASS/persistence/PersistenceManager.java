@@ -5,6 +5,7 @@ import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobContainerClientBuilder;
 import hu.IPASS.domeinklassen.Gebruiker;
 import hu.IPASS.domeinklassen.OefeningType;
+import hu.IPASS.utils.MakeUser;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -32,6 +33,14 @@ public class PersistenceManager {
     public static PersistenceManager getPM() {
         if (PM == null) PM = new PersistenceManager();
         return PM;
+    }
+
+    public Gebruiker getUser(String eM, String wW) {
+        if (wW.equals("wachtwoord1")) {
+            return MakeUser.makeUserData();
+        } else {
+            return null;
+        }
     }
 
     public void sendUserToAzure(Gebruiker g) {

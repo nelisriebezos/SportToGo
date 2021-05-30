@@ -17,7 +17,7 @@ public class TestResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTest() {
         List<Gebruiker> gebruikerList = new ArrayList<>();
-        gebruikerList.add(new Gebruiker("testnaam", "emial", "testwachtwoor"));
+        gebruikerList.add(new Gebruiker("testnaam", "emial", "testwachtwoor", 1));
         return Response.ok(gebruikerList).build();
     }
 }

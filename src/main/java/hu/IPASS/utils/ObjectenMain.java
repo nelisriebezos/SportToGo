@@ -8,9 +8,9 @@ import java.time.LocalDate;
 public class ObjectenMain
 {
     public static void main( String[] args ) {
-        Gebruiker geb1 = new Gebruiker("Niels Riezebos", "niels.riezebos@student.hu.nl", "wachtwoord1");
-        Gebruiker geb2 = new Gebruiker("Bruus Riezebos", "bruus.riezebos@student.hu.nl", "wachtwoord2");
-        Gebruiker geb3 = new Gebruiker("britte Riezebos", "britte.riezebos@student.hu.nl", "wachtwoord3");
+        Gebruiker geb1 = new Gebruiker("Niels Riezebos", "niels.riezebos@student.hu.nl", "wachtwoord1", 1);
+        Gebruiker geb2 = new Gebruiker("Bruus Riezebos", "bruus.riezebos@student.hu.nl", "wachtwoord2", 2);
+        Gebruiker geb3 = new Gebruiker("britte Riezebos", "britte.riezebos@student.hu.nl", "wachtwoord3", 3);
 
         OefeningType squats = new OefeningType("squats", "test OefeningType squats");
         OefeningType crunches = new OefeningType("crunches", "test OefeningType crunches");

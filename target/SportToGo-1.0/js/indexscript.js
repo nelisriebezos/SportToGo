@@ -8,7 +8,7 @@
 //         .catch(error=>console.log(error));
 // }
 
-async function sendLoginData(event) {
+async function sendLoginData() {
     let element = document.querySelector("#placeholder");
 
     let formData = new FormData(document.querySelector("#loginform"));
@@ -16,11 +16,13 @@ async function sendLoginData(event) {
         method: "POST",
         body: new URLSearchParams(formData)
     }
-    let response = await fetch("/restservices/accounts", fetchOptions);
+    fetch("/restservices/accounts", fetchOptions)
+        .then( resp => resp.json() )
+        .then( resp => { if (resp.loggedin == "true") {
+            location.href='homeScherm.html?userid=' + resp.id;
+        } else {
+            element.textContent = "statuscode : " + resp.status;
+        }})
 
-    if (response.status === 200) {
-        location.href='homeScherm.html';
-    } else {
-        element.textContent = "statuscode : " + response.status;
-    }
+
 }

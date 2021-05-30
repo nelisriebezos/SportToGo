@@ -10,13 +10,15 @@ public class Gebruiker implements Serializable {
     private String naam;
     private String emailAdres;
     private String wachtwoord;
+    private int id;
     ArrayList<Schema> schemaLijst = new ArrayList<>();
     ArrayList<Sessie> sessieLijst = new ArrayList<>();
 
-    public Gebruiker(String nm, String ea, String ww) {
+    public Gebruiker(String nm, String ea, String ww, int id) {
         this.naam = nm;
         this.emailAdres = ea;
         this.wachtwoord = ww;
+        this.id = id;
     }
 
     public Gebruiker() {
@@ -54,6 +56,10 @@ public class Gebruiker implements Serializable {
             return true;
         }
         return false;
+    }
+
+    public int getId() {
+        return this.id;
     }
 
     public String getNaam() {
@@ -110,7 +116,7 @@ public class Gebruiker implements Serializable {
 
     @Override
     public String toString() {
-        return "Gebruiker{" +
+        return
                 "naam='" + naam + '\'' +
                 ", emailAdres='" + emailAdres + '\'' +
                 ", wachtwoord='" + wachtwoord + '\'' +
