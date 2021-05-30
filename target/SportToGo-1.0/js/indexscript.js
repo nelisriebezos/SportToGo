@@ -1,14 +1,14 @@
-function testknop() {
-    fetch("/restservices/test")
-        .then(resp => resp.json())
-        .then(myJson => {
-            console.log(myJson)
-            document.querySelector("#placeholder").innerHTML = myJson[0].naam
-        })
-        .catch(error=>console.log(error));
-}
+// function testknop() {
+//     fetch("/restservices/test")
+//         .then(resp => resp.json())
+//         .then(myJson => {
+//             console.log(myJson)
+//             document.querySelector("#placeholder").innerHTML = myJson[0].naam
+//         })
+//         .catch(error=>console.log(error));
+// }
 
-async function sendFormData(event) {
+async function sendLoginData(event) {
     let element = document.querySelector("#placeholder");
 
     let formData = new FormData(document.querySelector("#loginform"));

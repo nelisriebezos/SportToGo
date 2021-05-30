@@ -1,4 +1,4 @@
-async function sendLoginReq(event) {
+async function sendLoginReq() {
     let element = document.querySelector("#postresponse");
 
     let formData = new FormData(document.querySelector("#invoergegevensform"));

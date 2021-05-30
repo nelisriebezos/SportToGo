@@ -2,24 +2,23 @@
     content: "";
     display: table;
     clear: both;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
+    padding: 10px;
 }
 div {
     float: left;
-    height: 470px;
-    width: 23%;
-    padding: 40px;
+    padding: 20px;
 }
 #oefeningbox {
     background-color: lightgrey;
     float: left;
-    height: 300px;
-    width: 23%;
-    padding: 40px;
+
 }
 #oefeningbox {
     float: bottom;
 }
 #homeOptions {
     float: left;
-    padding: 20px;
 }

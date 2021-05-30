@@ -1,4 +1,4 @@
-async function sendFormData(event) {
+async function sendLoginReq() {
     let element = document.querySelector("#postresponse");
 
     let formData = new FormData(document.querySelector("#invoergegevensform"));
@@ -11,7 +11,8 @@ async function sendFormData(event) {
     if (response.status === 200) {
         location.href='index.html';
     } else {
-        element.textContent = "statuscode : " + response.status;
+        location.href='index.html';
+        // element.textContent = "statuscode : " + response.status;
     }
 }
 

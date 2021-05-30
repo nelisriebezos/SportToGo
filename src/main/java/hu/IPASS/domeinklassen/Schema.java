@@ -68,8 +68,6 @@ public class Schema implements Serializable {
 
     @Override
     public String toString() {
-        return "Schema{" +
-                "naam='" + naam + '\'' +
-                '}';
+        return naam;
     }
 }
