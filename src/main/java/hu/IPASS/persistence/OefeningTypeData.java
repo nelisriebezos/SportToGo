@@ -12,6 +12,9 @@ public class OefeningTypeData implements Serializable {
     private static OefeningTypeData oefeningTypeData = new OefeningTypeData();
 
     public static OefeningTypeData getOefeningTypeData() {
+        if (oefeningTypeData == null) {
+            oefeningTypeData = new OefeningTypeData();
+        }
         return oefeningTypeData;
     }
 

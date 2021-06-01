@@ -12,6 +12,9 @@ public class GebruikerData  implements Serializable {
     private static GebruikerData gebruikerData = new GebruikerData();
 
     public static GebruikerData getGebruikerData() {
+        if (gebruikerData == null) {
+            gebruikerData = new GebruikerData();
+        }
         return gebruikerData;
     }
 

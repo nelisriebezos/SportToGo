@@ -11,17 +11,17 @@ public class Gebruiker implements Serializable {
     private String naam;
     private String emailAdres;
     private String wachtwoord;
-    private int id;
+    private String role;
     ArrayList<Schema> schemaLijst = new ArrayList<>();
     ArrayList<Sessie> sessieLijst = new ArrayList<>();
 
     private List<Gebruiker> alleGebruikers = new ArrayList<>();
 
-    public Gebruiker(String nm, String ea, String ww, int id) {
+    public Gebruiker(String nm, String ea, String ww, String role) {
         this.naam = nm;
         this.emailAdres = ea;
         this.wachtwoord = ww;
-        this.id = id;
+        this.role = role;
     }
 
     public Gebruiker() {
@@ -61,9 +61,6 @@ public class Gebruiker implements Serializable {
         return false;
     }
 
-    public int getId() {
-        return this.id;
-    }
 
     public String getNaam() {
         return naam;
@@ -89,6 +86,13 @@ public class Gebruiker implements Serializable {
         return true;
     }
 
+    public boolean checkWachtwoord(String wachtwoord) {
+        if (this.wachtwoord.equals(wachtwoord)) {
+            return true;
+        }
+        return false;
+    }
+
     public ArrayList<Schema> getSchemaLijst() {
         return schemaLijst;
     }
@@ -103,6 +107,10 @@ public class Gebruiker implements Serializable {
 
     public void setSessieLijst(ArrayList<Sessie> sessieLijst) {
         this.sessieLijst = sessieLijst;
+    }
+
+    public String getRole() {
+        return role;
     }
 
     @Override
