@@ -1,8 +1,8 @@
 package hu.IPASS.webservices;
 
 import hu.IPASS.domeinklassen.Gebruiker;
-import hu.IPASS.persistence.PersistenceManager;
-import hu.IPASS.utils.MakeUser;
+import hu.IPASS.persistence.GebruikerData;
+import hu.IPASS.persistence.OefeningTypeData;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -17,15 +17,22 @@ import java.util.HashMap;
 
 @Path("/accounts")
 public class GebruikerResource {
+    private GebruikerData gebruikerData = GebruikerData.getGebruikerData();
+    private OefeningTypeData oefeningTypeData = OefeningTypeData.getOefeningTypeData();
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(@FormParam("email") String eM,
                           @FormParam("password") String pW) {
+        System.out.println(eM);
 
-        PersistenceManager pm = PersistenceManager.getPM();
-        Gebruiker g = pm.getUser(eM, pW);
+        Gebruiker g2 = gebruikerData.getGebruiker("niels@ding.nl");
+        Gebruiker g = gebruikerData.getGebruiker(eM);
+
+        System.out.println(g2);
+        System.out.println(g);
+
 
         if (g != null) {
 //            JsonArrayBuilder jab = Json.createArrayBuilder();

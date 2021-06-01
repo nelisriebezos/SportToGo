@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Gebruiker implements Serializable {
@@ -13,6 +14,8 @@ public class Gebruiker implements Serializable {
     private int id;
     ArrayList<Schema> schemaLijst = new ArrayList<>();
     ArrayList<Sessie> sessieLijst = new ArrayList<>();
+
+    private List<Gebruiker> alleGebruikers = new ArrayList<>();
 
     public Gebruiker(String nm, String ea, String ww, int id) {
         this.naam = nm;
