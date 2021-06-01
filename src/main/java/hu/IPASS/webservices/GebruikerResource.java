@@ -17,8 +17,6 @@ import java.util.HashMap;
 
 @Path("/accounts")
 public class GebruikerResource {
-    private GebruikerData gebruikerData = GebruikerData.getGebruikerData();
-    private OefeningTypeData oefeningTypeData = OefeningTypeData.getOefeningTypeData();
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -27,8 +25,8 @@ public class GebruikerResource {
                           @FormParam("password") String pW) {
         System.out.println(eM);
 
-        Gebruiker g2 = gebruikerData.getGebruiker("niels@ding.nl");
-        Gebruiker g = gebruikerData.getGebruiker(eM);
+        Gebruiker g2 = GebruikerData.getGebruikerData().getGebruiker("niels@ding.nl");
+        Gebruiker g = GebruikerData.getGebruikerData().getGebruiker(eM);
 
         System.out.println(g2);
         System.out.println(g);
@@ -45,7 +43,6 @@ public class GebruikerResource {
 //            JsonArray array = jab.build();
 
             HashMap userMap = new HashMap();
-            userMap.put("id", g.getId());
             userMap.put("loggedin", "true");
 
 
