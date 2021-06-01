@@ -19,10 +19,9 @@ async function sendLoginData() {
     fetch("/restservices/accounts", fetchOptions)
         .then( resp => resp.json() )
         .then( resp => { if (resp.loggedin == "true") {
-            location.href='homeScherm.html?userid=' + resp.id;
+            window.sessionStorage.setItem("user", resp.id); //@TODO maak hier het opslaan van het token van
+            location.href='homeScherm.html';
         } else {
             element.textContent = "statuscode : " + resp.status;
         }})
-
-
 }

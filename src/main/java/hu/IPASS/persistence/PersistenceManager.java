@@ -23,7 +23,6 @@ public class PersistenceManager {
             .containerName(CONTAINER)
             .buildClient();
 
-    private Gebruiker currentUser;
     private ArrayList<Gebruiker> gebruikerList = new ArrayList<>();
     private ArrayList<OefeningType> oefeningTypeList = new ArrayList<>();
 
@@ -64,7 +63,7 @@ public class PersistenceManager {
         }
     }
 
-    public void loadUsersFromAzure() {
+    public void loadUserFromAzure() {
         if (blobContainer.exists()) {
             BlobClient blob = blobContainer.getBlobClient("userblob");
             try {
@@ -77,21 +76,11 @@ public class PersistenceManager {
                     Gebruiker gebruiker = (Gebruiker) ois.readObject();
 
                     System.out.println(gebruiker);
-//                    PM.setGebruikerList(gebruikerLijst);
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
-    }
-
-
-    public Gebruiker getCurrentUser() {
-        return currentUser;
-    }
-
-    public void setCurrentUser(Gebruiker ingelogdGebruiker) {
-        this.currentUser = ingelogdGebruiker;
     }
 
     public ArrayList<Gebruiker> getGebruikerList() {

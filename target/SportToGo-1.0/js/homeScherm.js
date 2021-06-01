@@ -1,4 +1,16 @@
-function laadPaginaIn(jsonMetData) {
-    alert("alert drie")
-    document.querySelector("#placeholder").innerHTML = jsonMetData[0].naam;
+function laadPaginaIn() {
+
+    let url = " /restservices/userdata/"+window.sessionStorage.getItem("user");
+    let fetchoptions = {
+        method : "GET",
+        headers: {
+            //'Authentication' : ' Bearer '+ window.sessionStorage.getItem("myJWT")
+        }
+    }
+    fetch(url, fetchoptions).then( responser => {
+        if (response.ok()) response.json()
+    }
+    ).then(myJson => console.log(myJson)).catch(error => console.log(error));
 }
+
+document.onload(laadPaginaIn);

@@ -41,8 +41,11 @@ public class ObjectenMain
 //        PersistenceManager.getPM().sendUserToAzure(geb2);
 //        PersistenceManager.getPM().sendUserToAzure(geb3);
 
-        PersistenceManager.getPM().loadUsersFromAzure();
+//        PersistenceManager.getPM().loadUsersFromAzure();
 //        System.out.println(PersistenceManager.getPM().getGebruikerList());
+
+//        PersistenceManager.getPM().sendUserToAzure(MakeUser.makeUserData());
+        PersistenceManager.getPM().loadUserFromAzure();
 
     }
 }
