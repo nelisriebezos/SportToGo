@@ -23,14 +23,8 @@ public class GebruikerResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(@FormParam("email") String eM,
                           @FormParam("password") String pW) {
-        System.out.println(eM);
-
-        Gebruiker g2 = GebruikerData.getGebruikerData().getGebruiker("niels@ding.nl");
         Gebruiker g = GebruikerData.getGebruikerData().getGebruiker(eM);
-
-        System.out.println(g2);
         System.out.println(g);
-
 
         if (g != null) {
 //            JsonArrayBuilder jab = Json.createArrayBuilder();
