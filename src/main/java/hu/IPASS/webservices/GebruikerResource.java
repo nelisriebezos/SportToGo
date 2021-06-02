@@ -22,9 +22,8 @@ public class GebruikerResource {
 
         if (g == null)
             return Response.status(Response.Status.CONFLICT).entity(
-                    new AbstractMap.SimpleEntry<String, String>("result", "Gebruiker niet gevonden") {
-                    }
-            ).build();
+                    new AbstractMap.SimpleEntry<String, String>
+                            ("result", "Gebruiker niet gevonden") {}).build();
         return Response.ok(g).build();
     }
 
@@ -38,20 +37,20 @@ public class GebruikerResource {
                                     @FormParam("setHoeveelheidKeuze") int setHoeveelheidKeuze) {
 
         Gebruiker g = GebruikerData.getGebruikerData().getGebruiker(email);
+
+        if (g == null) {
+            return Response.status(Response.Status.CONFLICT).entity(
+                    new AbstractMap.SimpleEntry<String, String>
+                            ("result", "Gebruiker niet gevonden") {}).build();
+        }
+
         Oefening o = new Oefening(gewichtkeuze, setHoeveelheidKeuze, OefeningTypeData.getOefeningTypeData().getOefeningType("squats"));
-
         g.getSchema(schemakeuze).addOefening(o);
-
-
-        System.out.println(OefeningTypeData.getOefeningTypeData().getOefeningType("squats"));
-        System.out.println(o);
-        System.out.println(g);
 
         if (!g.getSchema(schemakeuze).getOefeningLijst().contains(o)) {
             return Response.status(Response.Status.CONFLICT).entity(
                     new AbstractMap.SimpleEntry<String, String>
-                            ("result", "Oefening niet gemaakt") {
-                    }).build();
+                            ("result", "Oefening niet gemaakt") {}).build();
         }
         return Response.ok(o).build();
     }

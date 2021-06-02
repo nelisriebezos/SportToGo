@@ -61,11 +61,9 @@ public class ObjectenMain
         OefeningTypeData.getOefeningTypeData().addOefeningType(armcurl);
 
         PersistenceManager.sendOefeningTypeToAzure();
-//        PersistenceManager.sendUsersToAzure();
-//        PersistenceManager.loadOefeningTypeFromAzure();
-//        PersistenceManager.loadUserFromAzure();
+        PersistenceManager.sendUsersToAzure();
+        PersistenceManager.loadOefeningTypeFromAzure();
+        PersistenceManager.loadUserFromAzure();
 
-
-//        System.out.println(OefeningTypeData.getOefeningTypeData());
     }
 }

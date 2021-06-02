@@ -19,9 +19,6 @@ public class MyServletContextListener implements ServletContextListener {
         try {
             PersistenceManager.loadUserFromAzure();
             PersistenceManager.loadOefeningTypeFromAzure();
-
-            System.out.println(OefeningTypeData.getOefeningTypeData().getAlleOefeningTypes());
-            System.out.println(GebruikerData.getGebruikerData().getAlleGebruikers());
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -30,8 +27,8 @@ public class MyServletContextListener implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         try {
-//            PersistenceManager.sendUsersToAzure();
-//            PersistenceManager.sendOefeningTypeToAzure();
+            PersistenceManager.sendUsersToAzure();
+            PersistenceManager.sendOefeningTypeToAzure();
 
             Schedulers.shutdownNow();
             HttpResources.disposeLoopsAndConnectionsLater(Duration.ZERO, Duration.ZERO).block();

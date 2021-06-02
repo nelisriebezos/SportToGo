@@ -7,7 +7,6 @@ import java.util.Objects;
 public class Schema implements Serializable {
     private String naam;
     private Sessie sessie;
-    private Gebruiker gebruiker;
     ArrayList<Oefening> oefeningLijst = new ArrayList<>();
 
     public Schema(String nm) {
@@ -38,14 +37,6 @@ public class Schema implements Serializable {
         this.sessie = sessie;
     }
 
-    public Gebruiker getGebruiker() {
-        return gebruiker;
-    }
-
-    public void setGebruiker(Gebruiker gebruiker) {
-        this.gebruiker = gebruiker;
-    }
-
     public ArrayList<Oefening> getOefeningLijst() {
         return oefeningLijst;
     }
@@ -61,7 +52,6 @@ public class Schema implements Serializable {
         Schema schema = (Schema) o;
         return Objects.equals(getNaam(), schema.getNaam()) &&
                 Objects.equals(getSessie(), schema.getSessie()) &&
-                Objects.equals(getGebruiker(), schema.getGebruiker()) &&
                 Objects.equals(getOefeningLijst(), schema.getOefeningLijst());
     }
 

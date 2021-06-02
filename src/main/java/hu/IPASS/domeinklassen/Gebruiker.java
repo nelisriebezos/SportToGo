@@ -15,8 +15,6 @@ public class Gebruiker implements Serializable {
     ArrayList<Schema> schemaLijst = new ArrayList<>();
     ArrayList<Sessie> sessieLijst = new ArrayList<>();
 
-    private List<Gebruiker> alleGebruikers = new ArrayList<>();
-
     public Gebruiker(String nm, String ea, String ww, String role) {
         this.naam = nm;
         this.emailAdres = ea;
