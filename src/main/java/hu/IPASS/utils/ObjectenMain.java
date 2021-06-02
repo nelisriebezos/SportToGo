@@ -1,10 +1,12 @@
 package hu.IPASS.utils;
 
+import com.azure.storage.blob.BlobClient;
 import hu.IPASS.domeinklassen.*;
 import hu.IPASS.persistence.GebruikerData;
 import hu.IPASS.persistence.OefeningTypeData;
 import hu.IPASS.persistence.PersistenceManager;
 
+import java.io.*;
 import java.time.LocalDate;
 
 public class ObjectenMain
@@ -58,21 +60,12 @@ public class ObjectenMain
         OefeningTypeData.getOefeningTypeData().addOefeningType(crunches);
         OefeningTypeData.getOefeningTypeData().addOefeningType(armcurl);
 
-        System.out.println(GebruikerData.getGebruikerData().getAlleGebruikers());
-        System.out.println(OefeningTypeData.getOefeningTypeData().getAlleOefeningTypes());
-
-        System.out.println();
-
-        System.out.println(GebruikerData.getGebruikerData().getGebruiker("niels@ding.nl"));
-
-        System.out.println();
-
         PersistenceManager.sendOefeningTypeToAzure();
-        PersistenceManager.sendUsersToAzure();
-        PersistenceManager.loadOefeningTypeFromAzure();
-        PersistenceManager.loadUserFromAzure();
+//        PersistenceManager.sendUsersToAzure();
+//        PersistenceManager.loadOefeningTypeFromAzure();
+//        PersistenceManager.loadUserFromAzure();
 
-        System.out.println(GebruikerData.getGebruikerData().getAlleGebruikers());
-        System.out.println(OefeningTypeData.getOefeningTypeData().getAlleOefeningTypes());
+
+//        System.out.println(OefeningTypeData.getOefeningTypeData());
     }
 }

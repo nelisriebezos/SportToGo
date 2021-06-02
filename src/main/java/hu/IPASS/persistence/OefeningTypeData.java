@@ -34,13 +34,13 @@ public class OefeningTypeData implements Serializable {
     }
 
     public List<OefeningType> getAlleOefeningTypes() {
-        return alleOefeningTypes;
+        return new ArrayList<>(alleOefeningTypes);
     }
 
-    public OefeningType getOefeningType(OefeningType ot) {
-        for (OefeningType oefeningType : alleOefeningTypes) {
-            if (oefeningType.equals(ot)) {
-                return oefeningType;
+    public OefeningType getOefeningType(String nm) {
+        for (OefeningType ot : alleOefeningTypes) {
+            if (ot.getNaam().equals(nm)) {
+                return ot;
             }
         }
         return null;

@@ -34,7 +34,7 @@ public class GebruikerData  implements Serializable {
     }
 
     public List<Gebruiker> getAlleGebruikers() {
-        return alleGebruikers;
+        return new ArrayList<>(alleGebruikers);
     }
 
     public Gebruiker getGebruiker(String em) {

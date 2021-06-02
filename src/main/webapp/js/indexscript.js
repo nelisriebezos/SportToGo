@@ -1,13 +1,3 @@
-// function testknop() {
-//     fetch("/restservices/test")
-//         .then(resp => resp.json())
-//         .then(myJson => {
-//             console.log(myJson)
-//             document.querySelector("#placeholder").innerHTML = myJson[0].naam
-//         })
-//         .catch(error=>console.log(error));
-// }
-
 // async function sendLoginData() {
 //     let element = document.querySelector("#placeholder");
 //
@@ -26,20 +16,34 @@
 //         }})
 // }
 
+// async function sendLoginData() {
+//     let formData = new FormData(document.querySelector("#loginform"));
+//     let fetchOptions = {
+//         method: "POST",
+//         body: new URLSearchParams(formData)
+//     }
+//     fetch("/restservices/authenticate", fetchOptions)
+//         .then(response => response.json())
+//         .then(function (myJson) {
+//             console.log(myJson.emailAdres)
+//             console.log(myJson)
+//             window.sessionStorage.setItem("user", myJson.emailAdres);
+//             location.href='homeScherm.html';
+//         })
+// }
+
 async function sendLoginData() {
     let formData = new FormData(document.querySelector("#loginform"));
     let fetchOptions = {
         method: "POST",
         body: new URLSearchParams(formData)
     }
-    fetch("/restservices/authenticate", fetchOptions)
-        // .then( response => Promise.all([response,status, response.json()]))
-        .then(response => response.json())
-        .then(function (myJson) {
-            console.log(myJson.emailAdres)
-            console.log(myJson)
+    const response = await fetch("/restservices/authenticate", fetchOptions)
+        if (response.ok) {
+            const myJson = await response.json();
             window.sessionStorage.setItem("user", myJson.emailAdres);
             location.href='homeScherm.html';
-        })
+        } else {
+            console.log(response.status)
+        }
 }
-

@@ -1,12 +1,12 @@
 package hu.IPASS.webservices;
 
 import hu.IPASS.domeinklassen.Gebruiker;
+import hu.IPASS.domeinklassen.Oefening;
+import hu.IPASS.domeinklassen.OefeningType;
 import hu.IPASS.persistence.GebruikerData;
+import hu.IPASS.persistence.OefeningTypeData;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.AbstractMap;
@@ -26,5 +26,33 @@ public class GebruikerResource {
                     }
             ).build();
         return Response.ok(g).build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{email}")
+    public Response voegOefeningToe(@PathParam("email") String email,
+                                    @FormParam("schemaKeuze") String schemakeuze,
+                                    @FormParam("gewichtKeuze") int gewichtkeuze,
+                                    @FormParam("setHoeveelheidKeuze") int setHoeveelheidKeuze) {
+
+        Gebruiker g = GebruikerData.getGebruikerData().getGebruiker(email);
+        Oefening o = new Oefening(gewichtkeuze, setHoeveelheidKeuze, OefeningTypeData.getOefeningTypeData().getOefeningType("squats"));
+
+        g.getSchema(schemakeuze).addOefening(o);
+
+
+        System.out.println(OefeningTypeData.getOefeningTypeData().getOefeningType("squats"));
+        System.out.println(o);
+        System.out.println(g);
+
+        if (!g.getSchema(schemakeuze).getOefeningLijst().contains(o)) {
+            return Response.status(Response.Status.CONFLICT).entity(
+                    new AbstractMap.SimpleEntry<String, String>
+                            ("result", "Oefening niet gemaakt") {
+                    }).build();
+        }
+        return Response.ok(o).build();
     }
 }

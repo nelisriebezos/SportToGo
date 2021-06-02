@@ -1,9 +1,5 @@
-package hu.IPASS;
+package hu.IPASS.domeinklassen;
 
-import hu.IPASS.domeinklassen.Gebruiker;
-import hu.IPASS.domeinklassen.Oefening;
-import hu.IPASS.domeinklassen.OefeningType;
-import hu.IPASS.domeinklassen.Schema;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
