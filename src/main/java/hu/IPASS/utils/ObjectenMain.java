@@ -16,6 +16,7 @@ public class ObjectenMain
         Gebruiker geb2 = new Gebruiker("Bruus Riezebos", "bruus.riezebos@student.hu.nl", "wachtwoord2", "gebruiker");
         Gebruiker geb3 = new Gebruiker("britte Riezebos", "britte.riezebos@student.hu.nl", "wachtwoord3", "gebruiker");
         Gebruiker geb4 = new Gebruiker("nelis riebezos", "niels@ding.nl", "wachtwoord1", "gebruiker");
+        Gebruiker geb5 = new Gebruiker("admin", "admin@email.nl", "admin", "gebruiker");
 
         OefeningType squats = new OefeningType("squats", "test OefeningType squats");
         OefeningType crunches = new OefeningType("crunches", "test OefeningType crunches");
@@ -55,6 +56,7 @@ public class ObjectenMain
         GebruikerData.getGebruikerData().addGebruiker(geb2);
         GebruikerData.getGebruikerData().addGebruiker(geb3);
         GebruikerData.getGebruikerData().addGebruiker(geb4);
+        GebruikerData.getGebruikerData().addGebruiker(geb5);
 
         OefeningTypeData.getOefeningTypeData().addOefeningType(squats);
         OefeningTypeData.getOefeningTypeData().addOefeningType(crunches);

@@ -1,23 +1,23 @@
 package hu.IPASS.domeinklassen;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import hu.IPASS.persistence.GebruikerData;
 
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-public class Gebruiker implements Serializable {
-    private String naam;
-    private String emailAdres;
+public class Gebruiker implements Principal ,Serializable {
+    private String gebruikernaam;
+    private String emailadres;
     private String wachtwoord;
     private String role;
     ArrayList<Schema> schemaLijst = new ArrayList<>();
     ArrayList<Sessie> sessieLijst = new ArrayList<>();
 
     public Gebruiker(String nm, String ea, String ww, String role) {
-        this.naam = nm;
-        this.emailAdres = ea;
+        this.gebruikernaam = nm;
+        this.emailadres = ea;
         this.wachtwoord = ww;
         this.role = role;
     }
@@ -60,20 +60,20 @@ public class Gebruiker implements Serializable {
     }
 
 
-    public String getNaam() {
-        return naam;
+    public String getGebruikernaam() {
+        return gebruikernaam;
     }
 
-    public void setNaam(String naam) {
-        this.naam = naam;
+    public void setGebruikernaam(String gebruikernaam) {
+        this.gebruikernaam = gebruikernaam;
     }
 
-    public String getEmailAdres() {
-        return emailAdres;
+    public String getEmailadres() {
+        return emailadres;
     }
 
-    public void setEmailAdres(String emailAdres) {
-        this.emailAdres = emailAdres;
+    public void setEmailadres(String emailadres) {
+        this.emailadres = emailadres;
     }
 
     public boolean setWachtwoord(String wachtwoord) {
@@ -107,27 +107,58 @@ public class Gebruiker implements Serializable {
         this.sessieLijst = sessieLijst;
     }
 
-    public String getRole() {
-        return role;
+
+
+    public static boolean registerUser(Gebruiker gebruiker) {
+        if (!GebruikerData.getGebruikerData().getAlleGebruikers().contains(gebruiker)) {
+            return GebruikerData.getGebruikerData().addGebruiker(gebruiker);
+        }
+        return false;
     }
+
+    public static Gebruiker getUserByName(String gebruikernaam) {
+        return GebruikerData.getGebruikerData().getAlleGebruikers().stream().filter(user -> user.getName().equals(gebruikernaam)).findFirst().orElse(null);
+    }
+
+    public static String validateLogin(String gebruikernaam, String password) {
+        if (gebruikernaam == null || gebruikernaam.isBlank() || password == null || password.isBlank()) return null;
+        Gebruiker user = getUserByName(gebruikernaam);
+        if (user == null) return null;
+        return user.checkPassword(password) ? user.getRole() : null;
+    }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Gebruiker)) return false;
-        Gebruiker gebruiker = (Gebruiker) o;
-        return Objects.equals(getNaam(), gebruiker.getNaam()) &&
-                Objects.equals(getEmailAdres(), gebruiker.getEmailAdres()) &&
-                Objects.equals(wachtwoord, gebruiker.wachtwoord) &&
-                Objects.equals(getSchemaLijst(), gebruiker.getSchemaLijst()) &&
-                Objects.equals(getSessieLijst(), gebruiker.getSessieLijst());
+        if (o == null || getClass() != o.getClass()) return false;
+        Gebruiker myUser = (Gebruiker) o;
+        return gebruikernaam.equals(myUser.gebruikernaam);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gebruikernaam);
+    }
+
+    @Override
+    public String getName() {
+        return gebruikernaam;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public boolean checkPassword(String password) {
+        return this.wachtwoord.equals(password);
     }
 
     @Override
     public String toString() {
         return
-                "naam='" + naam + '\'' +
-                ", emailAdres='" + emailAdres + '\'' +
+                "naam='" + gebruikernaam + '\'' +
+                ", emailAdres='" + emailadres + '\'' +
                 ", wachtwoord='" + wachtwoord + '\'' +
                 ", schemaLijst=" + schemaLijst +
                 ", sessieLijst=" + sessieLijst +

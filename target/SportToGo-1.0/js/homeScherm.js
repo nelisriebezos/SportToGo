@@ -19,7 +19,7 @@ function laadPaginaIn() {
         .then( (response) => response.json())
         .then(function(myJson) {
             console.log(myJson)
-            document.querySelector("#testdata").innerHTML = myJson.emailAdres;
+            document.querySelector("#testdata").innerHTML = myJson.emailadres;
         })
 }
 

@@ -44,6 +44,7 @@ public class GebruikerResource {
                             ("result", "Gebruiker niet gevonden") {}).build();
         }
 
+
         Oefening o = new Oefening(gewichtkeuze, setHoeveelheidKeuze, OefeningTypeData.getOefeningTypeData().getOefeningType("squats"));
         g.getSchema(schemakeuze).addOefening(o);
 
@@ -52,6 +53,8 @@ public class GebruikerResource {
                     new AbstractMap.SimpleEntry<String, String>
                             ("result", "Oefening niet gemaakt") {}).build();
         }
+        System.out.println(o);
+        System.out.println(g);
         return Response.ok(o).build();
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 public class GebruikerData  implements Serializable {
     private List<Gebruiker> alleGebruikers = new ArrayList<>();
 
-    private static GebruikerData gebruikerData = new GebruikerData();
+    private static GebruikerData gebruikerData;
 
     public static GebruikerData getGebruikerData() {
         if (gebruikerData == null) {
@@ -39,7 +39,7 @@ public class GebruikerData  implements Serializable {
 
     public Gebruiker getGebruiker(String em) {
         for (Gebruiker geb : alleGebruikers) {
-            if (geb.getEmailAdres().equals(em)) {
+            if (geb.getEmailadres().equals(em)) {
                 return geb;
             }
         }

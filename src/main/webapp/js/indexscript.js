@@ -32,18 +32,36 @@
 //         })
 // }
 
-async function sendLoginData() {
-    let formData = new FormData(document.querySelector("#loginform"));
-    let fetchOptions = {
-        method: "POST",
-        body: new URLSearchParams(formData)
-    }
-    const response = await fetch("/restservices/authenticate", fetchOptions)
-        if (response.ok) {
-            const myJson = await response.json();
-            window.sessionStorage.setItem("user", myJson.emailAdres);
-            location.href='homeScherm.html';
-        } else {
-            console.log(response.status)
-        }
+// async function sendLoginData() {
+//     let formData = new FormData(document.querySelector("#loginform"));
+//     let fetchOptions = {
+//         method: "POST",
+//         body: new URLSearchParams(formData)
+//     }
+//     fetch("/restservices/authenticate", fetchOptions)
+//         .then((response) => {
+//             if (response.ok) {
+//                 return response.json();
+//                 // location.href='homeScherm.html';
+//             } else {
+//                 console.log(response.status)
+//             }
+//         })
+//         .then(myJson => window.sessionStorage.setItem("myJWT", myJson.JWT))
+//         .then(myJson => window.sessionStorage.setItem("user", myJson.emailadres))
+//         .catch(error => console.log(error))
+// }
+
+function sendLoginData() {
+    var formData = new FormData(document.querySelector("#loginform"));
+    var encData = new URLSearchParams(formData);
+
+    fetch("/restservices/authenticate", {method: "POST", body: encData})
+        .then((response) => {
+            if (response.ok) return response.json();
+            else console.log(response);
+            // else throw "Wrong username / password";
+        })
+        .then(myJson => window.sessionStorage.setItem("myJWT", myJson.JWT))
+        .catch(error => console.log(error))
 }
