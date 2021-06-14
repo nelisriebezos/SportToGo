@@ -1,5 +1,7 @@
 package hu.IPASS.domeinklassen;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -30,6 +32,7 @@ public class Oefening implements Serializable {
         this.setHoeveelheid = setHoeveelheid;
     }
 
+    @JsonIgnore
     public OefeningType getOefeningType() {
         return oefeningType;
     }

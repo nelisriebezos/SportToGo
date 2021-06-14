@@ -1,5 +1,6 @@
 package hu.IPASS.domeinklassen;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.IPASS.persistence.GebruikerData;
 
 import java.io.Serializable;
@@ -91,6 +92,7 @@ public class Gebruiker implements Principal ,Serializable {
         return false;
     }
 
+    @JsonIgnore
     public ArrayList<Schema> getSchemaLijst() {
         return schemaLijst;
     }
@@ -99,6 +101,7 @@ public class Gebruiker implements Principal ,Serializable {
         this.schemaLijst = schemaLijst;
     }
 
+    @JsonIgnore
     public ArrayList<Sessie> getSessieLijst() {
         return sessieLijst;
     }
