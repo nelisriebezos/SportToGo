@@ -6,31 +6,30 @@ import javax.ws.rs.core.SecurityContext;
 import java.security.Principal;
 
 public class MySecurityContext implements SecurityContext {
-    private Gebruiker user;
-    private String scheme;
+    private Gebruiker gebruiker;
+    private String schema;
 
-    public MySecurityContext(Gebruiker user, String scheme) {
-        this.user = user;
-        this.scheme = scheme;
+    public MySecurityContext(Gebruiker gebruiker, String schema) {
+        this.gebruiker = gebruiker;
+        this.schema = schema;
     }
 
     @Override
     public Principal getUserPrincipal() {
-        return this.user;
+        return this.gebruiker;
     }
 
     @Override
     public boolean isUserInRole(String s) {
-        if (user.getRole() != null) {
-            System.out.printf("%s equals %s", s, user.getRole());
-            return s.equals(user.getRole());
+        if (gebruiker.getRol() != null) {
+            return s.equals(gebruiker.getRol());
         }
         return false;
     }
 
     @Override
     public boolean isSecure() {
-        return "https".equals(this.scheme);
+        return "https".equals(this.schema);
     }
 
     @Override

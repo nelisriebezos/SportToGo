@@ -1,5 +1,7 @@
 package hu.IPASS.domeinklassen;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -51,6 +53,7 @@ public class Sessie implements Serializable {
         this.eindTijd = eindTijd;
     }
 
+    @JsonIgnore
     public Gebruiker getGebruiker() {
         return gebruiker;
     }

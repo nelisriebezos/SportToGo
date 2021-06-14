@@ -79,19 +79,4 @@ public class AuthenticateResource {
         return Response.ok(otd).build();
 
     }
-
-//    @POST
-//    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response login(@FormParam("email") String eM,
-//                          @FormParam("password") String pW) {
-//
-//        Gebruiker g = GebruikerData.getGebruikerData().getGebruiker(eM);
-//
-//        if (g == null)
-//            return Response.status(Response.Status.CONFLICT).entity(
-//                    new AbstractMap.SimpleEntry<String, String>
-//                            ("result", "Gebruiker niet gevonden") {}).build();
-//        return Response.ok(g).build();
-//    }
 }

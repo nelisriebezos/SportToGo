@@ -9,19 +9,10 @@ import java.util.Objects;
 public class OefeningType implements Serializable {
     private String naam;
     private String beschrijving;
-    ArrayList<Oefening> oefeningLijst = new ArrayList<>();
 
     public OefeningType(String nm, String bs) {
         this.naam = nm;
         this.beschrijving = bs;
-    }
-
-    public boolean addOefening(Oefening o) {
-        if (!this.oefeningLijst.contains(o)) {
-            this.oefeningLijst.add(o);
-            return true;
-        }
-        return false;
     }
 
     public String getNaam() {
@@ -40,23 +31,13 @@ public class OefeningType implements Serializable {
         this.beschrijving = beschrijving;
     }
 
-    @JsonIgnore
-    public ArrayList<Oefening> getOefeningLijst() {
-        return oefeningLijst;
-    }
-
-    public void setOefeningLijst(ArrayList<Oefening> oefeningLijst) {
-        this.oefeningLijst = oefeningLijst;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof OefeningType)) return false;
         OefeningType that = (OefeningType) o;
         return Objects.equals(getNaam(), that.getNaam()) &&
-                Objects.equals(getBeschrijving(), that.getBeschrijving()) &&
-                Objects.equals(getOefeningLijst(), that.getOefeningLijst());
+                Objects.equals(getBeschrijving(), that.getBeschrijving());
     }
 
 

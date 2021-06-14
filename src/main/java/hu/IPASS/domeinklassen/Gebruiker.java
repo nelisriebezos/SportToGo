@@ -12,15 +12,15 @@ public class Gebruiker implements Principal ,Serializable {
     private String gebruikernaam;
     private String emailadres;
     private String wachtwoord;
-    private String role;
+    private String rol;
     ArrayList<Schema> schemaLijst = new ArrayList<>();
     ArrayList<Sessie> sessieLijst = new ArrayList<>();
 
-    public Gebruiker(String nm, String ea, String ww, String role) {
+    public Gebruiker(String nm, String ea, String ww, String rol) {
         this.gebruikernaam = nm;
         this.emailadres = ea;
         this.wachtwoord = ww;
-        this.role = role;
+        this.rol = rol;
     }
 
     public Gebruiker() {
@@ -127,7 +127,7 @@ public class Gebruiker implements Principal ,Serializable {
         if (gebruikernaam == null || gebruikernaam.isBlank() || password == null || password.isBlank()) return null;
         Gebruiker user = getUserByName(gebruikernaam);
         if (user == null) return null;
-        return user.checkPassword(password) ? user.getRole() : null;
+        return user.checkPassword(password) ? user.getRol() : null;
     }
 
 
@@ -149,8 +149,8 @@ public class Gebruiker implements Principal ,Serializable {
         return gebruikernaam;
     }
 
-    public String getRole() {
-        return role;
+    public String getRol() {
+        return rol;
     }
 
     public boolean checkPassword(String password) {

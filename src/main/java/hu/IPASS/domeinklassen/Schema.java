@@ -8,7 +8,6 @@ import java.util.Objects;
 
 public class Schema implements Serializable {
     private String naam;
-    private Sessie sessie;
     ArrayList<Oefening> oefeningLijst = new ArrayList<>();
 
     public Schema(String nm) {
@@ -31,14 +30,6 @@ public class Schema implements Serializable {
         this.naam = naam;
     }
 
-    public Sessie getSessie() {
-        return sessie;
-    }
-
-    public void setSessie(Sessie sessie) {
-        this.sessie = sessie;
-    }
-
     @JsonIgnore
     public ArrayList<Oefening> getOefeningLijst() {
         return oefeningLijst;
@@ -54,7 +45,6 @@ public class Schema implements Serializable {
         if (!(o instanceof Schema)) return false;
         Schema schema = (Schema) o;
         return Objects.equals(getNaam(), schema.getNaam()) &&
-                Objects.equals(getSessie(), schema.getSessie()) &&
                 Objects.equals(getOefeningLijst(), schema.getOefeningLijst());
     }
 

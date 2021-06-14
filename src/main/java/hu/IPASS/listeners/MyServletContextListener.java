@@ -19,8 +19,6 @@ public class MyServletContextListener implements ServletContextListener {
         try {
             PersistenceManager.loadUserFromAzure();
             PersistenceManager.loadOefeningTypeFromAzure();
-
-            System.out.println(GebruikerData.getGebruikerData().getGebruiker("admin@email.nl"));
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
