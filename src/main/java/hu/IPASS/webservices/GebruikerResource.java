@@ -20,7 +20,7 @@ public class GebruikerResource {
     @GET
     @RolesAllowed({"gebruiker", "admin"})
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getSessies(@Context SecurityContext sc) {
+    public Response getHomescherm(@Context SecurityContext sc) {
         if (sc.getUserPrincipal() instanceof Gebruiker) {
             Gebruiker currentUser = (Gebruiker) sc.getUserPrincipal();
             return Response.ok(currentUser.getSessieLijst()).build();

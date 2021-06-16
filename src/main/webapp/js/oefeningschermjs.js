@@ -15,8 +15,8 @@ function getData() {
             oefeninglijst.innerHTML = "";
             console.log(myJson);
             for (oefeningtype of myJson) {
-                oefeninglijst.innerHTML = + oefeningtype.naam + "<br/>"
-                oefeningbeschrijving.innerHTML = + oefeningtype.beschrijving + "<br/>"
+                oefeninglijst.innerHTML = oefeninglijst.innerHTML + oefeningtype.naam + "<br/>"
+                oefeningbeschrijving.innerHTML = oefeningbeschrijving.innerHTML+ oefeningtype.beschrijving + "<br/>"
             }
         })
         .catch(error => console.log(error))

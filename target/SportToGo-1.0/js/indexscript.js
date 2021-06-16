@@ -5,7 +5,6 @@ function sendLoginData() {
         body: new URLSearchParams(formData)
     };
 
-
     fetch("/restservices/authenticate", fetchOptions)
         .then((response) => {
             if (response.ok) {
