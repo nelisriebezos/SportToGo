@@ -85,11 +85,8 @@ public class Gebruiker implements Principal ,Serializable {
         return true;
     }
 
-    public boolean checkWachtwoord(String wachtwoord) {
-        if (this.wachtwoord.equals(wachtwoord)) {
-            return true;
-        }
-        return false;
+    public boolean checkPassword(String password) {
+        return this.wachtwoord.equals(password);
     }
 
     @JsonIgnore
@@ -110,8 +107,25 @@ public class Gebruiker implements Principal ,Serializable {
         this.sessieLijst = sessieLijst;
     }
 
+    @Override
+    public String getName() {
+        return gebruikernaam;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
     public static Gebruiker getUserByName(String gebruikernaam) {
         return GebruikerData.getGebruikerData().getAlleGebruikers().stream().filter(user -> user.getName().equals(gebruikernaam)).findFirst().orElse(null);
+    }
+
+    public boolean registreerGebruiker(Gebruiker g) {
+        if (! GebruikerData.getGebruikerData().getAlleGebruikers().contains(g)) {
+            GebruikerData.getGebruikerData().voegGebruikerToe(g);
+            return true;
+        }
+        return false;
     }
 
     public static String validateLogin(String gebruikernaam, String password) {
@@ -136,17 +150,11 @@ public class Gebruiker implements Principal ,Serializable {
     }
 
     @Override
-    public String getName() {
-        return gebruikernaam;
+    public String toString() {
+        return "Gebruiker{" +
+                "gebruikernaam='" + gebruikernaam + '\'' +
+                ", emailadres='" + emailadres + '\'' +
+                ", rol='" + rol + '\'' +
+                '}';
     }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public boolean checkPassword(String password) {
-        return this.wachtwoord.equals(password);
-    }
-
-
 }

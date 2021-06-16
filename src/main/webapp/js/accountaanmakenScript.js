@@ -10,7 +10,6 @@ function stuurGebruikerData() {
             if (response.ok) {
                 location.href='index.html';
             } else {
-                console.log(response)
                 datadiv.innerHTML = "Email staat al geregistreerd";
             }
         })

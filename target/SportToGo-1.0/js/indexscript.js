@@ -1,8 +1,12 @@
 function sendLoginData() {
     var formData = new FormData(document.querySelector("#loginform"));
-    var encData = new URLSearchParams(formData);
+    var fetchOptions = {
+        method: "POST",
+        body: new URLSearchParams(formData)
+    };
 
-    fetch("/restservices/authenticate", {method: "POST", body: encData})
+
+    fetch("/restservices/authenticate", fetchOptions)
         .then((response) => {
             if (response.ok) {
                 return response.json();

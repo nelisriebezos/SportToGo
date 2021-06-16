@@ -53,30 +53,4 @@ public class AuthenticateResource {
                 .compact();
     }
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("{email}")
-    public Response getUserSchemas(@PathParam("email") String email) {
-        Gebruiker g = GebruikerData.getGebruikerData().getGebruiker(email);
-
-        if (g == null)
-            return Response.status(Response.Status.CONFLICT).entity(
-                    new AbstractMap.SimpleEntry<String, String>
-                            ("result", "Gebruiker niet gevonden") {}).build();
-        return Response.ok(g.getSchemaLijst()).build();
-    }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("alleOefeningTypes")
-    public Response getAlleOefeningTypes() {
-        List<OefeningType> otd = OefeningTypeData.getOefeningTypeData().getAlleOefeningTypes();
-
-        if (otd == null)
-            return Response.status(Response.Status.CONFLICT).entity(
-                    new AbstractMap.SimpleEntry<String, String>
-                            ("result", "Gebruiker niet gevonden") {}).build();
-        return Response.ok(otd).build();
-
-    }
 }
