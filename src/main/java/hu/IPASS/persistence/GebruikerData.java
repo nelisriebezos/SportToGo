@@ -22,7 +22,7 @@ public class GebruikerData  implements Serializable {
         gebruikerData = gd;
     }
 
-    private GebruikerData() {
+    public GebruikerData() {
     }
 
     public void voegGebruikerToe(Gebruiker g) {
@@ -31,14 +31,5 @@ public class GebruikerData  implements Serializable {
 
     public List<Gebruiker> getAlleGebruikers() {
         return new ArrayList<>(alleGebruikers);
-    }
-
-    public Gebruiker getGebruiker(String em) {
-        for (Gebruiker geb : alleGebruikers) {
-            if (geb.getEmailadres().equals(em)) {
-                return geb;
-            }
-        }
-        return null;
     }
 }

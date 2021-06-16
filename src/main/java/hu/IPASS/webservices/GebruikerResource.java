@@ -118,7 +118,7 @@ public class GebruikerResource {
                                      @FormParam("wachtwoord") String wachtwoord) {
 
         Gebruiker newGebruiker = new Gebruiker(gebruikernaam, email, wachtwoord, "gebruiker");
-        boolean g = newGebruiker.registreerGebruiker(newGebruiker);
+        boolean g = Gebruiker.registreerGebruiker(newGebruiker);
 
         if (g) {
             return Response.ok(newGebruiker).build();

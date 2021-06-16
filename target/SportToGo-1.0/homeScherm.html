@@ -20,13 +20,16 @@
     <hr>
 
     <div id="trainingdiv">
-        <h2>Training toevoegen</h2>
+        <h2>Sessie toevoegen</h2>
 
         <form id="trainingGegevens">
-            <label for="schemaKeuze">Kies schema: </label><select id="schemaKeuze" name="schemaKeuze"></select><br>
-            <label for="datumTijdKeuze">Kies datum en tijd: </label><input type="datetime-local" id="datumTijdKeuze" name="datumTijdKeuze"><br>
+            <label for="schemaKeuze">Kies schema: </label>
+            <select id="schemaKeuze" name="schemaKeuze">
+                <option value="">Kies een schema</option>
+            </select><br>
+            <label for="datumTijdKeuze">Kies datum en tijd: </label>
+            <input type="datetime-local" id="datumTijdKeuze" name="datumTijdKeuze"><br>
         </form>
-
         <input type="button" id="voegToe" value="voegToe" onclick="">
     </div>
 

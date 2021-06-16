@@ -10,8 +10,8 @@
 <main id="boxes">
     <div id="oefeningen">
         <h1>Oefeningen</h1>
-        <div id="oefeningenLijst"></div>
-        <div id="oefeningBeschrijving"></div>
+        <div id="oefeningenLijst" class="oefeningdiv"></div>
+        <div id="oefeningBeschrijving" class="oefeningdiv"></div>
 
     </div>
     <div id="oefeningtoevoegen">
@@ -19,12 +19,14 @@
 
         <form id="oefeningGegevens">
             <label for="schemaKeuze">Kies schema: </label>
-
-            <select id="schemaKeuze" name="schemaKeuze"></select>
-
+            <select id="schemaKeuze" name="schemaKeuze">
+                <option value="">Kies een schema</option>
+            </select>
             <br>
-            <label for="gewichtKeuze">Kies gewicht: </label><input type="number" id="gewichtKeuze" name="gewichtKeuze"><br>
-            <label for="setHoeveelheidKeuze">Kies set hoeveelheid: </label><input type="number" id="setHoeveelheidKeuze" name="setHoeveelheidKeuze"><br>
+            <label for="gewichtKeuze">Kies gewicht: </label>
+            <input type="number" id="gewichtKeuze" name="gewichtKeuze"><br>
+            <label for="setHoeveelheidKeuze">Kies set hoeveelheid: </label>
+            <input type="number" id="setHoeveelheidKeuze" name="setHoeveelheidKeuze"><br>
         </form>
 
         <input type="button" id="voegToe" value="Voeg toe" onclick="zendOefeningData()">

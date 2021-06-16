@@ -15,3 +15,9 @@
 /*#oefeningBeschrijving {*/
 /*    background-color: lightblue;*/
 /*}*/
+
+.oefeningdiv {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+}

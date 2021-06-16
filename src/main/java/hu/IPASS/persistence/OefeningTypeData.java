@@ -22,7 +22,7 @@ public class OefeningTypeData implements Serializable {
         oefeningTypeData = otd;
     }
 
-    private OefeningTypeData() {
+    public OefeningTypeData() {
     }
 
     public boolean addOefeningType(OefeningType ot) {
@@ -35,14 +35,5 @@ public class OefeningTypeData implements Serializable {
 
     public List<OefeningType> getAlleOefeningTypes() {
         return new ArrayList<>(alleOefeningTypes);
-    }
-
-    public OefeningType getOefeningType(String nm) {
-        for (OefeningType ot : alleOefeningTypes) {
-            if (ot.getNaam().equals(nm)) {
-                return ot;
-            }
-        }
-        return null;
     }
 }
