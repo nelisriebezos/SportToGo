@@ -13,18 +13,25 @@ function laadPaginaIn() {
             })
             .then(myJson => {
                 let datadiv = document.querySelector('#schemabox')
+                var select = document.getElementById('schemaKeuze');
                 datadiv.innerHTML = "";
                 console.log(myJson)
-                for (sessie of myJson) {
-                    datadiv.innerHTML = datadiv.innerHTML + sessie.naam + "<br/>"
-                        + sessie.dag.dayOfMonth + "-" + sessie.dag.monthValue + "-" + sessie.dag.year +"<br/>"
-                        + sessie.beginTijd + "<br/>"
-                        + sessie.eindTijd + "<br/>"
-                        + sessie.schema.naam + "<br/>"+ "<br/>"
+                for (data of myJson) {
+                    select.options[select.options.length] = new Option(data.schema.naam, data.schema.naam);
+                    datadiv.innerHTML = datadiv.innerHTML + data.naam + "<br/>"
+                        + data.dag.dayOfMonth + "-" + data.dag.monthValue + "-" + data.dag.year + "<br/>"
+                        + data.beginTijd + "<br/>"
+                        + data.eindTijd + "<br/>"
+                        + data.schema.naam + "<br/>" + "<br/>"
                 }
             })
             .catch(error => console.log(error))
 
+}
+
+function logUit() {
+    sessionStorage.removeItem("myJWT");
+    location.href = "index.html";
 }
 
 document.addEventListener('DOMContentLoaded', laadPaginaIn);

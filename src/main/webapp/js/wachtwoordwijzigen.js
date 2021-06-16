@@ -2,6 +2,7 @@ function stuurWachtwoordOp() {
     let messagediv = document.querySelector("#messagediv");
     var nww = document.getElementById('nieuwwachtwoord').value;
     var hnww = document.getElementById('hernieuwwachtwoord').value;
+
     if (nww === hnww) {
         var formData = new FormData(document.querySelector("#gegevenswijzigenform"));
         var fetchOptions = {

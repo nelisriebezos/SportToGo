@@ -18,38 +18,6 @@
         <input type="button" id="account_aanmaken" value="Account aanmaken" onclick="location.href='accountAanmaken.html';">
         <input type="button" id="login" value="Login" onclick="sendLoginData()">
     </form>
-
-    <br>
-
-    <div>
-        <h3>Integratie test</h3>
-        <h4>Deze moeten wel werken</h4>
-
-        <ul>
-            <li>
-                <a href="/restservices/gebruiker/niels@ding.nl">Moet niels@ding.nl retourneren</a>
-            </li>
-            <li>
-                <a href="/restservices/authenticate/niels@ding.nl">Moet lijst met schema's retourneren</a>
-            </li>
-            <li>
-                <a href="/restservices/authenticate/alleOefeningTypes">Moet lijst met oefeningTypes retournen</a>
-            </li>
-        </ul>
-
-        <h4>Deze moeten niet werken</h4>
-
-        <ul>
-            <li>
-                <a href="/restservices/gebruiker/slechteemail">Niet bestaand account retourneren, verwacht  </a>
-            </li>
-            <li>
-                <a href="/restservices/authenticate/slechteemail">Lijst oproepen van een niet bestaand account</a>
-            </li>
-        </ul>
-    </div>
-<!--    <input type="button" id="test" value="testknop" onclick="testknop()">-->
-
 </div>
 </body>
 </html>

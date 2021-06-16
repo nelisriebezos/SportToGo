@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', getData);
+
 function getData() {
     var fetchoptions = {
         method: "GET",
@@ -12,9 +14,11 @@ function getData() {
         .then(myJson => {
             let oefeninglijst = document.querySelector('#oefeningenLijst');
             let oefeningbeschrijving = document.querySelector('#oefeningBeschrijving');
+            var select = document.getElementById('schemaKeuze');
+
             oefeninglijst.innerHTML = "";
-            console.log(myJson);
             for (oefeningtype of myJson) {
+                select.options[select.options.length] = new Option(oefeningtype.naam, oefeningtype.naam);
                 oefeninglijst.innerHTML = oefeninglijst.innerHTML + oefeningtype.naam + "<br/>"
                 oefeningbeschrijving.innerHTML = oefeningbeschrijving.innerHTML+ oefeningtype.beschrijving + "<br/>"
             }
@@ -22,4 +26,6 @@ function getData() {
         .catch(error => console.log(error))
 }
 
-document.addEventListener('DOMContentLoaded', getData);
+function zendOefeningData() {
+
+}

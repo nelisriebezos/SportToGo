@@ -8,27 +8,50 @@
 </head>
 <body>
 <div id="main">
-    <h1>Sport To Go</h1>
-    <h2>Home</h2>
+    <div id="homediv">
+        <h1>Sport To Go</h1>
+        <h2>Home</h2>
 
-
-    <div id="menu">
-        <input type="button" id="oefeningen" value="Oefeningen" onclick="location.href='oefeningScherm.html';"><br>
-        <input type="button" id="training_schemas" value="Training schemas" onclick="location.href='schemaScherm.html'"><br>
+        <label>Uw sessies: </label>
+        <div id="schemabox"></div><br>
+        <input type="button" id="oefeningen" value="Oefeningen" onclick="location.href='oefeningScherm.html';">
     </div>
 
-    <div id="schemabox"></div><br>
-    <input type="button" id="training_toevoegen" value="Voeg training toe" onclick="">
+    <hr>
 
-    <br>
+    <div id="trainingdiv">
+        <h2>Training toevoegen</h2>
 
+        <form id="trainingGegevens">
+            <label for="schemaKeuze">Kies schema: </label><select id="schemaKeuze" name="schemaKeuze"></select><br>
+            <label for="datumTijdKeuze">Kies datum en tijd: </label><input type="datetime-local" id="datumTijdKeuze" name="datumTijdKeuze"><br>
+        </form>
+
+        <input type="button" id="voegToe" value="voegToe" onclick="">
+    </div>
+
+    <hr>
+
+    <div id="schemadiv">
+            <h2>Schema's</h2>
+            <div id="schemaLijst">
+                Hier komt een lijst van schema's
+            </div>
+            <div id="schemabeschrijving">
+                hier komen schema beschrijvingen
+            </div>
+            <div id="controlButtons">
+                <input type="button" id="verwijderSchema" value="Verwijder schema" onclick="">
+                <input type="button" id="maakNieuwSchema" value="Maak nieuw schema" onclick="">
+                <input type="button" id="voegOefeningToe" value="Voeg oefening toe" onclick="">
+            </div>
+    </div>
+    <hr>
     <div id="homeOptions">
         <input type="button" id="gebruiker_settings" value="Gebruiker settings"
                onclick="location.href='gebruikerSettings.html';">
-        <input type="button" id="uitloggen" value="Uitloggen" onclick="location.href='index.html';">
+        <input type="button" id="uitloggen" value="Uitloggen" onclick="logUit()">
     </div>
-
 </div>
-
 </body>
 </html>
