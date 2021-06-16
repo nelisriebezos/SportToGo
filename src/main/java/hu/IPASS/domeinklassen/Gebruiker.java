@@ -110,15 +110,6 @@ public class Gebruiker implements Principal ,Serializable {
         this.sessieLijst = sessieLijst;
     }
 
-
-
-    public static boolean registerUser(Gebruiker gebruiker) {
-        if (!GebruikerData.getGebruikerData().getAlleGebruikers().contains(gebruiker)) {
-            return GebruikerData.getGebruikerData().addGebruiker(gebruiker);
-        }
-        return false;
-    }
-
     public static Gebruiker getUserByName(String gebruikernaam) {
         return GebruikerData.getGebruikerData().getAlleGebruikers().stream().filter(user -> user.getName().equals(gebruikernaam)).findFirst().orElse(null);
     }
@@ -157,14 +148,5 @@ public class Gebruiker implements Principal ,Serializable {
         return this.wachtwoord.equals(password);
     }
 
-    @Override
-    public String toString() {
-        return
-                "naam='" + gebruikernaam + '\'' +
-                ", emailAdres='" + emailadres + '\'' +
-                ", wachtwoord='" + wachtwoord + '\'' +
-                ", schemaLijst=" + schemaLijst +
-                ", sessieLijst=" + sessieLijst +
-                '}';
-    }
+
 }

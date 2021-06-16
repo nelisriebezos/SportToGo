@@ -33,8 +33,8 @@ public class ObjectenMain
         geb1.getSessie("sessie 1").setSchema(geb1.getSchema("onderlichaam"));
         geb1.getSessie("sessie 2").setSchema(geb1.getSchema("bovenlichaam"));
 
-        GebruikerData.getGebruikerData().addGebruiker(geb1);
-        GebruikerData.getGebruikerData().addGebruiker(geb2);
+        GebruikerData.getGebruikerData().registreerGebruiker(geb1);
+        GebruikerData.getGebruikerData().registreerGebruiker(geb2);
 
         OefeningTypeData.getOefeningTypeData().addOefeningType(squats);
         OefeningTypeData.getOefeningTypeData().addOefeningType(crunches);

@@ -1,18 +1,17 @@
-async function sendLoginReq() {
-    let element = document.querySelector("#postresponse");
-
-    let formData = new FormData(document.querySelector("#invoergegevensform"));
-    let fetchOptions = {
+function stuurGebruikerData() {
+    var formData = new FormData(document.querySelector("#invoergegevensform"));
+    var fetchOptions = {
         method: "POST",
         body: new URLSearchParams(formData)
     }
-    let response = await fetch("/restservices/accounts", fetchOptions);
-
-    if (response.status === 200) {
-        location.href='index.html';
-    } else {
-        location.href='index.html';
-        // element.textContent = "statuscode : " + response.status;
-    }
+    fetch("/restservices/gebruiker/maakgebruiker", fetchOptions)
+        .then((response) => {
+            let datadiv = document.querySelector('#postresponse')
+            if (response.ok) {
+                location.href='index.html';
+            } else {
+                console.log(response)
+                datadiv.innerHTML = "Email staat al geregistreerd";
+            }
+        })
 }
-

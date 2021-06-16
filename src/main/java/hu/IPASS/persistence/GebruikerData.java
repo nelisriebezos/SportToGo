@@ -25,7 +25,7 @@ public class GebruikerData  implements Serializable {
     private GebruikerData() {
     }
 
-    public boolean addGebruiker(Gebruiker g) {
+    public boolean registreerGebruiker(Gebruiker g) {
         if (!alleGebruikers.contains(g)) {
             alleGebruikers.add(g);
             return true;

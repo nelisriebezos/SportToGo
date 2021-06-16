@@ -73,4 +73,26 @@ public class GebruikerResource {
         System.out.println(g);
         return Response.ok(o).build();
     }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/maakgebruiker")
+    public Response maakGebruikerAan(@FormParam("gebruikernaam") String gebruikernaam,
+                                     @FormParam("email") String email,
+                                     @FormParam("wachtwoord") String wachtwoord) {
+
+        Gebruiker newGebruiker = new Gebruiker(gebruikernaam, email, wachtwoord, "gebruiker");
+        boolean g = GebruikerData.getGebruikerData().registreerGebruiker(newGebruiker);
+
+        System.out.println(g);
+
+        if (g) {
+            return Response.ok(newGebruiker).build();
+        }
+        System.out.println("na de if");
+        return Response.status(Response.Status.CONFLICT).entity(
+                new AbstractMap.SimpleEntry<String, String>
+                        ("error", "email bestaat al") {}).build();
+    }
 }
