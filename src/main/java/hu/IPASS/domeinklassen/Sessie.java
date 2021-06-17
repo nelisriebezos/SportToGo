@@ -4,17 +4,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Objects;
 
 public class Sessie implements Serializable {
     private String naam;
     private LocalDate dag;
-    private String beginTijd;
-    private String eindTijd;
+    private LocalTime beginTijd;
+    private LocalTime eindTijd;
     private Gebruiker gebruiker;
     private Schema schema;
 
-    public Sessie(String nm, LocalDate d, String bt, String et) {
+    public Sessie(String nm, LocalDate d, LocalTime bt, LocalTime et) {
         this.naam = nm;
         this.dag = d;
         this.beginTijd = bt;
@@ -37,19 +38,19 @@ public class Sessie implements Serializable {
         this.dag = dag;
     }
 
-    public String getBeginTijd() {
+    public LocalTime getBeginTijd() {
         return beginTijd;
     }
 
-    public void setBeginTijd(String beginTijd) {
+    public void setBeginTijd(LocalTime beginTijd) {
         this.beginTijd = beginTijd;
     }
 
-    public String getEindTijd() {
+    public LocalTime getEindTijd() {
         return eindTijd;
     }
 
-    public void setEindTijd(String eindTijd) {
+    public void setEindTijd(LocalTime eindTijd) {
         this.eindTijd = eindTijd;
     }
 

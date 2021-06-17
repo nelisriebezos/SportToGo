@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,7 +34,7 @@ public class domeintest {
         ot2 = new OefeningType("situps", "beschrijving2");
         o1 = new Oefening(20, 10, ot1);
         o2 = new Oefening(30, 0, ot2);
-        se1 = new Sessie("sessie", LocalDate.now(), "1", "1");
+        se1 = new Sessie("sessie", LocalDate.now(), LocalTime.of(13,0), LocalTime.of(14,0));
 
         g1.addSchema(s1);
         g1.getSchema("schema1").addOefening(o1);

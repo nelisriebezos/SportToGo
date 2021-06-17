@@ -8,6 +8,7 @@ import hu.IPASS.persistence.PersistenceManager;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class ObjectenMain
 {
@@ -26,15 +27,15 @@ public class ObjectenMain
         geb1.getSchema("onderlichaam").addOefening(new Oefening(40, 10, squats));
         geb1.getSchema("bovenlichaam").addOefening(new Oefening(10, 20, crunches));
 
-        geb1.addSessie(new Sessie("sessie 1", LocalDate.now(), "13:00", "14:00"));
-        geb1.addSessie(new Sessie("sessie 2", LocalDate.now().plusDays(1), "13:00", "14:00"));
+        geb1.addSessie(new Sessie("sessie 1", LocalDate.now(), LocalTime.of(13, 0), LocalTime.of(14, 0)));
+        geb1.addSessie(new Sessie("sessie 2", LocalDate.now().plusDays(1), LocalTime.of(13, 0), LocalTime.of(14, 0)));
 
 
         geb1.getSessie("sessie 1").setSchema(geb1.getSchema("onderlichaam"));
         geb1.getSessie("sessie 2").setSchema(geb1.getSchema("bovenlichaam"));
 
-        geb1.registreerGebruiker(geb1);
-        geb1.registreerGebruiker(geb2);
+        Gebruiker.registreerGebruiker(geb1);
+        Gebruiker.registreerGebruiker(geb2);
 
         OefeningTypeData.getOefeningTypeData().addOefeningType(squats);
         OefeningTypeData.getOefeningTypeData().addOefeningType(crunches);
