@@ -19,10 +19,10 @@ function stuurWachtwoordOp() {
                 if (response.status === 400) {
                     messagediv.innerHTML = "Nieuw wachtwoord mag niet hetzelfde zijn als de oude"
                     throw new Error("De twee wachtwoorden zijn hetzelfde")}
-                if (response.status === 401) {
+                if (response.status === 409) {
                     messagediv.innerHTML = "Oud wachtwoord klopt niet";
                     throw new Error("Oud wachtwoord klopt niet")}
-                if (response.status === 409) throw new Error("Gebruiker niet gevonden");
+                if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
                 else throw new Error("Er ging iets fout");
             })
             .catch(error => console.log(error))

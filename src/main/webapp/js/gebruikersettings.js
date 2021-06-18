@@ -6,8 +6,8 @@ function laadGebruikerDataIn() {
         }}
     fetch("/restservices/gebruiker/settings", fetchoptions)
         .then((response) => {
-            if (response.ok)
-                return response.json();
+            if (response.ok) return response.json();
+            if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
             else throw "gebruiker niet gevonden";
         })
         .then(myJson => {

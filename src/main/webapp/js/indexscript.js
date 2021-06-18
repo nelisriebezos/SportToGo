@@ -1,4 +1,5 @@
 function sendLoginData() {
+    let messagediv = document.getElementById('messagediv');
     var formData = new FormData(document.querySelector("#loginform"));
     var fetchOptions = {
         method: "POST",
@@ -9,7 +10,11 @@ function sendLoginData() {
         .then((response) => {
             if (response.ok) {
                 return response.json();
-            } else throw "Wrong username / password";
+            }
+            if (response.status === 401) {
+                messagediv.innerHTML = "Verkeerde gebruikernaam / wachtwoord"
+                throw "Wrong username / password";
+            } else throw new Error("er ging iets mis")
         })
         .then(myJson => {
             window.sessionStorage.setItem("myJWT", myJson.JWT)

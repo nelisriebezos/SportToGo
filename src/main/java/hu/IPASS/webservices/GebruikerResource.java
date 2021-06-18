@@ -25,9 +25,9 @@ public class GebruikerResource {
             Gebruiker currentUser = (Gebruiker) sc.getUserPrincipal();
             return Response.ok(currentUser.getSessieLijst()).build();
         } else {
-            return Response.status(Response.Status.CONFLICT).entity(
+            return Response.status(Response.Status.UNAUTHORIZED).entity(
                     new AbstractMap.SimpleEntry<String, String>
-                            ("error", "Gebruiker niet gevonden") {
+                            ("error", "Gebruiker niet geauthoriseerd") {
                     }).build();
         }
     }
@@ -42,9 +42,9 @@ public class GebruikerResource {
             Gebruiker currentUser = (Gebruiker) sc.getUserPrincipal();
             return Response.ok(currentUser).build();
         }
-        return Response.status(Response.Status.CONFLICT).entity(
+        return Response.status(Response.Status.UNAUTHORIZED).entity(
                 new AbstractMap.SimpleEntry<String, String>
-                        ("error", "Gebruiker niet gevonden") {
+                        ("error", "Gebruiker niet geauthoriseerd") {
                 }).build();
     }
 
@@ -62,20 +62,20 @@ public class GebruikerResource {
                 if (currentUser.setWachtwoord(nieuwww)) {
                     return Response.ok().build();
                 } else {
-                    return Response.status(Response.Status.BAD_REQUEST).entity(
+                    return Response.status(Response.Status.CONFLICT).entity(
                             new AbstractMap.SimpleEntry<String, String>
                                     ("error", "Wachtwoorden zijn hetzelfde") {
                             }).build();
                 }
             }
-            return Response.status(Response.Status.UNAUTHORIZED).entity(
+            return Response.status(Response.Status.BAD_REQUEST).entity(
                     new AbstractMap.SimpleEntry<String, String>
                             ("error", "Oude wachtwoord klopt niet") {
                     }).build();
         }
-        return Response.status(Response.Status.CONFLICT).entity(
+        return Response.status(Response.Status.UNAUTHORIZED).entity(
                 new AbstractMap.SimpleEntry<String, String>
-                        ("error", "Gebruiker niet gevonden") {
+                        ("error", "Gebruiker niet geauthoriseerd") {
                 }).build();
     }
 

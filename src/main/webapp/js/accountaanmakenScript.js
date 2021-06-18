@@ -15,11 +15,12 @@ function stuurGebruikerData() {
         fetch("/restservices/gebruiker/maakgebruiker", fetchOptions)
             .then((response) => {
 
-                if (response.ok) {
-                    location.href='index.html';
-                } else {
+                if (response.ok) location.href='index.html';
+                if (response.status === 409){
                     datadiv.innerHTML = "Email staat al geregistreerd";
-                }
+                    throw new Error("Email staat al geregistreerd");}
+                else throw new Error("Er ging iets fout");
             })
+            .catch(error => console.log(error))
     }
 }

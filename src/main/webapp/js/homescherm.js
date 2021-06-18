@@ -8,7 +8,7 @@ function laadPaginaIn() {
         fetch("/restservices/gebruiker", fetchoptions)
             .then((response) => {
                 if (response.ok) return response.json();
-                if (response.status === 409) throw new Error("Gebruiker niet gevonden");
+                if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
                 else throw new Error("Er is iets fout gegaan");
             })
             .then(myJson => {

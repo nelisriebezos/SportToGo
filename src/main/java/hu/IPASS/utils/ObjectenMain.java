@@ -44,6 +44,5 @@ public class ObjectenMain
         PersistenceManager.sendUsersToAzure();
         PersistenceManager.loadOefeningTypeFromAzure();
         PersistenceManager.loadUserFromAzure();
-
     }
 }

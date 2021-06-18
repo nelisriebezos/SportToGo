@@ -8,8 +8,8 @@ function getData() {
         }}
     fetch("/restservices/oefening", fetchoptions)
         .then((response) => {
-            if (response.ok)
-                return response.json();
+            if (response.ok) return response.json();
+            else throw new Error("Er is iets fout gegaan");
         })
         .then(myJson => {
             let oefeninglijst = document.querySelector('#oefeningenLijst');
