@@ -76,12 +76,7 @@ public class Sessie implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Sessie)) return false;
         Sessie sessie = (Sessie) o;
-        return Objects.equals(getNaam(), sessie.getNaam()) &&
-                Objects.equals(getDag(), sessie.getDag()) &&
-                Objects.equals(getBeginTijd(), sessie.getBeginTijd()) &&
-                Objects.equals(getEindTijd(), sessie.getEindTijd()) &&
-                Objects.equals(getGebruiker(), sessie.getGebruiker()) &&
-                Objects.equals(getSchema(), sessie.getSchema());
+        return Objects.equals(getNaam(), sessie.getNaam());
     }
 
     @Override

@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Iterator;
 
 public class Gebruiker implements Principal ,Serializable {
     private String gebruikernaam;
@@ -53,9 +54,23 @@ public class Gebruiker implements Principal ,Serializable {
     }
 
     public boolean addSessie(Sessie s) {
-        if (!this.sessieLijst.contains(s)) {
-            this.sessieLijst.add(s);
-            return true;
+        for (Sessie sessie : sessieLijst) {
+            if (sessie.equals(s)) {
+                return false;
+            }
+        }
+        sessieLijst.add(s);
+        return true;
+    }
+
+    public boolean verwijderSessie(Sessie s) {
+        Iterator<Sessie> itr = sessieLijst.iterator();
+        while(itr.hasNext()) {
+            Sessie sessie = itr.next();
+            if (sessie.equals(s)) {
+                itr.remove();
+                return true;
+            }
         }
         return false;
     }
@@ -129,10 +144,10 @@ public class Gebruiker implements Principal ,Serializable {
     }
 
     public static String validateLogin(String gebruikernaam, String password) {
-        System.out.println(gebruikernaam +" "+ password);
+//        System.out.println(gebruikernaam +" "+ password);
         if (gebruikernaam == null || gebruikernaam.isBlank() || password == null || password.isBlank()) return null;
         Gebruiker user = getUserByName(gebruikernaam);
-        System.out.println(user);
+//        System.out.println(user);
         if (user == null) return null;
         return user.checkPassword(password) ? user.getRol() : null;
     }

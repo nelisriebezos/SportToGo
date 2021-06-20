@@ -20,22 +20,6 @@ public class GebruikerResource {
     @GET
     @RolesAllowed({"gebruiker", "admin"})
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getHomescherm(@Context SecurityContext sc) {
-        if (sc.getUserPrincipal() instanceof Gebruiker) {
-            Gebruiker currentUser = (Gebruiker) sc.getUserPrincipal();
-            return Response.ok(currentUser.getSessieLijst()).build();
-        } else {
-            return Response.status(Response.Status.UNAUTHORIZED).entity(
-                    new AbstractMap.SimpleEntry<String, String>
-                            ("error", "Gebruiker niet geauthoriseerd") {
-                    }).build();
-        }
-    }
-
-
-    @GET
-    @RolesAllowed({"gebruiker", "admin"})
-    @Produces(MediaType.APPLICATION_JSON)
     @Path("/settings")
     public Response getSettings(@Context SecurityContext sc) {
         if (sc.getUserPrincipal() instanceof Gebruiker) {
@@ -79,35 +63,6 @@ public class GebruikerResource {
                 }).build();
     }
 
-//    @POST
-//    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Path("{email}")
-//    public Response voegOefeningToe(@PathParam("email") String email,
-//                                    @FormParam("schemaKeuze") String schemakeuze,
-//                                    @FormParam("gewichtKeuze") int gewichtkeuze,
-//                                    @FormParam("setHoeveelheidKeuze") int setHoeveelheidKeuze) {
-//
-//        Gebruiker g = GebruikerData.getGebruikerData().getGebruiker(email);
-//
-//        if (g == null) {
-//            return Response.status(Response.Status.CONFLICT).entity(
-//                    new AbstractMap.SimpleEntry<String, String>
-//                            ("result", "Gebruiker niet gevonden") {
-//                    }).build();
-//        }
-//
-//        Oefening o = new Oefening(gewichtkeuze, setHoeveelheidKeuze, OefeningTypeData.getOefeningTypeData().getOefeningType("squats"));
-//        g.getSchema(schemakeuze).addOefening(o);
-//
-//        if (!g.getSchema(schemakeuze).getOefeningLijst().contains(o)) {
-//            return Response.status(Response.Status.CONFLICT).entity(
-//                    new AbstractMap.SimpleEntry<String, String>
-//                            ("result", "Oefening niet gemaakt") {
-//                    }).build();
-//        }
-//        return Response.ok(o).build();
-//    }
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)

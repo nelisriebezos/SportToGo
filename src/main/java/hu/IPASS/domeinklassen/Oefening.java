@@ -32,7 +32,6 @@ public class Oefening implements Serializable {
         this.setHoeveelheid = setHoeveelheid;
     }
 
-    @JsonIgnore
     public OefeningType getOefeningType() {
         return oefeningType;
     }

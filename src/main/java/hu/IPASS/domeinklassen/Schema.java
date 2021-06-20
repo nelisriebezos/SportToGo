@@ -30,7 +30,6 @@ public class Schema implements Serializable {
         this.naam = naam;
     }
 
-    @JsonIgnore
     public ArrayList<Oefening> getOefeningLijst() {
         return oefeningLijst;
     }

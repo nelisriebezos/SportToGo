@@ -13,7 +13,7 @@ import java.time.LocalTime;
 public class ObjectenMain
 {
     public static void main( String[] args ) {
-        Gebruiker geb1 = new Gebruiker("Niels Riezebos", "niels.riezebos@student.hu.nl", "wachtwoord1", "gebruiker");
+        Gebruiker geb1 = new Gebruiker("Niels Riezebos", "niels.riezebos@student.hu.nl", "w", "gebruiker");
         Gebruiker geb2 = new Gebruiker("admin", "admin@email.nl", "admin", "admin");
 
         OefeningType squats = new OefeningType("squats", "test OefeningType squats");

@@ -1,7 +1,7 @@
 function stuurGebruikerData() {
-    var gbn = document.getElementById('gebruikernaam');
+    var gbn = document.getElementById('nwgebruikernaam');
     var em = document.getElementById('emailadres');
-    var ww = document.getElementById('wachtwoord');
+    var ww = document.getElementById('nwwachtwoord');
     let datadiv = document.querySelector('#postresponse')
 
     if (gbn.value.length === 0 || em.value.length === 0 || ww.value.length === 0 ) {
@@ -15,11 +15,12 @@ function stuurGebruikerData() {
         fetch("/restservices/gebruiker/maakgebruiker", fetchOptions)
             .then((response) => {
 
-                if (response.ok) {
-                    location.href='index.html';
-                } else {
+                if (response.ok) location.href='index.html';
+                if (response.status === 409){
                     datadiv.innerHTML = "Email staat al geregistreerd";
-                }
+                    throw new Error("Email staat al geregistreerd");}
+                else throw new Error("Er ging iets fout");
             })
+            .catch(error => console.log(error))
     }
 }
