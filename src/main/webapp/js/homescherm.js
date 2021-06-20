@@ -101,10 +101,14 @@ function maakSessieAan() {
             if (response.ok) return response.json();
             if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
             if (response.status === 409) {
+                // console.log(response.error)
                 document.getElementById("sessieaanmaakalert").innerHTML = "Sessie is niet aangemaakt"
                 throw new Error("Sessie niet toegevoegd");
             }
             else throw new Error("Er is iets fout gegaan");
+        })
+        .then(response => {
+            console.log(response.error)
         })
         .then(() => {
             laadSessiesIn()
