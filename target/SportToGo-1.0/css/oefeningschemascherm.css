@@ -1,0 +1,13 @@
+.oefeningdiv {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+}
+
+.schemadiv {
+    display: flex;
+}
+
+.schemaclass {
+    flex-basis: 100px;
+}

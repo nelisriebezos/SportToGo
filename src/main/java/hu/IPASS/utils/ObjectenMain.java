@@ -30,7 +30,6 @@ public class ObjectenMain
         geb1.addSessie(new Sessie("sessie 1", LocalDate.now(), LocalTime.of(13, 0), LocalTime.of(14, 0)));
         geb1.addSessie(new Sessie("sessie 2", LocalDate.now().plusDays(1), LocalTime.of(13, 0), LocalTime.of(14, 0)));
 
-
         geb1.getSessie("sessie 1").setSchema(geb1.getSchema("onderlichaam"));
         geb1.getSessie("sessie 2").setSchema(geb1.getSchema("bovenlichaam"));
 

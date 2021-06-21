@@ -33,6 +33,15 @@ public class OefeningTypeData implements Serializable {
         return false;
     }
 
+    public OefeningType getOefeningType(String naam) {
+        for (OefeningType ot : alleOefeningTypes) {
+            if (ot.getNaam().equals(naam)) {
+                return ot;
+            }
+        }
+        return null;
+    }
+
     public List<OefeningType> getAlleOefeningTypes() {
         return new ArrayList<>(alleOefeningTypes);
     }

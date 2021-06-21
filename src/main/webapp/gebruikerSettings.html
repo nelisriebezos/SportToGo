@@ -7,16 +7,19 @@
     <script src="js/gebruikersettings.js"></script>
 </head>
 <body>
-<div id="main">
+<main id="main">
     <h1>Sport To Go <br> Gebruiker settings</h1>
 
     <dialog id="wachtwoorddialog">
         <div id="wachtwoordwijzigendiv">
             <h1>Wachtwoord wijzigen</h1>
             <form id="gegevenswijzigenform">
-                <label for="oudwachtwoord">Oud wachtwoord                       </label><input type="password" id="oudwachtwoord" name="oudwachtwoord"><br>
-                <label for="nieuwwachtwoord">Nieuw wachtwoord                   </label><input type="password" id="nieuwwachtwoord" name="nieuwwachtwoord"><br>
-                <label for="hernieuwwachtwoord">Herhaling nieuw wachtwoord      </label><input type="password" id="hernieuwwachtwoord" name="hernieuwwachtwoord"><br>
+                <label for="oudwachtwoord">Oud wachtwoord</label>
+                <input type="password" id="oudwachtwoord" name="oudwachtwoord"><br>
+                <label for="nieuwwachtwoord">Nieuw wachtwoord</label>
+                <input type="password" id="nieuwwachtwoord" name="nieuwwachtwoord"><br>
+                <label for="hernieuwwachtwoord">Herhaling nieuw wachtwoord</label>
+                <input type="password" id="hernieuwwachtwoord" name="hernieuwwachtwoord"><br>
             </form>
             <br>
             <div id="messagediv"></div>
@@ -27,14 +30,16 @@
     </dialog>
 
     <div id="lablediv">
-        <label>Gebruikersnaam</label>   <label id="usernamelable"></label><br>
-        <label>Email adres</label>      <label id="emaillable"></label><br>
+        <label>Gebruikersnaam</label>
+        <label id="usernamelable"></label><br>
+        <label>Email adres</label>
+        <label id="emaillable"></label><br>
     </div>
     <br>
     <div id="wachtwoordveranderddiv"></div>
     <br>
     <input type="button" id="wachtwoordwijzigen" value="Wachtwoord wijzigen" onclick="openWachtwoordDialog()"><br>
     <input type="button" id="home" value="Home" onclick="location.href='homeScherm.html';">
-</div>
+</main>
 </body>
 </html>

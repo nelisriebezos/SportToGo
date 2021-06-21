@@ -36,8 +36,7 @@ public class OefeningType implements Serializable {
         if (this == o) return true;
         if (!(o instanceof OefeningType)) return false;
         OefeningType that = (OefeningType) o;
-        return Objects.equals(getNaam(), that.getNaam()) &&
-                Objects.equals(getBeschrijving(), that.getBeschrijving());
+        return Objects.equals(getNaam(), that.getNaam());
     }
 
 
