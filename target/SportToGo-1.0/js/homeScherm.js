@@ -1,12 +1,15 @@
 function laadPaginaIn() {
-    document.querySelector('#schemabox').innerHTML = "";
+    let schemabox = document.querySelector("#schemabox");
+    schemabox.innerHTML = "";
     document.getElementById("sessieaanmaakalert").innerHTML = "";
     closeVerwijderDialog();
     closeAanmaakDialog();
+    laadSessiesIn();
+    laadSchemasIn();
 }
 
 function laadSessiesIn() {
-    var fetchoptions = {
+    let fetchoptions = {
         method: "GET",
         headers: {
             'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
@@ -20,29 +23,19 @@ function laadSessiesIn() {
             .then(myJson => {
                 console.log(myJson)
                 for (data of myJson) {
-                    window.sessionStorage.setItem(data.naam, data.naam)
                     printSessie(data);
                 }
                 return myJson;
             })
             .then(myJson => {
-                var dialogselect = document.getElementById("sessieselect");
-                var dialogoptions = document.createElement("option");
-                for (let i = dialogselect.length - 1; i >= 0; i--) {
-                    dialogselect.remove(i);
-                }
-                dialogoptions.innerHTML = "Kies een sessie";
-                dialogselect.appendChild(dialogoptions);
-                for (data of myJson) {
-                    maakDialogOption(data);
-                }
+                maakDialogOption(myJson, "sessieselect");
                 return myJson;
             })
             .catch(error => console.log(error))
 }
 
 function laadSchemasIn() {
-    var fetchoptions = {
+    let fetchoptions = {
         method: "GET",
         headers: {
             'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
@@ -54,92 +47,127 @@ function laadSchemasIn() {
             else throw new Error("Er is iets fout gegaan");
         })
         .then(myJson => {
-            var select = document.getElementById("schemakeuze");
-            var option = document.createElement("option");
-            console.log(myJson)
-            for (let i = select.length - 1; i >= 0; i--) {
-                select.remove(i);
-            }
-            option.innerHTML = "Kies een schema";
-            select.appendChild(option);
-            for (data of myJson) {
-                maakOption(data);
-            }
+            maakSchemaOption(myJson, "schemakeuze");
             return myJson;
         })
         .catch(error => console.log(error))
 }
 
-function maakDialogOption(data) {
-    var dialogselect = document.getElementById("sessieselect");
-    var dialogoptions = document.createElement("option");
+function maakDialogOption(myJson, element) {
+    let select = document.getElementById(element);
+    let options1 = document.createElement("option");
 
-    dialogoptions.value = data.naam;
-    dialogoptions.innerHTML = data.naam;
-    dialogselect.appendChild(dialogoptions);
+    for (let i = select.length - 1; i >= 0; i--) {
+        select.remove(i);
+    }
+
+    options1.value = "";
+    options1.innerHTML = "Kies een sessie";
+    select.appendChild(options1);
+
+    for (sessie of myJson) {
+        let options2 = document.createElement("option");
+        options2.value = sessie.naam;
+        options2.innerHTML = sessie.naam;
+        select.appendChild(options2);
+    }
 }
 
-function maakOption(data) {
-    var select = document.getElementById("schemakeuze");
-    var option = document.createElement("option");
+function maakSchemaOption(myJson, element) {
+    let select = document.getElementById(element);
+    let options1 = document.createElement("option");
 
-    option.value = data.naam;
-    option.innerHTML = data.naam;
-    select.appendChild(option);
+    for (let i = select.length - 1; i >= 0; i--) {
+        select.remove(i);
+    }
+
+    options1.value = "";
+    options1.innerHTML = "Kies een schema";
+    select.appendChild(options1);
+
+    for (schema of myJson) {
+        var options2 = document.createElement("option");
+        options2.value = schema.naam;
+        options2.innerHTML = schema.naam;
+        select.appendChild(options2);
+    }
 }
 
 function maakSessieAan() {
-    var formData = new FormData(document.querySelector("#trainingGegevens"));
-    var fetchoptions = {
-        method: "POST",
-        body: new URLSearchParams(formData),
-        headers: {
-            'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
-        }};
-    fetch("/restservices/sessie", fetchoptions)
-        .then(response => {
-            if (response.ok) return response.json();
-            if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
-            if (response.status === 409) {
+    let schk = document.getElementById("schemakeuze")
+    let nm = document.getElementById("naamkeuze")
+    let dt = document.getElementById("datumkeuze")
+    let bt = document.getElementById("begintijdkeuze")
+    let et = document.getElementById("eindtijdkeuze")
 
-                // response.json().then(r => console.log(r.error));
+    if (schk.value.length === 0 ||
+        nm.value.length === 0 ||
+        dt.value.length === 0 ||
+        bt.value.length === 0 ||
+        et.value.length === 0) {
+        document.querySelector("#sessieaanmaakalert").innerHTML = "Vul alle gegevens in"
+    } else {
 
-                document.getElementById("sessieaanmaakalert").innerHTML = "Sessie is niet aangemaakt"
-                throw new Error("Sessie niet aangemaakt");
+        let formData = new FormData(document.querySelector("#trainingGegevens"));
+        let fetchoptions = {
+            method: "POST",
+            body: new URLSearchParams(formData),
+            headers: {
+                'Authorization': 'Bearer ' + window.sessionStorage.getItem("myJWT")
             }
-            else throw new Error("Er is iets fout gegaan");
-        })
-        .then(() => {
-            laadSessiesIn()
-        })
-        .catch(error => console.log(error))
+        };
+        fetch("/restservices/sessie", fetchoptions)
+            .then(response => {
+                if (response.ok) return response.json();
+                if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
+                if (response.status === 409) {
+
+                    // response.json().then(r => console.log(r.error));
+
+                    document.getElementById("sessieaanmaakalert").innerHTML = "Sessie is niet aangemaakt"
+                    throw new Error("Sessie niet aangemaakt");
+                } else throw new Error("Er is iets fout gegaan");
+            })
+            .then(() => {
+                laadPaginaIn();
+            })
+            .catch(error => console.log(error))
+    }
 }
 
 function verwijderSessie() {
-    var formData = new FormData(document.querySelector("#verwijdersessiekeuze"));
-    var fetchoptions = {
-        method: "DELETE",
-        body: new URLSearchParams(formData),
-        headers: {
-            'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
-        }};
-    fetch("/restservices/sessie", fetchoptions)
-        .then(response => {
-            if (response.ok) return laadSessiesIn();
-            if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
-            if (response.status === 409) throw new Error("Sessie is niet verwijderd");
-            else throw new Error("Er is iets fout gegaan");
-        })
-        .catch(error => console.log(error))
+    let ss = document.getElementById("sessieselect");
+
+    if (ss.value.length === 0) {
+        document.querySelector("#sessiedivmessage").innerHTML = "Geef sessie aan"
+    } else {
+
+        let formData = new FormData(document.querySelector("#verwijdersessiekeuze"));
+        let fetchoptions = {
+            method: "DELETE",
+            body: new URLSearchParams(formData),
+            headers: {
+                'Authorization': 'Bearer ' + window.sessionStorage.getItem("myJWT")
+            }
+        };
+        fetch("/restservices/sessie", fetchoptions)
+            .then(response => {
+                if (response.ok) return laadPaginaIn();
+                if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
+                if (response.status === 409) throw new Error("Sessie is niet verwijderd");
+                else throw new Error("Er is iets fout gegaan");
+            })
+            .catch(error => console.log(error))
+    }
 }
 
 function printSessie(data) {
     let datadiv = document.querySelector('#schemabox')
 
-    var beginuur = data.beginTijd.hour;
-    var beginminuut = data.beginTijd.minute;
-    var einduur = data.eindTijd.hour;
-    var eindminuut = data.eindTijd.minute;
+    let beginuur = data.beginTijd.hour;
+    let beginminuut = data.beginTijd.minute;
+    let einduur = data.eindTijd.hour;
+    let eindminuut = data.eindTijd.minute;
 
     beginuur = checkTime(beginuur);
     beginminuut = checkTime(beginminuut);
@@ -166,36 +194,35 @@ function checkTime(i) {
     return i;
 }
 
-function laadSessieZienDialog() {
-    var sessienaam = document.getElementById("sessieselect").value;
-    var sessie = window.sessionStorage.getItem(sessienaam);
-    sessieverwijderdiv = document.getElementById("sessiekeuzeteverwijderen");
-    console.log(sessie)
-    sessieverwijderdiv.innerHTML = sessie;
-}
 
 function openVerwijderDialog() {
-    var dialog = document.getElementById("sessiedialog");
+    let dialog = document.getElementById("sessiedialog");
+    document.querySelector("#sessiedivmessage").innerHTML = ""
     closeAanmaakDialog();
     dialog.show();
 }
 
 function closeVerwijderDialog() {
-    var dialog = document.getElementById("sessiedialog");
+    let dialog = document.getElementById("sessiedialog");
+    document.getElementById("sessieselect").value = "";
     dialog.close();
 }
 
 function openAanmaakDialog() {
-    var dialog = document.getElementById("sessietoevoegendialog");
+    let dialog = document.getElementById("sessietoevoegendialog");
     closeVerwijderDialog()
     dialog.show();
 }
 
 function closeAanmaakDialog() {
-    var dialog = document.getElementById("sessietoevoegendialog");
+    let dialog = document.getElementById("sessietoevoegendialog");
+    document.querySelector("#sessieaanmaakalert").innerHTML = ""
+    document.getElementById("schemakeuze").value = "";
+    document.getElementById("naamkeuze").value = "";
+    document.getElementById("datumkeuze").value = "";
+    document.getElementById("begintijdkeuze").value = "";
+    document.getElementById("eindtijdkeuze").value = "";
     dialog.close();
 }
 
 document.addEventListener('DOMContentLoaded', laadPaginaIn);
-document.addEventListener('DOMContentLoaded', laadSessiesIn);
-document.addEventListener('DOMContentLoaded', laadSchemasIn);

@@ -64,7 +64,7 @@ public class SessieResource {
 
             return Response.status(Response.Status.CONFLICT).entity(
                     new AbstractMap.SimpleEntry<String, String>
-                            ("error", "schema bestaat al") {
+                            ("error", "sessie bestaat al") {
                     }).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(

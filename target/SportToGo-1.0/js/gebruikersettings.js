@@ -1,5 +1,5 @@
 function laadGebruikerDataIn() {
-    var fetchoptions = {
+    let fetchoptions = {
         method: "GET",
         headers: {
             'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
@@ -20,46 +20,61 @@ function laadGebruikerDataIn() {
 }
 
 function stuurWachtwoordOp() {
-    let messagediv = document.querySelector("#messagediv");
     let wachtwoordveranderddiv = document.querySelector("#wachtwoordveranderddiv");
-    var nww = document.getElementById('nieuwwachtwoord').value;
-    var hnww = document.getElementById('hernieuwwachtwoord').value;
+    let oww = document.getElementById('oudwachtwoord');
+    let nww = document.getElementById('nieuwwachtwoord');
+    let hnww = document.getElementById('hernieuwwachtwoord');
 
-    if (nww === hnww) {
-        var formData = new FormData(document.querySelector("#gegevenswijzigenform"));
-        var fetchOptions = {
-            method: "PUT",
-            body: new URLSearchParams(formData),
-            headers: {
-                'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
-            }};
+    if (oww.value.length === 0 ||
+        nww.value.length === 0 ||
+        hnww.value.length === 0) {
+        document.querySelector("#messagediv").innerHTML = "Vul alle gegevens in";
+    } else {
 
-        fetch("/restservices/gebruiker/wachtwoord", fetchOptions)
-            .then(response => {
-                if (response.ok) {
-                    closeWachtwoordDialog()
-                    return wachtwoordveranderddiv.innerHTML = "Uw wachtwoord is gewijzigd";}
-                if (response.status === 400) {
-                    messagediv.innerHTML = "Nieuw wachtwoord mag niet hetzelfde zijn als de oude"
-                    throw new Error("De twee wachtwoorden zijn hetzelfde")}
-                if (response.status === 409) {
-                    messagediv.innerHTML = "Oud wachtwoord klopt niet";
-                    throw new Error("Oud wachtwoord klopt niet")}
-                if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
-                else throw new Error("Er ging iets fout");
-            })
-            .catch(error => console.log(error))
+        if (nww.value === hnww.value) {
+            let formData = new FormData(document.querySelector("#gegevenswijzigenform"));
+            let fetchOptions = {
+                method: "PUT",
+                body: new URLSearchParams(formData),
+                headers: {
+                    'Authorization': 'Bearer ' + window.sessionStorage.getItem("myJWT")
+                }
+            };
+
+            fetch("/restservices/gebruiker/wachtwoord", fetchOptions)
+                .then(response => {
+                    if (response.ok) {
+                        closeWachtwoordDialog()
+                        return wachtwoordveranderddiv.innerHTML = "Uw wachtwoord is gewijzigd";
+                    }
+                    if (response.status === 400) {
+                        messagediv.innerHTML = "Het gegeven wachtwoord klopt niet"
+                        throw new Error("Gegeven wachtwoord klopt niet")
+                    }
+                    if (response.status === 409) {
+                        messagediv.innerHTML = "Nieuw wachtwoord mag niet hetzelfde zijn als de oude";
+                        throw new Error("De twee wachtwoorden zijn hetzelfde")
+                    }
+                    if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
+                    else throw new Error("Er ging iets fout");
+                })
+                .catch(error => console.log(error))
+        }
+        messagediv.innerHTML = "Nieuw wachtwoord en herhaling komen niet overeen";
     }
-    messagediv.innerHTML = "Nieuw wachtwoord en herhaling komen niet overeen";
 }
 
 function openWachtwoordDialog() {
-    var dialog = document.getElementById("wachtwoorddialog");
+    let dialog = document.getElementById("wachtwoorddialog");
     dialog.show();
 }
 
 function closeWachtwoordDialog() {
-    var dialog = document.getElementById("wachtwoorddialog");
+    let dialog = document.getElementById("wachtwoorddialog");
+    document.querySelector("#messagediv").innerHTML = "";
+    document.getElementById("oudwachtwoord").value = "";
+    document.getElementById("nieuwwachtwoord").value = "";
+    document.getElementById("hernieuwwachtwoord").value = "";
     dialog.close();
 }
 

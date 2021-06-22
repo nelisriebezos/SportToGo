@@ -43,8 +43,7 @@ public class Schema implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Schema)) return false;
         Schema schema = (Schema) o;
-        return Objects.equals(getNaam(), schema.getNaam()) &&
-                Objects.equals(getOefeningLijst(), schema.getOefeningLijst());
+        return Objects.equals(getNaam(), schema.getNaam());
     }
 
 

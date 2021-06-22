@@ -15,18 +15,17 @@
 
     <div id="homediv" class="homediv">
         <dialog id="sessiedialog">
-            <section>
+            <div>
                 <h2>Verwijder sessie</h2>
                 <form id="verwijdersessiekeuze">
-                    <label for="sessieselect"></label><select id="sessieselect" name="sessieselect" onchange="laadSessieZienDialog()"></select>
+                    <label for="sessieselect">Kies een sessie: </label>
+                    <select id="sessieselect" name="sessieselect"></select>
                 </form>
                 <br>
-                <label for="sessiekeuzeteverwijderen">Wilt u deze sessie verwijderen?</label>
-                <div id="sessiekeuzeteverwijderen"></div>
-                <br>
+                <div id="sessiedivmessage"></div>
                 <input type="button" id="cancel" value="Cancel" onclick="closeVerwijderDialog()">
                 <input type="button" id="verwijdersessie" value="Verwijderen" onclick="verwijderSessie()">
-            </section>
+            </div>
         </dialog>
         <dialog id="sessietoevoegendialog">
             <div id="trainingdiv">
@@ -44,6 +43,7 @@
                     <label for="eindtijdkeuze">Kies eindtijd: </label>
                     <input type="time" id="eindtijdkeuze" name="eindtijdkeuze"><br>
                 </form>
+                <br>
                 <div id="sessieaanmaakalert"></div>
                 <input type="button" id="cancel2" value="Cancel" onclick="closeAanmaakDialog()">
                 <input type="button" id="voegtoe" value="Voeg toe" onclick="maakSessieAan()">

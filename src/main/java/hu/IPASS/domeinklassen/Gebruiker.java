@@ -75,6 +75,18 @@ public class Gebruiker implements Principal ,Serializable {
         return false;
     }
 
+    public boolean verwijderSchema(Schema s) {
+        Iterator<Schema> itr = schemaLijst.iterator();
+        while(itr.hasNext()) {
+            Schema schema = itr.next();
+            if (schema.equals(s)) {
+                itr.remove();
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public String getGebruikernaam() {
         return gebruikernaam;
