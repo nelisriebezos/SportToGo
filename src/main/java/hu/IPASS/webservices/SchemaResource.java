@@ -2,7 +2,6 @@ package hu.IPASS.webservices;
 
 import hu.IPASS.domeinklassen.Gebruiker;
 import hu.IPASS.domeinklassen.Schema;
-import hu.IPASS.domeinklassen.Sessie;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;

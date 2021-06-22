@@ -1,9 +1,6 @@
 package hu.IPASS.domeinklassen;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class OefeningType implements Serializable {

@@ -1,9 +1,6 @@
 package hu.IPASS.webservices;
 
 import hu.IPASS.domeinklassen.Gebruiker;
-import hu.IPASS.domeinklassen.OefeningType;
-import hu.IPASS.persistence.GebruikerData;
-import hu.IPASS.persistence.OefeningTypeData;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -15,7 +12,6 @@ import javax.ws.rs.core.Response;
 import java.security.Key;
 import java.util.AbstractMap;
 import java.util.Calendar;
-import java.util.List;
 
 
 @Path("/authenticate")

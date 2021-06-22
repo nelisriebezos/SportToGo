@@ -1,12 +1,9 @@
 package hu.IPASS.utils;
 
-import com.azure.storage.blob.BlobClient;
 import hu.IPASS.domeinklassen.*;
-import hu.IPASS.persistence.GebruikerData;
 import hu.IPASS.persistence.OefeningTypeData;
 import hu.IPASS.persistence.PersistenceManager;
 
-import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 

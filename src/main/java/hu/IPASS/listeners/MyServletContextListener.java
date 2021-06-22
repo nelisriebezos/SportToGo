@@ -1,7 +1,5 @@
 package hu.IPASS.listeners;
 
-import hu.IPASS.persistence.GebruikerData;
-import hu.IPASS.persistence.OefeningTypeData;
 import hu.IPASS.persistence.PersistenceManager;
 import reactor.core.scheduler.Schedulers;
 import reactor.netty.http.HttpResources;

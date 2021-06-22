@@ -3,11 +3,8 @@ package hu.IPASS.persistence;
 import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobContainerClientBuilder;
-import hu.IPASS.domeinklassen.Gebruiker;
-import hu.IPASS.domeinklassen.OefeningType;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class PersistenceManager {
     private final static String ENDPOINT = "https://nelisriebezosopslag.blob.core.windows.net/";

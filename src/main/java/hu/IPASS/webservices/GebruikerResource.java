@@ -1,10 +1,6 @@
 package hu.IPASS.webservices;
 
 import hu.IPASS.domeinklassen.Gebruiker;
-import hu.IPASS.domeinklassen.Oefening;
-import hu.IPASS.domeinklassen.OefeningType;
-import hu.IPASS.persistence.GebruikerData;
-import hu.IPASS.persistence.OefeningTypeData;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
