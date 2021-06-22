@@ -20,7 +20,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext requestCtx) {
 
-        boolean isSecure = requestCtx.getSecurityContext().isSecure();
         String scheme = requestCtx.getUriInfo().getRequestUri().getScheme();
 
         MySecurityContext msc = new MySecurityContext(null, scheme);

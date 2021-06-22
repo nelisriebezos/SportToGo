@@ -40,14 +40,14 @@ public class OefeningResource {
 
             if (oefeningKeuze == null) {
                 return Response.status(Response.Status.CONFLICT).entity(
-                        new AbstractMap.SimpleEntry<String, String>
+                        new AbstractMap.SimpleEntry<>
                                 ("error", "Oefening niet gevonden") {
                         }).build();
             }
 
             if (schemaKeuze == null) {
                 return Response.status(Response.Status.CONFLICT).entity(
-                        new AbstractMap.SimpleEntry<String, String>
+                        new AbstractMap.SimpleEntry<>
                                 ("error", "Schema niet gevonden") {
                         }).build();
             }
@@ -58,7 +58,7 @@ public class OefeningResource {
             return Response.ok(nwOefening).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(
-                new AbstractMap.SimpleEntry<String, String>
+                new AbstractMap.SimpleEntry<>
                         ("error", "Gebruiker niet geauthoriseerd") {
                 }).build();
     }

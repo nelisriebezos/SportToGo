@@ -23,7 +23,7 @@ public class GebruikerResource {
             return Response.ok(currentUser).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(
-                new AbstractMap.SimpleEntry<String, String>
+                new AbstractMap.SimpleEntry<>
                         ("error", "Gebruiker niet geauthoriseerd") {
                 }).build();
     }
@@ -43,18 +43,18 @@ public class GebruikerResource {
                     return Response.ok().build();
                 } else {
                     return Response.status(Response.Status.CONFLICT).entity(
-                            new AbstractMap.SimpleEntry<String, String>
+                            new AbstractMap.SimpleEntry<>
                                     ("error", "Wachtwoorden zijn hetzelfde") {
                             }).build();
                 }
             }
             return Response.status(Response.Status.BAD_REQUEST).entity(
-                    new AbstractMap.SimpleEntry<String, String>
+                    new AbstractMap.SimpleEntry<>
                             ("error", "Oude wachtwoord klopt niet") {
                     }).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(
-                new AbstractMap.SimpleEntry<String, String>
+                new AbstractMap.SimpleEntry<>
                         ("error", "Gebruiker niet geauthoriseerd") {
                 }).build();
     }
@@ -75,7 +75,7 @@ public class GebruikerResource {
             return Response.ok(newGebruiker).build();
         }
         return Response.status(Response.Status.CONFLICT).entity(
-                new AbstractMap.SimpleEntry<String, String>
+                new AbstractMap.SimpleEntry<>
                         ("error", "email bestaat al") {
                 }).build();
     }

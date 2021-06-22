@@ -26,7 +26,7 @@ public class SessieResource {
             return Response.ok(currentUser.getSessieLijst()).build();
         } else {
             return Response.status(Response.Status.UNAUTHORIZED).entity(
-                    new AbstractMap.SimpleEntry<String, String>
+                    new AbstractMap.SimpleEntry<>
                             ("error", "Gebruiker niet geauthoriseerd") {
                     }).build();
         }
@@ -51,7 +51,7 @@ public class SessieResource {
 
             if (schemaKeuze == null) {
                 return Response.status(Response.Status.CONFLICT).entity(
-                        new AbstractMap.SimpleEntry<String, String>
+                        new AbstractMap.SimpleEntry<>
                                 ("error", "schema niet gevonden") {
                         }).build();
             }
@@ -63,12 +63,12 @@ public class SessieResource {
             }
 
             return Response.status(Response.Status.CONFLICT).entity(
-                    new AbstractMap.SimpleEntry<String, String>
+                    new AbstractMap.SimpleEntry<>
                             ("error", "sessie bestaat al") {
                     }).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(
-                new AbstractMap.SimpleEntry<String, String>
+                new AbstractMap.SimpleEntry<>
                         ("error", "Gebruiker niet geauthoriseerd") {
                 }).build();
     }
@@ -86,7 +86,7 @@ public class SessieResource {
 
             if (sessieTeVerwijderen == null) {
                 return Response.status(Response.Status.CONFLICT).entity(
-                        new AbstractMap.SimpleEntry<String, String>
+                        new AbstractMap.SimpleEntry<>
                                 ("error", "Sessie niet gevonden") {
                         }).build();
             }
@@ -95,12 +95,12 @@ public class SessieResource {
             }
 
             return Response.status(Response.Status.CONFLICT).entity(
-                    new AbstractMap.SimpleEntry<String, String>
+                    new AbstractMap.SimpleEntry<>
                             ("error", "Sessie niet verwijderd") {
                     }).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(
-                new AbstractMap.SimpleEntry<String, String>
+                new AbstractMap.SimpleEntry<>
                         ("error", "Gebruiker niet geauthoriseerd") {
                 }).build();
     }

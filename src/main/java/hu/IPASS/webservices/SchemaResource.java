@@ -23,7 +23,7 @@ public class SchemaResource {
             return Response.ok(currentUser.getSchemaLijst()).build();
         } else {
             return Response.status(Response.Status.UNAUTHORIZED).entity(
-                    new AbstractMap.SimpleEntry<String, String>
+                    new AbstractMap.SimpleEntry<>
                             ("error", "Gebruiker niet geauthoriseerd") {
                     }).build();
         }
@@ -42,7 +42,7 @@ public class SchemaResource {
 
             if (SchemaTeVerwijderen == null) {
                 return Response.status(Response.Status.CONFLICT).entity(
-                        new AbstractMap.SimpleEntry<String, String>
+                        new AbstractMap.SimpleEntry<>
                                 ("error", "Schema niet gevonden") {
                         }).build();
             }
@@ -51,12 +51,12 @@ public class SchemaResource {
             }
 
             return Response.status(Response.Status.CONFLICT).entity(
-                    new AbstractMap.SimpleEntry<String, String>
+                    new AbstractMap.SimpleEntry<>
                             ("error", "Schema niet verwijderd") {
                     }).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(
-                new AbstractMap.SimpleEntry<String, String>
+                new AbstractMap.SimpleEntry<>
                         ("error", "Gebruiker niet geauthoriseerd") {
                 }).build();
     }
@@ -81,12 +81,12 @@ public class SchemaResource {
             }
 
             return Response.status(Response.Status.CONFLICT).entity(
-                    new AbstractMap.SimpleEntry<String, String>
+                    new AbstractMap.SimpleEntry<>
                             ("error", "Schema is niet toegevoegd") {
                     }).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(
-                new AbstractMap.SimpleEntry<String, String>
+                new AbstractMap.SimpleEntry<>
                         ("error", "Gebruiker niet geauthoriseerd") {
                 }).build();
     }
