@@ -91,7 +91,9 @@ public class SessieResource {
                         }).build();
             }
             if (currentUser.verwijderSessie(sessieTeVerwijderen)) {
-                return Response.ok().build();
+                return Response.ok().entity(
+                        new AbstractMap.SimpleEntry<>("error", "Sessie verwijderd") {
+                        }).build();
             }
 
             return Response.status(Response.Status.CONFLICT).entity(

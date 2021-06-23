@@ -31,9 +31,10 @@ function laadSessiesInStatusHandler(status, myJson) {
             printSessie(data);
         }
         maakDialogOption(myJson, "sessieselect");
+        return myJson;
     }
     else if (status === 401) return console.log(myJson.error)
-    else console.log("Er ging iets fout")
+    else return console.log("Er ging iets fout")
 }
 
 function laadSchemasIn() {

@@ -33,8 +33,6 @@
         <div id="oefeningenLijst" class="oefeningdiv"></div>
         <div id="oefeningBeschrijving" class="oefeningdiv"></div>
     </div>
-    <input type="button" id="nwoefeningtoevoegen" value="Oefening toevoegen" onclick="openAanmaakDialog()">
-
     <hr>
 
         <div id="schemas">
@@ -64,6 +62,18 @@
                 </div>
             </dialog>
 
+            <dialog id="verwijderoefeningdialog" open>
+                <div>
+                    <h2>Verwijder oefening</h2>
+                    <form id="verwijderoefeningform">
+                        <label for="vwoefeningschema">Kies schema: </label>
+                        <select id="vwoefeningschema" name="vwoefeningschema"></select><br>
+                        <label for="oefeningteverwijderen">Kies oefening: </label>
+                        <select id="oefeningteverwijderen" name="oefeningteverwijderen"></select>
+                    </form>
+                </div>
+            </dialog>
+
             <h2>Schema's</h2>
             <div id="schemadiv" class="schemadiv">
                 <div id="schemalijst" class="schemaclass"></div>
@@ -72,6 +82,8 @@
             <div id="controlButtons">
                 <input type="button" id="verwijderschema" value="Verwijder schema" onclick="openVSchemaDialog()">
                 <input type="button" id="maaknieuwschema" value="Maak nieuw schema" onclick="openMSchemaDialog()">
+                <input type="button" id="nwoefeningtoevoegen" value="Oefening toevoegen" onclick="openAanmaakDialog()">
+                <input type="button" id="verwijderoefening" value="Verwijder oefening" onclick="">
             </div>
         </div>
         <input type="button" id="home" value="Home" onclick="location.href='homeScherm.html';">

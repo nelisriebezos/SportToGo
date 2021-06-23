@@ -40,7 +40,10 @@ public class GebruikerResource {
 
             if (currentUser.checkPassword(oudww)) {
                 if (currentUser.setWachtwoord(nieuwww)) {
-                    return Response.ok().build();
+                    return Response.ok().entity(
+                            new AbstractMap.SimpleEntry<>
+                                    ("message", "Wachtwoord is veranderd") {
+                            }).build();
                 } else {
                     return Response.status(Response.Status.CONFLICT).entity(
                             new AbstractMap.SimpleEntry<>

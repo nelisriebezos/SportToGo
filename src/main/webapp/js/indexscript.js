@@ -69,6 +69,7 @@ function stuurGebruikerDataStatusHandler(status, myJson) {
     if (status === 200) {
         document.getElementById("messagediv").innerHTML = "Uw account is aangemaakt";
         closeAanmaakDialog();
+        return myJson;
     }
     else if (status === 409) {
         document.getElementById("postresponse").innerHTML = "Email staat al geregistreerd";

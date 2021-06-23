@@ -19,33 +19,36 @@ function laadSchemasIn() {
     };
     fetch("/restservices/schema", fetchoptions)
         .then(response => {
-            if (response.ok) return response.json();
-            if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
-            else throw new Error("Er is iets fout gegaan");
+            return Promise.all([response.status, response.json()])
         })
-        .then(myJson => {
-            console.log(myJson)
-            maakSchemaOption(myJson, "schemakeuze");
-            maakSchemaOption(myJson, "schemaverwijderkeuze");
-            return myJson;
-        })
-        .then(myJson => {
-            let schemalijst = document.getElementById("schemalijst");
-            let schemabeschrijving = document.getElementById("schemabeschrijving");
-            for (data of myJson) {
-                schemalijst.innerHTML = schemalijst.innerHTML + data.naam + "<br/>"
-
-                for (type of data.oefeningLijst) {
-                    schemabeschrijving.innerHTML = schemabeschrijving.innerHTML
-                        + type.oefeningType.naam + "<br/>"
-                        + type.gewicht + "<br/>"
-                        + type.setHoeveelheid + "<br/>" + "<br/>"
-                }
-            }
+        .then(([status, myJson]) => {
+            laadSchemaInStatusHandler(status, myJson);
         })
         .catch(error => console.log(error))
 }
 
+function laadSchemaInStatusHandler(status, myJson) {
+    if (status === 200) {
+        maakSchemaOption(myJson, "schemakeuze");
+        maakSchemaOption(myJson, "schemaverwijderkeuze");
+
+        let schemalijst = document.getElementById("schemalijst");
+        let schemabeschrijving = document.getElementById("schemabeschrijving");
+        for (data of myJson) {
+            schemalijst.innerHTML = schemalijst.innerHTML + data.naam + "<br/>"
+
+            for (type of data.oefeningLijst) {
+                schemabeschrijving.innerHTML = schemabeschrijving.innerHTML
+                    + type.oefeningType.naam + "<br/>"
+                    + type.gewicht + "<br/>"
+                    + type.setHoeveelheid + "<br/>" + "<br/>"
+            }
+        }
+        return myJson;
+    }
+    else if (status === 401) return console.log(myJson.error)
+    else return console.log("Er ging iets fout")
+}
 
 function laadOefeningenIn() {
     let fetchoptions = {
@@ -55,27 +58,29 @@ function laadOefeningenIn() {
         }
     }
     fetch("/restservices/oefening", fetchoptions)
-        .then((response) => {
-            if (response.ok) return response.json();
-            else throw new Error("Er is iets fout gegaan");
+        .then(response => {
+            return Promise.all([response.status, response.json()])
         })
-        .then(myJson => {
-            console.log(myJson);
-            let oefeninglijst = document.querySelector('#oefeningenLijst');
-            let oefeningbeschrijving = document.querySelector('#oefeningBeschrijving');
-            oefeninglijst.innerHTML = "";
-
-            for (oefeningtype of myJson) {
-                oefeninglijst.innerHTML = oefeninglijst.innerHTML + oefeningtype.naam + "<br/>"
-                oefeningbeschrijving.innerHTML = oefeningbeschrijving.innerHTML + oefeningtype.beschrijving + "<br/>"
-            }
-            return myJson;
-        })
-        .then(myJson => {
-            maakOefeningOption(myJson, "oefeningkeuze");
-            return myJson;
+        .then(([status, myJson]) => {
+            laadOefeningInStatusHandler(status, myJson);
         })
         .catch(error => console.log(error))
+}
+
+function laadOefeningInStatusHandler(status, myJson){
+    if (status === 200) {
+        let oefeninglijst = document.querySelector('#oefeningenLijst');
+        let oefeningbeschrijving = document.querySelector('#oefeningBeschrijving');
+        oefeninglijst.innerHTML = "";
+
+        for (oefeningtype of myJson) {
+            oefeninglijst.innerHTML = oefeninglijst.innerHTML + oefeningtype.naam + "<br/>"
+            oefeningbeschrijving.innerHTML = oefeningbeschrijving.innerHTML + oefeningtype.beschrijving + "<br/>"
+        }
+        maakOefeningOption(myJson, "oefeningkeuze");
+        return myJson;
+    }
+    else console.log("Er ging iets fout")
 }
 
 function voegOefeningToe() {
@@ -100,17 +105,25 @@ function voegOefeningToe() {
         };
         fetch("restservices/oefening", fetchoptions)
             .then(response => {
-                if (response.ok) return response;
-                if (response.status === 409) throw new Error("Oefening niet toegevoegd");
-                if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
-                else throw new Error("Er is iets fout gegaan");
+                return Promise.all([response.status, response.json()])
             })
-            .then(() => {
-                laadPaginaIn()
+            .then(([status, myJson]) => {
+                voegOefeningToeStatusHandler(status, myJson)
             })
             .catch(error => console.log(error))
     }
 }
+
+function voegOefeningToeStatusHandler(status, myJson) {
+    if (status === 200) {
+        laadPaginaIn();
+        return myJson;
+    }
+    if (status === 409) return console.log(myJson.error)
+    if (status === 401) return console.log(myJson.error)
+    else return console.log("Er gaat iets fout")
+}
+
 
 function verwijderSchema() {
     let sch = document.getElementById("schemaverwijderkeuze");
@@ -129,13 +142,23 @@ function verwijderSchema() {
         };
         fetch("/restservices/schema", fetchoptions)
             .then(response => {
-                if (response.ok) return laadPaginaIn();
-                if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
-                if (response.status === 409) throw new Error("Schema is niet verwijderd");
-                else throw new Error("Er is iets fout gegaan");
+                return Promise.all([response.status, response.json()])
+            })
+            .then(([status, myJson]) => {
+                verwijderSchemaSTatusHandler(status, myJson);
             })
             .catch(error => console.log(error))
     }
+}
+
+function verwijderSchemaSTatusHandler(status, myJson) {
+    if (status === 200) {
+        laadPaginaIn();
+        return myJson;
+    }
+    if (status === 401) return console.log(myJson.error)
+    if (status === 409) return console.log(myJson.error)
+    else return console.log("Er ging iets fout")
 }
 
 function maakSchema() {
@@ -155,13 +178,27 @@ function maakSchema() {
         };
         fetch("/restservices/schema", fetchoptions)
             .then(response => {
-                if (response.ok) return laadPaginaIn();
-                if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
-                if (response.status === 409) throw new Error("Schema is niet aangemaakt");
-                else throw new Error("Er is iets fout gegaan");
+                return Promise.all([response.status, response.json()])
+
+            })
+            .then(([status, myJson]) => {
+                maakSchemaStatusHandler(status, myJson);
             })
             .catch(error => console.log(error))
     }
+}
+
+function maakSchemaStatusHandler(status, myJson) {
+    if (status === 200) {
+        laadPaginaIn();
+        return myJson;
+    }
+    if (status === 401) return console.log(myJson.error)
+    if (status === 409) {
+        document.getElementById("schemaaanmaakdiv").innerHTML = "Schema bestaat al"
+        return console.log(myJson.error)
+    }
+    else return console.log("Er ging iets fout")
 }
 
 function maakOefeningOption(myJson, element) {
@@ -216,6 +253,7 @@ function closeAanmaakDialog() {
     document.getElementById("schemakeuze").value = "";
     document.getElementById("gewichtkeuze").value = "";
     document.getElementById("sethoeveelheidkeuze").value = "";
+    document.getElementById("oefeningaanmaakdiv").innerHTML = ""
     dialog.close();
 }
 
@@ -228,6 +266,7 @@ function openVSchemaDialog() {
 function closeVSchemaDialog() {
     let dialog = document.getElementById("schemaverwijderdialog");
     document.getElementById("schemaverwijderkeuze").value = "";
+    document.getElementById("schemateverwijderen").innerHTML = ""
     dialog.close();
 }
 
@@ -240,6 +279,7 @@ function openMSchemaDialog() {
 function closeMSchemaDialog() {
     let dialog = document.getElementById("schemaaanmaakdialog");
     document.getElementById("schemanaam").value = "";
+    document.getElementById("schemaaanmaakdiv").innerHTML = ""
     dialog.close();
 }
 

@@ -20,6 +20,7 @@ function laadGebruikerDataInStatusHandler(status, myJson) {
         let emaillable = document.querySelector('#emaillable')
         usernamediv.innerHTML = myJson.gebruikernaam;
         emaillable.innerHTML = myJson.emailadres;
+        return myJson;
     }
     else if (status === 401) return console.log(myJson.error)
     else return console.log("Er ging iets fout")

@@ -47,7 +47,10 @@ public class SchemaResource {
                         }).build();
             }
             if (currentUser.verwijderSchema(SchemaTeVerwijderen)) {
-                return Response.ok().build();
+                return Response.ok().entity(
+                        new AbstractMap.SimpleEntry<>
+                                ("message", "Sessie verwijderd")
+                ).build();
             }
 
             return Response.status(Response.Status.CONFLICT).entity(
@@ -82,7 +85,7 @@ public class SchemaResource {
 
             return Response.status(Response.Status.CONFLICT).entity(
                     new AbstractMap.SimpleEntry<>
-                            ("error", "Schema is niet toegevoegd") {
+                            ("error", "Schema bestaat al") {
                     }).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(
