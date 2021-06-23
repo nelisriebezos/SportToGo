@@ -5,7 +5,6 @@ function laadPaginaIn() {
 function sendLoginData() {
     let gbrnm = document.getElementById("gebruikernaam");
     let ww = document.getElementById("wachtwoord");
-    let messagediv = document.getElementById('messagediv');
 
     if (gbrnm.value.length === 0 || ww.value.length === 0) {
         messagediv.innerHTML = "Vul gebruikernaam / wachtwoord in"
@@ -18,53 +17,64 @@ function sendLoginData() {
         };
 
         fetch("/restservices/authenticate", fetchOptions)
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                if (response.status === 401) {
-                    messagediv.innerHTML = "Verkeerde gebruikernaam / wachtwoord"
-                    throw "Wrong username / password";
-                } else throw new Error("er ging iets mis")
+            .then(response => {
+                return Promise.all([response.status, response.json()])
             })
-            .then(myJson => {
-                window.sessionStorage.setItem("myJWT", myJson.JWT)
-                location.href = 'homeScherm.html'
+            .then(([status, myJson]) => {
+                sendLoginDataStatusHandler(status, myJson)
             })
             .catch(error => console.log(error))
     }
+}
+
+function sendLoginDataStatusHandler(status, myJson) {
+    if (status === 200) {
+        window.sessionStorage.setItem("myJWT", myJson.JWT)
+        location.href = 'homeScherm.html'
+    }
+    else if (status === 401) {
+        messagediv.innerHTML = "Verkeerde gebruikernaam / wachtwoord"
+        return console.log("Verkeerde inlog gegevens")
+    }
+    else return console.log("Er ging iets fout")
 }
 
 function stuurGebruikerData() {
     let gbn = document.getElementById('nwgebruikernaam');
     let em = document.getElementById('emailadres');
     let ww = document.getElementById('nwwachtwoord');
-    let datadiv = document.querySelector('#postresponse')
-    let messagediv = document.querySelector('#messagediv')
 
     if (gbn.value.length === 0 ||
         em.value.length === 0 ||
         ww.value.length === 0 ) {
-        datadiv.innerHTML = "U moet alles invullen"
+        document.querySelector('#postresponse').innerHTML = "U moet alles invullen"
     } else {
-        var formData = new FormData(document.querySelector("#invoergegevensform"));
-        var fetchOptions = {
+        let formData = new FormData(document.querySelector("#invoergegevensform"));
+        let fetchOptions = {
             method: "POST",
             body: new URLSearchParams(formData)
         }
         fetch("/restservices/gebruiker/maakgebruiker", fetchOptions)
-            .then((response) => {
-                if (response.ok) {
-                    messagediv.innerHTML = "Uw account is aangemaakt";
-                    closeAanmaakDialog();
-                }
-                if (response.status === 409){
-                    datadiv.innerHTML = "Email staat al geregistreerd";
-                    throw new Error("Email staat al geregistreerd");}
-                else throw new Error("Er ging iets fout");
+            .then(response => {
+                return Promise.all([response.status, response.json()])
+            })
+            .then(([status, myJson]) => {
+                stuurGebruikerDataStatusHandler(status, myJson);
             })
             .catch(error => console.log(error))
     }
+}
+
+function stuurGebruikerDataStatusHandler(status, myJson) {
+    if (status === 200) {
+        document.getElementById("messagediv").innerHTML = "Uw account is aangemaakt";
+        closeAanmaakDialog();
+    }
+    else if (status === 409) {
+        document.getElementById("postresponse").innerHTML = "Email staat al geregistreerd";
+        return console.log(myJson.error)
+    }
+    else return console.log("Er ging iets fout")
 }
 
 function openAanmaakDialog() {

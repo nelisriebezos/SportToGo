@@ -16,22 +16,24 @@ function laadSessiesIn() {
         }};
         fetch("/restservices/sessie", fetchoptions)
             .then(response => {
-                if (response.ok) return response.json();
-                if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
-                else throw new Error("Er is iets fout gegaan");
+                return Promise.all([response.status, response.json()])
             })
-            .then(myJson => {
-                console.log(myJson)
-                for (data of myJson) {
-                    printSessie(data);
-                }
-                return myJson;
-            })
-            .then(myJson => {
-                maakDialogOption(myJson, "sessieselect");
-                return myJson;
+            .then(([status, myJson]) => {
+                laadSessiesInStatusHandler(status, myJson);
             })
             .catch(error => console.log(error))
+}
+
+function laadSessiesInStatusHandler(status, myJson) {
+    if (status === 200) {
+        console.log(myJson)
+        for (data of myJson) {
+            printSessie(data);
+        }
+        maakDialogOption(myJson, "sessieselect");
+    }
+    else if (status === 401) return console.log(myJson.error)
+    else console.log("Er ging iets fout")
 }
 
 function laadSchemasIn() {
@@ -42,15 +44,18 @@ function laadSchemasIn() {
         }};
     fetch("/restservices/schema", fetchoptions)
         .then(response => {
-            if (response.ok) return response.json();
-            if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
-            else throw new Error("Er is iets fout gegaan");
+            return Promise.all([response.status, response.json()])
         })
-        .then(myJson => {
-            maakSchemaOption(myJson, "schemakeuze");
-            return myJson;
+        .then(([status, myJson]) => {
+            laadSchemasInStatusHandler(status, myJson);
         })
         .catch(error => console.log(error))
+}
+
+function laadSchemasInStatusHandler(status, myJson) {
+    if (status === 200) return maakSchemaOption(myJson, "schemakeuze");
+    else if (status === 401) return console.log(myJson.error)
+    else return console.log("Er ging iets fout")
 }
 
 function maakDialogOption(myJson, element) {
@@ -86,7 +91,7 @@ function maakSchemaOption(myJson, element) {
     select.appendChild(options1);
 
     for (schema of myJson) {
-        var options2 = document.createElement("option");
+        let options2 = document.createElement("option");
         options2.value = schema.naam;
         options2.innerHTML = schema.naam;
         select.appendChild(options2);
@@ -118,22 +123,24 @@ function maakSessieAan() {
         };
         fetch("/restservices/sessie", fetchoptions)
             .then(response => {
-                if (response.ok) return response.json();
-                if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
-                if (response.status === 409) {
-
-                    // response.json().then(r => console.log(r.error));
-
-                    document.getElementById("sessieaanmaakalert").innerHTML = "Sessie is niet aangemaakt"
-                    throw new Error("Sessie niet aangemaakt");
-                } else throw new Error("Er is iets fout gegaan");
+                return Promise.all([response.status, response.json()])
             })
-            .then(() => {
-                laadPaginaIn();
+            .then(([status, myJson]) => {
+                maakSessieStatusHandler(status, myJson);
             })
             .catch(error => console.log(error))
     }
 }
+
+function maakSessieStatusHandler(status, myJson) {
+    if (status === 200) return laadPaginaIn()
+    else if(status === 401) return console.log(myJson.error);
+    else if (status=== 409) {
+        document.getElementById("sessieaanmaakalert").innerHTML = myJson.error;
+        return console.log(myJson.error);
+        }
+    else return console.log("Er ging iets fout")
+    }
 
 function verwijderSessie() {
     let ss = document.getElementById("sessieselect");
@@ -152,13 +159,20 @@ function verwijderSessie() {
         };
         fetch("/restservices/sessie", fetchoptions)
             .then(response => {
-                if (response.ok) return laadPaginaIn();
-                if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
-                if (response.status === 409) throw new Error("Sessie is niet verwijderd");
-                else throw new Error("Er is iets fout gegaan");
+                return Promise.all([response.status, response.json()])
+            })
+            .then(([status, myJson]) => {
+                verwijderSessieStatusHandler(status, myJson);
             })
             .catch(error => console.log(error))
     }
+}
+
+function verwijderSessieStatusHandler(status, myJson) {
+    if (status === 200) return laadPaginaIn()
+    else if (status === 401) return console.log(myJson.error)
+    else if (status === 409) return console.log(myJson.error)
+    else return console.log("Er ging iets fout")
 }
 
 function printSessie(data) {
@@ -194,7 +208,6 @@ function checkTime(i) {
     return i;
 }
 
-
 function openVerwijderDialog() {
     let dialog = document.getElementById("sessiedialog");
     document.querySelector("#sessiedivmessage").innerHTML = ""
@@ -210,6 +223,7 @@ function closeVerwijderDialog() {
 
 function openAanmaakDialog() {
     let dialog = document.getElementById("sessietoevoegendialog");
+    document.getElementById("sessieaanmaakalert").innerHTML = "";
     closeVerwijderDialog()
     dialog.show();
 }

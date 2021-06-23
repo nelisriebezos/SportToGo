@@ -43,7 +43,7 @@ public class SchemaResource {
             if (SchemaTeVerwijderen == null) {
                 return Response.status(Response.Status.CONFLICT).entity(
                         new AbstractMap.SimpleEntry<>
-                                ("error", "Schema niet gevonden") {
+                                ("error", "Schema is niet gevonden") {
                         }).build();
             }
             if (currentUser.verwijderSchema(SchemaTeVerwijderen)) {
@@ -52,7 +52,7 @@ public class SchemaResource {
 
             return Response.status(Response.Status.CONFLICT).entity(
                     new AbstractMap.SimpleEntry<>
-                            ("error", "Schema niet verwijderd") {
+                            ("error", "Schema is niet verwijderd") {
                     }).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(

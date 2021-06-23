@@ -52,7 +52,7 @@ public class SessieResource {
             if (schemaKeuze == null) {
                 return Response.status(Response.Status.CONFLICT).entity(
                         new AbstractMap.SimpleEntry<>
-                                ("error", "schema niet gevonden") {
+                                ("error", "Schema is niet gevonden") {
                         }).build();
             }
             Sessie newSessie = new Sessie(naam, datum, beginTijd, eindTijd);
@@ -64,7 +64,7 @@ public class SessieResource {
 
             return Response.status(Response.Status.CONFLICT).entity(
                     new AbstractMap.SimpleEntry<>
-                            ("error", "sessie bestaat al") {
+                            ("error", "Sessie bestaat al") {
                     }).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(
@@ -87,7 +87,7 @@ public class SessieResource {
             if (sessieTeVerwijderen == null) {
                 return Response.status(Response.Status.CONFLICT).entity(
                         new AbstractMap.SimpleEntry<>
-                                ("error", "Sessie niet gevonden") {
+                                ("error", "Sessie is niet gevonden") {
                         }).build();
             }
             if (currentUser.verwijderSessie(sessieTeVerwijderen)) {
@@ -96,7 +96,7 @@ public class SessieResource {
 
             return Response.status(Response.Status.CONFLICT).entity(
                     new AbstractMap.SimpleEntry<>
-                            ("error", "Sessie niet verwijderd") {
+                            ("error", "Sessie is niet verwijderd") {
                     }).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(

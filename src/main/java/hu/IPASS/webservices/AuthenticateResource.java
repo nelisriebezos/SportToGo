@@ -33,7 +33,10 @@ public class AuthenticateResource {
             return Response.ok(JWT).build();
 
         } catch (JwtException | IllegalArgumentException e) {
-            return Response.status(Response.Status.UNAUTHORIZED).build();
+            return Response.status(Response.Status.UNAUTHORIZED).entity(
+                    new AbstractMap.SimpleEntry<>
+                            ("error", "Gebruiker niet geauthoriseerd") {
+                    }).build();
         }
     }
 

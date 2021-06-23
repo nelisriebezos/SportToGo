@@ -21,8 +21,8 @@
                 <label for="nwwachtwoord">Wachtwoord </label>
                 <input type="password" id="nwwachtwoord" name="wachtwoord"><br>
 
-                <input type="button" id="aanmaken" value="Aanmaken" onclick="stuurGebruikerData()">
-                <input type="button" id="terugknop" value="Terug" onclick="closeAanmaakDialog()"><br>
+                <input type="button" id="terugknop" value="Terug" onclick="closeAanmaakDialog()">
+                <input type="button" id="aanmaken" value="Aanmaken" onclick="stuurGebruikerData()"><br>
                 <div id="postresponse"></div>
             </form>
         </div>
@@ -33,13 +33,10 @@
         <input type="text" id="gebruikernaam" name="gebruikernaam"><br>
         <label for="wachtwoord">Wachtwoord</label>
         <input type="password" id="wachtwoord" name="wachtwoord"><br>
-
-        <br>
-
-        <input type="button" id="account_aanmaken" value="Account aanmaken" onclick="openAanmaakDialog()">
-        <input type="button" id="login" value="Login" onclick="sendLoginData()">
-    </form>
+    </form><br>
     <div id="messagediv"></div>
+    <input type="button" id="account_aanmaken" value="Account aanmaken" onclick="openAanmaakDialog()">
+    <input type="button" id="login" value="Login" onclick="sendLoginData()">
 </main>
 </body>
 </html>

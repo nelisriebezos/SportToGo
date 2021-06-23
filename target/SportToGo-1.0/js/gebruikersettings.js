@@ -5,22 +5,27 @@ function laadGebruikerDataIn() {
             'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
         }}
     fetch("/restservices/gebruiker/settings", fetchoptions)
-        .then((response) => {
-            if (response.ok) return response.json();
-            if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
-            else throw "gebruiker niet gevonden";
+        .then(response => {
+            return Promise.all([response.status, response.json()])
         })
-        .then(myJson => {
-            let usernamediv = document.querySelector('#usernamelable')
-            let emaillable = document.querySelector('#emaillable')
-            usernamediv.innerHTML = myJson.gebruikernaam;
-            emaillable.innerHTML = myJson.emailadres;
+        .then(([status, myJson]) => {
+            laadGebruikerDataInStatusHandler(status, myJson);
         })
         .catch(error => console.log(error))
 }
 
+function laadGebruikerDataInStatusHandler(status, myJson) {
+    if (status === 200) {
+        let usernamediv = document.querySelector('#usernamelable')
+        let emaillable = document.querySelector('#emaillable')
+        usernamediv.innerHTML = myJson.gebruikernaam;
+        emaillable.innerHTML = myJson.emailadres;
+    }
+    else if (status === 401) return console.log(myJson.error)
+    else return console.log("Er ging iets fout")
+}
+
 function stuurWachtwoordOp() {
-    let wachtwoordveranderddiv = document.querySelector("#wachtwoordveranderddiv");
     let oww = document.getElementById('oudwachtwoord');
     let nww = document.getElementById('nieuwwachtwoord');
     let hnww = document.getElementById('hernieuwwachtwoord');
@@ -43,25 +48,34 @@ function stuurWachtwoordOp() {
 
             fetch("/restservices/gebruiker/wachtwoord", fetchOptions)
                 .then(response => {
-                    if (response.ok) {
-                        closeWachtwoordDialog()
-                        return wachtwoordveranderddiv.innerHTML = "Uw wachtwoord is gewijzigd";
-                    }
-                    if (response.status === 400) {
-                        messagediv.innerHTML = "Het gegeven wachtwoord klopt niet"
-                        throw new Error("Gegeven wachtwoord klopt niet")
-                    }
-                    if (response.status === 409) {
-                        messagediv.innerHTML = "Nieuw wachtwoord mag niet hetzelfde zijn als de oude";
-                        throw new Error("De twee wachtwoorden zijn hetzelfde")
-                    }
-                    if (response.status === 401) throw new Error("Gebruiker niet geauthoriseerd");
-                    else throw new Error("Er ging iets fout");
+                    return Promise.all([response.status, response.json()])
+                })
+                .then(([status, myJson]) => {
+                    stuurWachtwoordOpStatusHandler(status, myJson)
                 })
                 .catch(error => console.log(error))
         }
-        messagediv.innerHTML = "Nieuw wachtwoord en herhaling komen niet overeen";
+        document.getElementById("messagediv").innerHTML = "Nieuw wachtwoord en herhaling komen niet overeen";
     }
+}
+
+function stuurWachtwoordOpStatusHandler(status, myJson) {
+    if (status === 200) {
+        closeWachtwoordDialog()
+        return document.querySelector("#wachtwoordveranderddiv").innerHTML = "Uw wachtwoord is gewijzigd";
+    }
+    else if (status === 400) {
+        document.getElementById("messagediv").innerHTML = "Het gegeven wachtwoord klopt niet"
+        return console.log(myJson.error)
+    }
+    else if (status === 409) {
+        document.getElementById("messagediv").innerHTML = "Nieuw wachtwoord mag niet hetzelfde zijn als de oude";
+        return console.log(myJson.error)
+    }
+    else if (status === 401) {
+        return console.log(myJson.error)
+    }
+    else return console.log("Er ging iets fout")
 }
 
 function openWachtwoordDialog() {

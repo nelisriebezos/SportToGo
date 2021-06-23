@@ -41,14 +41,14 @@ public class OefeningResource {
             if (oefeningKeuze == null) {
                 return Response.status(Response.Status.CONFLICT).entity(
                         new AbstractMap.SimpleEntry<>
-                                ("error", "Oefening niet gevonden") {
+                                ("error", "Oefening is niet gevonden") {
                         }).build();
             }
 
             if (schemaKeuze == null) {
                 return Response.status(Response.Status.CONFLICT).entity(
                         new AbstractMap.SimpleEntry<>
-                                ("error", "Schema niet gevonden") {
+                                ("error", "Schema is niet gevonden") {
                         }).build();
             }
 

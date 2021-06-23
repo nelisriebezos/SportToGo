@@ -76,7 +76,7 @@ public class GebruikerResource {
         }
         return Response.status(Response.Status.CONFLICT).entity(
                 new AbstractMap.SimpleEntry<>
-                        ("error", "email bestaat al") {
+                        ("error", "Email bestaat al") {
                 }).build();
     }
 }
