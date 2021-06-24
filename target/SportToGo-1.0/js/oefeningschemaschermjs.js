@@ -31,8 +31,6 @@ function laadSchemasIn() {
 }
 
 function laadSchemaInStatusHandler(status, myJson) {
-    console.log(myJson)
-
     if (status === 200) {
         maakSchemaOption(myJson, "schemakeuze");
         maakSchemaOption(myJson, "vwoefeningschema");
@@ -80,8 +78,6 @@ function laadOefeningenIn() {
 
 function laadOefeningInStatusHandler(status, myJson) {
     if (status === 200) {
-        console.log(myJson);
-
         for (oefeningtype of myJson) {
             let oefeningtabel = document.getElementById("oefeningtabel");
             let thead = oefeningtabel.createTHead();
@@ -221,23 +217,32 @@ function maakSchemaStatusHandler(status, myJson) {
 }
 
 function verwijderOefening() {
-    let formData = new FormData(document.querySelector("#verwijderoefeningform"));
-    let fetchoptions = {
-        method: "DELETE",
-        body: new URLSearchParams(formData),
-        headers: {
-            'Authorization': 'Bearer ' + window.sessionStorage.getItem("myJWT")
-        }
-    };
-    fetch("/restservices/schema/"+ document.getElementById("vwoefeningschema").value +"/"+
-        document.getElementById("oefeningteverwijderen").value, fetchoptions)
-        .then(response => {
-            return Promise.all([response.status, response.json()])
-        })
-        .then(([status, myJson]) => {
-            verwijderOefeningStatusHandler(status, myJson);
-        })
-        .catch(error => console.log(error))
+    let vos = document.getElementById("vwoefeningschema")
+    let vo = document.getElementById("oefeningteverwijderen")
+
+    if (vos.value.length === 0 ||
+        vo.value.length === 0) {
+        document.getElementById("verwijderoefeningdiv").innerHTML = "Vul alle gegevens in"
+    } else {
+
+        let formData = new FormData(document.querySelector("#verwijderoefeningform"));
+        let fetchoptions = {
+            method: "DELETE",
+            body: new URLSearchParams(formData),
+            headers: {
+                'Authorization': 'Bearer ' + window.sessionStorage.getItem("myJWT")
+            }
+        };
+        fetch("/restservices/schema/" + document.getElementById("vwoefeningschema").value + "/" +
+            document.getElementById("oefeningteverwijderen").value, fetchoptions)
+            .then(response => {
+                return Promise.all([response.status, response.json()])
+            })
+            .then(([status, myJson]) => {
+                verwijderOefeningStatusHandler(status, myJson);
+            })
+            .catch(error => console.log(error))
+    }
 }
 
 function verwijderOefeningStatusHandler(status, myJson) {
@@ -276,7 +281,6 @@ function laadOefeningenVanSchema() {
 
 function laadOefeningVanSchemaStatusHandler(status, myJson) {
     if (status === 200) {
-        console.log(myJson)
         maakVOefeningOption(myJson, "oefeningteverwijderen");
         return myJson;
     }
