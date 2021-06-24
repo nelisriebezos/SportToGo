@@ -2,6 +2,7 @@ package hu.IPASS.domeinklassen;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Objects;
 
 public class Schema implements Serializable {
@@ -34,6 +35,18 @@ public class Schema implements Serializable {
 
     public void setOefeningLijst(ArrayList<Oefening> oefeningLijst) {
         this.oefeningLijst = oefeningLijst;
+    }
+
+    public boolean verwijderOefening(Oefening oef) {
+        Iterator<Oefening> itr = oefeningLijst.iterator();
+        while(itr.hasNext()) {
+            Oefening oefening = itr.next();
+            if (oefening.equals(oef)) {
+                itr.remove();
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

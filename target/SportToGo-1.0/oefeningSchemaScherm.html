@@ -21,7 +21,8 @@
                 <input type="number" id="gewichtkeuze" name="gewichtkeuze"><br>
                 <label for="sethoeveelheidkeuze">Kies set hoeveelheid: </label>
                 <input type="number" id="sethoeveelheidkeuze" name="sethoeveelheidkeuze"><br>
-            </form><br>
+            </form>
+            <br>
             <div id="oefeningaanmaakdiv"></div>
             <input type="button" id="cancel" value="Cancel" onclick="closeAanmaakDialog()">
             <input type="button" id="voegToe" value="Voeg toe" onclick="voegOefeningToe()">
@@ -30,63 +31,70 @@
 
     <div id="oefeningen">
         <h2>Oefeningen</h2>
-        <div id="oefeningenLijst" class="oefeningdiv"></div>
-        <div id="oefeningBeschrijving" class="oefeningdiv"></div>
+        <table id="oefeningtabel"></table>
     </div>
     <hr>
 
-        <div id="schemas">
-            <dialog id="schemaverwijderdialog">
-                <div>
-                    <h2>Verwijder schema</h2>
-                    <form id="schemaverwijderform">
-                        <label for="schemaverwijderkeuze">Kies Schema: </label>
-                        <select id="schemaverwijderkeuze" name="schemaverwijderkeuze"></select>
-                    </form><br>
-                    <div id="schemateverwijderen"></div>
-                    <input type="button" id="cancel2" value="Cancel" onclick="closeVSchemaDialog()">
-                    <input type="button" id="verwijderschemaknop" value="Verwijder Schema" onclick="verwijderSchema()">
-                </div>
-            </dialog>
-
-            <dialog id="schemaaanmaakdialog">
-                <div>
-                    <h2>Maak schema aan</h2>
-                    <form id="schemaaanmaakform">
-                        <label for="schemanaam">Naam:</label>
-                        <input type="text" id="schemanaam" name="schemanaam">
-                    </form><br>
-                    <div id="schemaaanmaakdiv"></div>
-                    <input type="button" id="cancel3" value="Cancel" onclick="closeMSchemaDialog()">
-                    <input type="button" id="maakschemaaan" value="Maak schema aan" onclick="maakSchema()">
-                </div>
-            </dialog>
-
-            <dialog id="verwijderoefeningdialog" open>
-                <div>
-                    <h2>Verwijder oefening</h2>
-                    <form id="verwijderoefeningform">
-                        <label for="vwoefeningschema">Kies schema: </label>
-                        <select id="vwoefeningschema" name="vwoefeningschema"></select><br>
-                        <label for="oefeningteverwijderen">Kies oefening: </label>
-                        <select id="oefeningteverwijderen" name="oefeningteverwijderen"></select>
-                    </form>
-                </div>
-            </dialog>
-
-            <h2>Schema's</h2>
-            <div id="schemadiv" class="schemadiv">
-                <div id="schemalijst" class="schemaclass"></div>
-                <div id="schemabeschrijving" class="schemaclass"></div>
+    <div id="schemas">
+        <dialog id="schemaverwijderdialog">
+            <div>
+                <h2>Verwijder schema</h2>
+                <form id="schemaverwijderform">
+                    <label for="schemaverwijderkeuze">Kies Schema: </label>
+                    <select id="schemaverwijderkeuze" name="schemaverwijderkeuze"></select>
+                </form>
+                <br>
+                <div id="schemateverwijderen"></div>
+                <input type="button" id="cancel2" value="Cancel" onclick="closeVSchemaDialog()">
+                <input type="button" id="verwijderschemaknop" value="Verwijder Schema" onclick="verwijderSchema()">
             </div>
-            <div id="controlButtons">
-                <input type="button" id="verwijderschema" value="Verwijder schema" onclick="openVSchemaDialog()">
-                <input type="button" id="maaknieuwschema" value="Maak nieuw schema" onclick="openMSchemaDialog()">
-                <input type="button" id="nwoefeningtoevoegen" value="Oefening toevoegen" onclick="openAanmaakDialog()">
-                <input type="button" id="verwijderoefening" value="Verwijder oefening" onclick="">
+        </dialog>
+
+        <dialog id="schemaaanmaakdialog">
+            <div>
+                <h2>Maak schema aan</h2>
+                <form id="schemaaanmaakform">
+                    <label for="schemanaam">Naam:</label>
+                    <input type="text" id="schemanaam" name="schemanaam">
+                </form>
+                <br>
+                <div id="schemaaanmaakdiv"></div>
+                <input type="button" id="cancel3" value="Cancel" onclick="closeMSchemaDialog()">
+                <input type="button" id="maakschemaaan" value="Maak schema aan" onclick="maakSchema()">
             </div>
+        </dialog>
+
+        <dialog id="verwijderoefeningdialog">
+            <div>
+                <h2>Verwijder oefening</h2>
+                <form id="verwijderoefeningform">
+                    <label for="vwoefeningschema">Kies schema: </label>
+                    <select id="vwoefeningschema" name="vwoefeningschema"
+                            onchange="laadOefeningenVanSchema()"></select><br>
+                    <label for="oefeningteverwijderen">Kies oefening: </label>
+                    <select id="oefeningteverwijderen" name="oefeningteverwijderen" onchange="laadOefeningTeVerwijderenIn()"></select>
+                </form>
+                <br>
+                <div id="verwijderoefeningdiv"></div>
+                <input type="button" id="cancel4" value="Cancel" onclick="closeVOefeningDialog()">
+                <input type="button" id="verwijderoefening" value="Verwijder oefening" onclick="verwijderOefening()">
+            </div>
+        </dialog>
+
+        <h2>Schema's</h2>
+        <div id="schemadiv" class="schemadiv">
+            <table id="schematabel"></table>
         </div>
-        <input type="button" id="home" value="Home" onclick="location.href='homeScherm.html';">
+        <br>
+        <div id="controlButtons">
+            <input type="button" id="verwijderschema" value="Verwijder schema" onclick="openVSchemaDialog()">
+            <input type="button" id="maaknieuwschema" value="Maak nieuw schema" onclick="openMSchemaDialog()">
+            <input type="button" id="nwoefeningtoevoegen" value="Oefening toevoegen" onclick="openAanmaakDialog()">
+            <input type="button" id="verwoefening" value="Verwijder oefening" onclick="openVOefeningDialog()">
+        </div>
+    </div>
+    <hr>
+    <input type="button" id="home" value="Home" onclick="location.href='homeScherm.html';">
 </main>
 </body>
 </html>

@@ -1,11 +1,14 @@
 function laadPaginaIn() {
-    document.querySelector("#schemalijst").innerHTML = "";
-    document.querySelector("#schemabeschrijving").innerHTML = "";
-    document.querySelector("#oefeningBeschrijving").innerHTML = "";
-    document.querySelector("#oefeningenLijst").innerHTML = "";
+    let oefeningtabel = document.getElementById("oefeningtabel");
+    let schematabel = document.getElementById("schematabel");
+    while(oefeningtabel.hasChildNodes() || schematabel.hasChildNodes()) {
+        oefeningtabel.removeChild(oefeningtabel.firstChild);
+        schematabel.removeChild(schematabel.firstChild);
+    }
     closeAanmaakDialog();
     closeVSchemaDialog();
     closeMSchemaDialog();
+    closeVOefeningDialog();
     laadOefeningenIn();
     laadSchemasIn();
 }
@@ -28,20 +31,28 @@ function laadSchemasIn() {
 }
 
 function laadSchemaInStatusHandler(status, myJson) {
+    console.log(myJson)
+
     if (status === 200) {
         maakSchemaOption(myJson, "schemakeuze");
+        maakSchemaOption(myJson, "vwoefeningschema");
         maakSchemaOption(myJson, "schemaverwijderkeuze");
 
-        let schemalijst = document.getElementById("schemalijst");
-        let schemabeschrijving = document.getElementById("schemabeschrijving");
         for (data of myJson) {
-            schemalijst.innerHTML = schemalijst.innerHTML + data.naam + "<br/>"
+            let oefeningtabel = document.getElementById("schematabel");
+            let thead = oefeningtabel.createTHead();
+            let row = thead.insertRow();
 
+            let th = document.createElement("th");
+            let text = document.createTextNode(data.naam);
+
+            th.appendChild(text);
+            row.appendChild(th);
             for (type of data.oefeningLijst) {
-                schemabeschrijving.innerHTML = schemabeschrijving.innerHTML
-                    + type.oefeningType.naam + "<br/>"
+                let cell = row.insertCell();
+                cell.innerHTML = type.oefeningType.naam + "<br/>"
                     + type.gewicht + "<br/>"
-                    + type.setHoeveelheid + "<br/>" + "<br/>"
+                    + type.setHoeveelheid;
             }
         }
         return myJson;
@@ -67,20 +78,28 @@ function laadOefeningenIn() {
         .catch(error => console.log(error))
 }
 
-function laadOefeningInStatusHandler(status, myJson){
+function laadOefeningInStatusHandler(status, myJson) {
     if (status === 200) {
-        let oefeninglijst = document.querySelector('#oefeningenLijst');
-        let oefeningbeschrijving = document.querySelector('#oefeningBeschrijving');
-        oefeninglijst.innerHTML = "";
+        console.log(myJson);
 
         for (oefeningtype of myJson) {
-            oefeninglijst.innerHTML = oefeninglijst.innerHTML + oefeningtype.naam + "<br/>"
-            oefeningbeschrijving.innerHTML = oefeningbeschrijving.innerHTML + oefeningtype.beschrijving + "<br/>"
+            let oefeningtabel = document.getElementById("oefeningtabel");
+            let thead = oefeningtabel.createTHead();
+            let row = thead.insertRow();
+
+            let th = document.createElement("th");
+            let text = document.createTextNode(oefeningtype.naam);
+
+            th.appendChild(text);
+            row.appendChild(th);
+
+            let cell = row.insertCell();
+            cell.innerHTML = oefeningtype.beschrijving;
         }
         maakOefeningOption(myJson, "oefeningkeuze");
+        laadVOefeningInNullFunctie();
         return myJson;
-    }
-    else console.log("Er ging iets fout")
+    } else console.log("Er ging iets fout")
 }
 
 function voegOefeningToe() {
@@ -119,8 +138,8 @@ function voegOefeningToeStatusHandler(status, myJson) {
         laadPaginaIn();
         return myJson;
     }
-    if (status === 409) return console.log(myJson.error)
-    if (status === 401) return console.log(myJson.error)
+    else if (status === 409) return console.log(myJson.error)
+    else if (status === 401) return console.log(myJson.error)
     else return console.log("Er gaat iets fout")
 }
 
@@ -156,8 +175,8 @@ function verwijderSchemaSTatusHandler(status, myJson) {
         laadPaginaIn();
         return myJson;
     }
-    if (status === 401) return console.log(myJson.error)
-    if (status === 409) return console.log(myJson.error)
+    else if (status === 401) return console.log(myJson.error)
+    else if (status === 409) return console.log(myJson.error)
     else return console.log("Er ging iets fout")
 }
 
@@ -193,12 +212,135 @@ function maakSchemaStatusHandler(status, myJson) {
         laadPaginaIn();
         return myJson;
     }
-    if (status === 401) return console.log(myJson.error)
-    if (status === 409) {
+    else if (status === 401) return console.log(myJson.error)
+    else if (status === 409) {
         document.getElementById("schemaaanmaakdiv").innerHTML = "Schema bestaat al"
         return console.log(myJson.error)
     }
     else return console.log("Er ging iets fout")
+}
+
+function verwijderOefening() {
+    let formData = new FormData(document.querySelector("#verwijderoefeningform"));
+    let fetchoptions = {
+        method: "DELETE",
+        body: new URLSearchParams(formData),
+        headers: {
+            'Authorization': 'Bearer ' + window.sessionStorage.getItem("myJWT")
+        }
+    };
+    fetch("/restservices/schema/"+ document.getElementById("vwoefeningschema").value +"/"+
+        document.getElementById("oefeningteverwijderen").value, fetchoptions)
+        .then(response => {
+            return Promise.all([response.status, response.json()])
+        })
+        .then(([status, myJson]) => {
+            verwijderOefeningStatusHandler(status, myJson);
+        })
+        .catch(error => console.log(error))
+}
+
+function verwijderOefeningStatusHandler(status, myJson) {
+    if (status === 200) {
+        laadPaginaIn();
+        return myJson;
+    }
+    else if (status === 409) return console.log(myJson.error)
+    else if (status === 401) return console.log(myJson.error)
+    else return console.log("Er ging iets fout")
+}
+
+function laadOefeningenVanSchema() {
+    let vwschema = document.getElementById("vwoefeningschema");
+
+    if (vwschema.value.length === 0) {
+        laadVOefeningInNullFunctie();
+        return null;
+    } else {
+        let fetchoptions = {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + window.sessionStorage.getItem("myJWT")
+            }
+        };
+        fetch("/restservices/schema/" + document.getElementById("vwoefeningschema").value, fetchoptions)
+            .then(response => {
+                return Promise.all([response.status, response.json()])
+            })
+            .then(([status, myJson]) => {
+                laadOefeningVanSchemaStatusHandler(status, myJson);
+            })
+            .catch(error => console.log(error))
+    }
+}
+
+function laadOefeningVanSchemaStatusHandler(status, myJson) {
+    if (status === 200) {
+        console.log(myJson)
+        maakVOefeningOption(myJson, "oefeningteverwijderen");
+        return myJson;
+    }
+    else if (status === 409) return console.log(myJson.error)
+    else if (status === 401) return console.log(myJson.error)
+    else return console.log("Er ging iets fout")
+}
+
+function maakVOefeningOption(myJson, element) {
+    let select = document.getElementById(element);
+
+    for (let i = select.length - 1; i >= 0; i--) {
+        select.remove(i);
+    }
+
+    for (oefening of myJson.oefeningLijst) {
+        let options = document.createElement("option");
+        options.value = [oefening.oefeningType.naam, oefening.gewicht, oefening.setHoeveelheid];
+        options.innerHTML = oefening.oefeningType.naam;
+        select.appendChild(options);
+    }
+}
+
+function laadOefeningTeVerwijderenIn() {
+    let fetchoptions = {
+        method: "GET",
+        headers: {
+            'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
+        }};
+    fetch("/restservices/schema/"+ document.getElementById("vwoefeningschema").value +"/"+
+        document.getElementById("oefeningteverwijderen").value, fetchoptions)
+        .then(response => {
+            return Promise.all([response.status, response.json()])
+        })
+        .then(([status, myJson]) => {
+            verwijderOefeningDivVuller(status, myJson);
+        })
+        .catch(error => console.log(error))
+}
+
+function verwijderOefeningDivVuller(status, myJson) {
+    if (status === 200) {
+        let div = document.getElementById("verwijderoefeningdiv");
+        div.innerHTML = myJson.oefeningType.naam + "<br/>"
+                        + myJson.gewicht + "<br/>"
+                        + myJson.setHoeveelheid;
+        return myJson;
+    }
+    else if (status === 409) return console.log(myJson.error)
+    else if (status === 401) return console.log(myJson.error)
+    else return console.log("Er ging iets fout")
+}
+
+function laadVOefeningInNullFunctie() {
+    let select = document.getElementById("oefeningteverwijderen");
+    let options = document.createElement("option");
+
+    for (let i = select.length - 1; i >= 0; i--) {
+        select.remove(i);
+    }
+
+    options.value = "";
+    options.innerHTML = "Kies een oefening";
+    select.appendChild(options);
 }
 
 function maakOefeningOption(myJson, element) {
@@ -242,8 +384,12 @@ function maakSchemaOption(myJson, element) {
     }
 }
 
+
 function openAanmaakDialog() {
     let dialog = document.getElementById("oefeningtoevoegendiv");
+    closeVSchemaDialog();
+    closeMSchemaDialog();
+    closeVOefeningDialog();
     dialog.show();
 }
 
@@ -260,6 +406,8 @@ function closeAanmaakDialog() {
 function openVSchemaDialog() {
     let dialog = document.getElementById("schemaverwijderdialog");
     closeMSchemaDialog();
+    closeAanmaakDialog();
+    closeVOefeningDialog();
     dialog.show();
 }
 
@@ -273,6 +421,9 @@ function closeVSchemaDialog() {
 function openMSchemaDialog() {
     let dialog = document.getElementById("schemaaanmaakdialog");
     closeVSchemaDialog();
+    closeMSchemaDialog();
+    closeVOefeningDialog();
+    closeAanmaakDialog()
     dialog.show();
 }
 
@@ -280,6 +431,24 @@ function closeMSchemaDialog() {
     let dialog = document.getElementById("schemaaanmaakdialog");
     document.getElementById("schemanaam").value = "";
     document.getElementById("schemaaanmaakdiv").innerHTML = ""
+    dialog.close();
+}
+
+function openVOefeningDialog() {
+    let dialog = document.getElementById("verwijderoefeningdialog");
+    laadVOefeningInNullFunctie();
+    closeVSchemaDialog();
+    closeMSchemaDialog();
+    closeVOefeningDialog();
+    closeAanmaakDialog();
+    dialog.show();
+}
+
+function closeVOefeningDialog() {
+    let dialog = document.getElementById("verwijderoefeningdialog");
+    document.getElementById("vwoefeningschema").value = "";
+    document.getElementById("oefeningteverwijderen").value = "";
+    document.getElementById("verwijderoefeningdiv").innerHTML = "";
     dialog.close();
 }
 

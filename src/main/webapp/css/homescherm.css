@@ -5,10 +5,14 @@
     padding: 10px;
 }
 
-.homediv {
-    display: flex;
-}
+/*.homediv {*/
+/*    display: flex;*/
+/*}*/
 
 .menudiv {
     flex-basis: 100px;
+}
+
+#sessiediv {
+    resize: none;
 }

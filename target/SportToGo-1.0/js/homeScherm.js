@@ -1,5 +1,5 @@
 function laadPaginaIn() {
-    let schemabox = document.querySelector("#schemabox");
+    let schemabox = document.querySelector("#sessiediv");
     schemabox.innerHTML = "";
     document.getElementById("sessieaanmaakalert").innerHTML = "";
     closeVerwijderDialog();
@@ -177,7 +177,7 @@ function verwijderSessieStatusHandler(status, myJson) {
 }
 
 function printSessie(data) {
-    let datadiv = document.querySelector('#schemabox')
+    let datadiv = document.querySelector('#sessiediv')
 
     let beginuur = data.beginTijd.hour;
     let beginminuut = data.beginTijd.minute;
@@ -189,13 +189,12 @@ function printSessie(data) {
     einduur = checkTime(einduur);
     eindminuut = checkTime(eindminuut);
 
-    datadiv.innerHTML = datadiv.innerHTML + data.naam + "<br/>"
-        + data.dag.dayOfMonth + "-" + data.dag.monthValue + "-" + data.dag.year + "<br/>"
-        + beginuur + ":" + beginminuut + "<br/>"
-        + einduur + ":" + eindminuut + "<br/>"
-        + data.schema.naam + "<br/>" + "<br/>"
+    datadiv.innerHTML = datadiv.innerHTML + data.naam + "&#13;&#10;" +
+        + data.dag.dayOfMonth + "-" + data.dag.monthValue + "-" + data.dag.year + "&#13;&#10;" +
+        + beginuur + ":" + beginminuut + "&#13;&#10;"
+        + einduur + ":" + eindminuut + "&#13;&#10;"
+        + data.schema.naam  + "&#13;&#10;" + "&#13;&#10;"
 }
-
 
 function logUit() {
     sessionStorage.removeItem("myJWT");

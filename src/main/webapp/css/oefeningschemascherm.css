@@ -9,6 +9,7 @@
     display: inline-block;
     width: 100px;
     height: 100px;
+    max-height: 10px;
 }
 
 .schemadiv {
@@ -17,4 +18,19 @@
 
 .schemaclass {
     flex-basis: 100px;
+}
+
+#oefeningen {
+    display: block;
+    grid-template-columns: 1fr 1fr;
+}
+
+#oefeningtabel {
+    border-spacing: 15px;
+    border: 1px solid black;
+}
+
+#schematabel {
+    border-spacing: 15px;
+    border: 1px solid black;
 }

@@ -53,9 +53,13 @@ public class OefeningResource {
             }
 
             Oefening nwOefening = new Oefening(gewichtkeuze, sethvhkeuze, oefeningKeuze);
-            schemaKeuze.addOefening(nwOefening);
-
-            return Response.ok(nwOefening).build();
+            if (schemaKeuze.addOefening(nwOefening)) {
+                return Response.ok(nwOefening).build();
+            }
+            return Response.status(Response.Status.CONFLICT).entity(
+                    new AbstractMap.SimpleEntry<>
+                            ("error", "Oefening bestaat al") {
+                    }).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(
                 new AbstractMap.SimpleEntry<>

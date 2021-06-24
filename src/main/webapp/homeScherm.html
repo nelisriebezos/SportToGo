@@ -53,14 +53,11 @@
         <div id="menudiv" class="menudiv">
             <input type="button" id="oefeningen" value="Oefeningen en schemas" onclick="location.href='oefeningSchemaScherm.html';"><br>
         </div>
-
-        <div id="sessiediv" class="menudiv">
-            <label>Uw sessies: </label>
-            <div id="schemabox"></div>
-            <input type="button" id="verwijdersesie" value="Verwijder sessie" onclick="openVerwijderDialog()">
-            <input type="button" id="maaksessie" value="Maak sessie aan" onclick="openAanmaakDialog()">
-        </div>
+        <label for="sessiediv">Uw sessies</label><br>
+        <textarea id="sessiediv" class="menudiv" rows="15" cols="20" readonly></textarea>
     </div>
+    <input type="button" id="verwijdersesie" value="Verwijder sessie" onclick="openVerwijderDialog()">
+    <input type="button" id="maaksessie" value="Maak sessie aan" onclick="openAanmaakDialog()">
 
     <hr>
     <div id="homeOptions">
