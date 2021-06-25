@@ -14,13 +14,17 @@
         <div id="accountaanmakendiv">
             <h2>Maak uw nieuwe account aan</h2>
             <form id="invoergegevensform">
-                <label for="nwgebruikernaam">Gebruikersnaam </label>
-                <input type="text" id="nwgebruikernaam" name="gebruikernaam"><br>
-                <label for="emailadres">Emailadres </label>
-                <input type="email" id="emailadres" name="email"><br>
-                <label for="nwwachtwoord">Wachtwoord </label>
-                <input type="password" id="nwwachtwoord" name="wachtwoord"><br>
-
+                <div class="aablok">
+                    <label for="nwgebruikernaam">Gebruikersnaam </label><br>
+                    <label for="emailadres">Emailadres </label><br>
+                    <label for="nwwachtwoord">Wachtwoord </label><br>
+                </div>
+                <div class="aablok">
+                    <input type="text" id="nwgebruikernaam" name="gebruikernaam"><br>
+                    <input type="email" id="emailadres" name="email"><br>
+                    <input type="password" id="nwwachtwoord" name="wachtwoord"><br>
+                </div>
+                <br><br>
                 <input type="button" id="terugknop" value="Terug" onclick="closeAanmaakDialog()">
                 <input type="button" id="aanmaken" value="Aanmaken" onclick="stuurGebruikerData()"><br>
                 <div id="postresponse"></div>
@@ -29,10 +33,14 @@
     </dialog>
 
     <form id="loginform">
-        <label for="gebruikernaam">gebruikernaam</label>
-        <input type="text" id="gebruikernaam" name="gebruikernaam"><br>
-        <label for="wachtwoord">Wachtwoord</label>
-        <input type="password" id="wachtwoord" name="wachtwoord"><br>
+        <div class="loginblok">
+            <label for="gebruikernaam">gebruikernaam</label><br>
+            <label for="wachtwoord">Wachtwoord</label>
+        </div>
+        <div class="loginblok">
+            <input type="text" id="gebruikernaam" name="gebruikernaam"><br>
+            <input type="password" id="wachtwoord" name="wachtwoord"><br>
+        </div>
     </form><br>
     <div id="messagediv"></div>
     <input type="button" id="account_aanmaken" value="Account aanmaken" onclick="openAanmaakDialog()">

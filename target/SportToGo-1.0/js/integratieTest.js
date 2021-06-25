@@ -23,7 +23,6 @@ function laadSessiesIn() {
 
 function laadSessiesInStatusHandler(status, myJson) {
     if (status === 200) {
-        console.log(myJson)
         for (data of myJson) {
             printSessie(data);
         }

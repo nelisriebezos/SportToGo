@@ -8,7 +8,7 @@
 </head>
 <body>
 <main id="main">
-    <dialog id="oefeningtoevoegendiv">
+    <dialog id="oefeningtoevoegendiv" class="dialog">
         <div id="oefeningtoevoegen">
             <h3>Voeg oefening toe</h3>
 
@@ -36,7 +36,7 @@
     <hr>
 
     <div id="schemas">
-        <dialog id="schemaverwijderdialog">
+        <dialog id="schemaverwijderdialog" class="dialog">
             <div>
                 <h2>Verwijder schema</h2>
                 <form id="schemaverwijderform">
@@ -50,7 +50,7 @@
             </div>
         </dialog>
 
-        <dialog id="schemaaanmaakdialog">
+        <dialog id="schemaaanmaakdialog" class="dialog">
             <div>
                 <h2>Maak schema aan</h2>
                 <form id="schemaaanmaakform">
@@ -64,7 +64,7 @@
             </div>
         </dialog>
 
-        <dialog id="verwijderoefeningdialog">
+        <dialog id="verwijderoefeningdialog" class="dialog">
             <div>
                 <h2>Verwijder oefening</h2>
                 <form id="verwijderoefeningform">
@@ -85,7 +85,6 @@
             <h2>Schema's</h2>
             <table id="schematabel"></table>
         </div>
-
         <br>
         <div id="controlButtons">
             <input type="button" id="verwijderschema" value="Verwijder schema" onclick="openVSchemaDialog()">

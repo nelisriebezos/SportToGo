@@ -1,18 +1,51 @@
 #main {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 700px;
+    margin: auto;
+    width: 60%;
     padding: 10px;
+    text-align: center;
+    background-color: lightblue;
+    border: 1px solid black;
 }
 
-/*.homediv {*/
-/*    display: flex;*/
-/*}*/
+body {
+    background-color: cadetblue;
+}
 
-.menudiv {
-    flex-basis: 100px;
+#menubuttonsdiv {
+    float: left;
+    position: relative;
+    background-color: grey;
+}
+
+#oppersessiediv {
+    background-color: lightgray;
+}
+
+.menubuttons {
+    font-size: 16px;
+}
+
+.sessiebutton {
+    font-size: 14px;
+}
+
+#menubutton1 {
+    padding: 25px 0;
+}
+
+#menubutton2 {
+    padding: 35px 0;
+}
+
+#menubutton2 {
+    padding: 60px 0;
 }
 
 #sessiediv {
     resize: none;
+    background-color: whitesmoke;
+}
+
+.dialog {
+    background-color: aliceblue;
 }
