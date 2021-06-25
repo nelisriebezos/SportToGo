@@ -2,12 +2,11 @@ package hu.IPASS.domeinklassen;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Objects;
 
 public class Schema implements Serializable {
     private String naam;
-    private Sessie sessie;
-    private Gebruiker gebruiker;
     ArrayList<Oefening> oefeningLijst = new ArrayList<>();
 
     public Schema(String nm) {
@@ -30,22 +29,6 @@ public class Schema implements Serializable {
         this.naam = naam;
     }
 
-    public Sessie getSessie() {
-        return sessie;
-    }
-
-    public void setSessie(Sessie sessie) {
-        this.sessie = sessie;
-    }
-
-    public Gebruiker getGebruiker() {
-        return gebruiker;
-    }
-
-    public void setGebruiker(Gebruiker gebruiker) {
-        this.gebruiker = gebruiker;
-    }
-
     public ArrayList<Oefening> getOefeningLijst() {
         return oefeningLijst;
     }
@@ -54,22 +37,29 @@ public class Schema implements Serializable {
         this.oefeningLijst = oefeningLijst;
     }
 
+    public boolean verwijderOefening(Oefening oef) {
+        Iterator<Oefening> itr = oefeningLijst.iterator();
+        while(itr.hasNext()) {
+            Oefening oefening = itr.next();
+            if (oefening.equals(oef)) {
+                itr.remove();
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Schema)) return false;
         Schema schema = (Schema) o;
-        return Objects.equals(getNaam(), schema.getNaam()) &&
-                Objects.equals(getSessie(), schema.getSessie()) &&
-                Objects.equals(getGebruiker(), schema.getGebruiker()) &&
-                Objects.equals(getOefeningLijst(), schema.getOefeningLijst());
+        return Objects.equals(getNaam(), schema.getNaam());
     }
 
 
     @Override
     public String toString() {
-        return "Schema{" +
-                "naam='" + naam + '\'' +
-                '}';
+        return naam;
     }
 }

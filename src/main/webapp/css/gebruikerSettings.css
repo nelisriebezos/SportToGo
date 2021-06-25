@@ -6,22 +6,15 @@
     background-color: lightblue;
     border: 1px solid black;
 }
-#loginform label {
-    width: 150px;
-}
 
 body {
     background-color: cadetblue;
 }
 
-.loginblok {
+.gebruikerdatablok {
     display: inline-block;
 }
 
-#nieuwaccountdialog {
+#wachtwoorddialog {
     background-color: aliceblue;
-}
-
-.aablok {
-    display: inline-block;
 }

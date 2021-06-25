@@ -1,34 +1,27 @@
 #main {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 700px;
+    margin: auto;
+    width: 60%;
     padding: 10px;
+    text-align: center;
+    background-color: lightblue;
+    border: 1px solid black;
 }
 #loginform label {
-    float: left;
     width: 150px;
 }
 
 body {
-    background-color: aquamarine;
-    color: red;
+    background-color: cadetblue;
 }
 
-h1 {
-    color: black;
-    text-decoration-line: underline;
-}
-a:link{
-    color: yellow;
+.loginblok {
+    display: inline-block;
 }
 
-a:visited{
-    color: green;
-}
-a:hover {
-    text-decoration-line: line-through;
+#nieuwaccountdialog {
+    background-color: aliceblue;
 }
 
-#placeholder {
-    color: aqua;
+.aablok {
+    display: inline-block;
 }

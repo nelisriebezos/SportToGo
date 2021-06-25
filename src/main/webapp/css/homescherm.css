@@ -1,0 +1,51 @@
+#main {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    text-align: center;
+    background-color: lightblue;
+    border: 1px solid black;
+}
+
+body {
+    background-color: cadetblue;
+}
+
+#menubuttonsdiv {
+    float: left;
+    position: relative;
+    background-color: grey;
+}
+
+#oppersessiediv {
+    background-color: lightgray;
+}
+
+.menubuttons {
+    font-size: 16px;
+}
+
+.sessiebutton {
+    font-size: 14px;
+}
+
+#menubutton1 {
+    padding: 25px 0;
+}
+
+#menubutton2 {
+    padding: 35px 0;
+}
+
+#menubutton2 {
+    padding: 60px 0;
+}
+
+#sessiediv {
+    resize: none;
+    background-color: whitesmoke;
+}
+
+.dialog {
+    background-color: aliceblue;
+}

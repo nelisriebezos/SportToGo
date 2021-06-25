@@ -6,7 +6,6 @@ import java.util.Objects;
 public class Oefening implements Serializable {
     private int gewicht;
     private int setHoeveelheid;
-    private Schema schema;
     private OefeningType oefeningType;
 
     public Oefening(int gw, int sh, OefeningType ot) {
@@ -31,14 +30,6 @@ public class Oefening implements Serializable {
         this.setHoeveelheid = setHoeveelheid;
     }
 
-    public Schema getSchema() {
-        return schema;
-    }
-
-    public void setSchema(Schema schema) {
-        this.schema = schema;
-    }
-
     public OefeningType getOefeningType() {
         return oefeningType;
     }
@@ -54,7 +45,6 @@ public class Oefening implements Serializable {
         Oefening oefening = (Oefening) o;
         return getGewicht() == oefening.getGewicht() &&
                 getSetHoeveelheid() == oefening.getSetHoeveelheid() &&
-                Objects.equals(getSchema(), oefening.getSchema()) &&
                 Objects.equals(getOefeningType(), oefening.getOefeningType());
     }
 
@@ -63,6 +53,7 @@ public class Oefening implements Serializable {
         return "Oefening{" +
                 "gewicht=" + gewicht +
                 ", setHoeveelheid=" + setHoeveelheid +
+                ", oefeningType=" + oefeningType +
                 '}';
     }
 }

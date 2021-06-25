@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Integratie</title>
+    <script src="js/integratieTest.js"></script>
+</head>
+<body>
+<main>
+    <p>Dit zijn alle POST/PUT/DELETE methodes die in mijn IPASS staan: <br/>
+        Voordat je een fetch kan opsturen moeten alle gegevens ingevoerd zijn. <br/>
+        Je kunt geen sessies met dezelfde naam hebben. <br/></p>
+    <div>
+        <h2>Verwijder sessie</h2>
+        <form id="verwijdersessiekeuze">
+            <label for="sessieselect">Kies een sessie: </label>
+            <select id="sessieselect" name="sessieselect"></select>
+        </form>
+        <br>
+        <div id="sessiedivmessage"></div>
+        <input type="button" id="verwijdersessie" value="Verwijderen" onclick="verwijderSessie()">
+    </div>
+    <br>
+    <div id="trainingdiv">
+        <h2>Sessie toevoegen</h2>
+        <form id="trainingGegevens">
+            <label for="schemakeuze">Kies schema: </label>
+            <select id="schemakeuze" name="schemakeuze"></select><br>
+            <label for="naamkeuze">Kies naam: </label>
+            <input type="text" id="naamkeuze" name="naamkeuze"><br>
+            <label for="datumkeuze">Kies datum: </label>
+            <input type="date" id="datumkeuze" name="datumkeuze"><br>
+            <label for="begintijdkeuze">Kies begintijd: </label>
+            <input type="time" id="begintijdkeuze" name="begintijdkeuze"><br>
+            <label for="eindtijdkeuze">Kies eindtijd: </label>
+            <input type="time" id="eindtijdkeuze" name="eindtijdkeuze"><br>
+        </form>
+        <br>
+        <div id="sessieaanmaakalert"></div>
+        <input type="button" id="voegtoe" value="Voeg toe" onclick="maakSessieAan()">
+    </div>
+    <div>
+        <label for="sessiediv">Uw sessies</label><br>
+        <textarea id="sessiediv" class="menublok" rows="15" cols="20" readonly></textarea>
+    </div>
+    <hr>
+    <input type="button" id="settingstest" value="settings integratie test" onclick="location.href='integratieSettingsScherm.html'">
+    <input type="button" id="oefschematest" value="oefening en schema integratie test" onclick="location.href='integratieOefSchScherm.html'">
+</main>
+</body>
+</html>

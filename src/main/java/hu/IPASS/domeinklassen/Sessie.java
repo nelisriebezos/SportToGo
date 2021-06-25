@@ -1,17 +1,21 @@
 package hu.IPASS.domeinklassen;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Objects;
 
 public class Sessie implements Serializable {
     private String naam;
-    private String dag;
-    private String beginTijd;
-    private String eindTijd;
+    private LocalDate dag;
+    private LocalTime beginTijd;
+    private LocalTime eindTijd;
     private Gebruiker gebruiker;
     private Schema schema;
 
-    public Sessie(String nm, String d, String bt, String et) {
+    public Sessie(String nm, LocalDate d, LocalTime bt, LocalTime et) {
         this.naam = nm;
         this.dag = d;
         this.beginTijd = bt;
@@ -26,30 +30,31 @@ public class Sessie implements Serializable {
         this.naam = naam;
     }
 
-    public String getDag() {
+    public LocalDate getDag() {
         return dag;
     }
 
-    public void setDag(String dag) {
+    public void setDag(LocalDate dag) {
         this.dag = dag;
     }
 
-    public String getBeginTijd() {
+    public LocalTime getBeginTijd() {
         return beginTijd;
     }
 
-    public void setBeginTijd(String beginTijd) {
+    public void setBeginTijd(LocalTime beginTijd) {
         this.beginTijd = beginTijd;
     }
 
-    public String getEindTijd() {
+    public LocalTime getEindTijd() {
         return eindTijd;
     }
 
-    public void setEindTijd(String eindTijd) {
+    public void setEindTijd(LocalTime eindTijd) {
         this.eindTijd = eindTijd;
     }
 
+    @JsonIgnore
     public Gebruiker getGebruiker() {
         return gebruiker;
     }
@@ -71,12 +76,7 @@ public class Sessie implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Sessie)) return false;
         Sessie sessie = (Sessie) o;
-        return Objects.equals(getNaam(), sessie.getNaam()) &&
-                Objects.equals(getDag(), sessie.getDag()) &&
-                Objects.equals(getBeginTijd(), sessie.getBeginTijd()) &&
-                Objects.equals(getEindTijd(), sessie.getEindTijd()) &&
-                Objects.equals(getGebruiker(), sessie.getGebruiker()) &&
-                Objects.equals(getSchema(), sessie.getSchema());
+        return Objects.equals(getNaam(), sessie.getNaam());
     }
 
     @Override

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Integratie</title>
+    <script src="js/integratieLogin.js"></script>
+</head>
+<body>
+<main>
+    <div id="accountaanmakendiv">
+        <p>Dit zijn de login integratie tests: <br/>
+        Er kunnen niet twee accounts met dezelfde email geregistreerd staan. <br/>
+        Je moet alle velden invullen. <br/>
+        Het wachtwoord moet kloppen <br/></p>
+        <h2>Maak uw nieuwe account aan</h2>
+        <form id="invoergegevensform">
+            <label for="nwgebruikernaam">Gebruikersnaam </label>
+            <input type="text" id="nwgebruikernaam" name="gebruikernaam"><br>
+            <label for="emailadres">Emailadres </label>
+            <input type="email" id="emailadres" name="email"><br>
+            <label for="nwwachtwoord">Wachtwoord </label>
+            <input type="password" id="nwwachtwoord" name="wachtwoord"><br>
+
+            <input type="button" id="aanmaken" value="Aanmaken" onclick="stuurGebruikerData()"><br>
+            <div id="postresponse"></div>
+        </form>
+    </div>
+    <div>
+        <h2>Log In</h2>
+        <form id="loginform">
+            <label for="gebruikernaam">gebruikernaam</label>
+            <input type="text" id="gebruikernaam" name="gebruikernaam"><br>
+            <label for="wachtwoord">Wachtwoord</label>
+            <input type="password" id="wachtwoord" name="wachtwoord"><br>
+        </form>
+        <br>
+        <div id="messagediv"></div>
+        <input type="button" id="login" value="Login" onclick="sendLoginData()">
+    </div>
+</main>
+</body>
+</html>
