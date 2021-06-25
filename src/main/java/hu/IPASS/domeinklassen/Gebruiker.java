@@ -148,14 +148,11 @@ public class Gebruiker implements Principal ,Serializable {
     }
 
     public static boolean registreerGebruiker(Gebruiker g) {
-        System.out.println("buiten de if " + g);
         for (Gebruiker geb : GebruikerData.getGebruikerData().getAlleGebruikers()) {
             if (geb.getEmailadres().equals(g.getEmailadres())) {
-                System.out.println("bestaat al");
                 return false;
             }
         }
-        System.out.println("Toegevoegd");
         GebruikerData.getGebruikerData().voegGebruikerToe(g);
         return true;
     }

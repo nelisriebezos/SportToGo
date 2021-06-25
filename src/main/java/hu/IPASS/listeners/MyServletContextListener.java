@@ -25,8 +25,8 @@ public class MyServletContextListener implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         try {
-//            PersistenceManager.sendUsersToAzure();
-//            PersistenceManager.sendOefeningTypeToAzure();
+            PersistenceManager.sendUsersToAzure();
+            PersistenceManager.sendOefeningTypeToAzure();
 
             Schedulers.shutdownNow();
             HttpResources.disposeLoopsAndConnectionsLater(Duration.ZERO, Duration.ZERO).block();

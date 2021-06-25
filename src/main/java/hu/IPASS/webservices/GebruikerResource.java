@@ -51,7 +51,7 @@ public class GebruikerResource {
                             }).build();
                 }
             }
-            return Response.status(Response.Status.BAD_REQUEST).entity(
+            return Response.status(Response.Status.CONFLICT).entity(
                     new AbstractMap.SimpleEntry<>
                             ("error", "Oude wachtwoord klopt niet") {
                     }).build();

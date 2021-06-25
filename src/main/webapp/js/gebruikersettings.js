@@ -65,12 +65,8 @@ function stuurWachtwoordOpStatusHandler(status, myJson) {
         closeWachtwoordDialog()
         return document.querySelector("#wachtwoordveranderddiv").innerHTML = "Uw wachtwoord is gewijzigd";
     }
-    else if (status === 400) {
-        document.getElementById("messagediv").innerHTML = "Het gegeven wachtwoord klopt niet"
-        return console.log(myJson.error)
-    }
     else if (status === 409) {
-        document.getElementById("messagediv").innerHTML = "Nieuw wachtwoord mag niet hetzelfde zijn als de oude";
+        document.getElementById("messagediv").innerHTML = myJson.error;
         return console.log(myJson.error)
     }
     else if (status === 401) {
