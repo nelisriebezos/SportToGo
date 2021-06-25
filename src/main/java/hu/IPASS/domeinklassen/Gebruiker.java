@@ -148,18 +148,21 @@ public class Gebruiker implements Principal ,Serializable {
     }
 
     public static boolean registreerGebruiker(Gebruiker g) {
-        if (! GebruikerData.getGebruikerData().getAlleGebruikers().contains(g)) {
-            GebruikerData.getGebruikerData().voegGebruikerToe(g);
-            return true;
+        System.out.println("buiten de if " + g);
+        for (Gebruiker geb : GebruikerData.getGebruikerData().getAlleGebruikers()) {
+            if (geb.getEmailadres().equals(g.getEmailadres())) {
+                System.out.println("bestaat al");
+                return false;
+            }
         }
-        return false;
+        System.out.println("Toegevoegd");
+        GebruikerData.getGebruikerData().voegGebruikerToe(g);
+        return true;
     }
 
     public static String validateLogin(String gebruikernaam, String password) {
-//        System.out.println(gebruikernaam +" "+ password);
         if (gebruikernaam == null || gebruikernaam.isBlank() || password == null || password.isBlank()) return null;
         Gebruiker user = getUserByName(gebruikernaam);
-//        System.out.println(user);
         if (user == null) return null;
         return user.checkPassword(password) ? user.getRol() : null;
     }
@@ -168,9 +171,10 @@ public class Gebruiker implements Principal ,Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Gebruiker myUser = (Gebruiker) o;
-        return gebruikernaam.equals(myUser.gebruikernaam);
+        if (!(o instanceof Gebruiker)) return false;
+        Gebruiker gebruiker = (Gebruiker) o;
+        return Objects.equals(getGebruikernaam(), gebruiker.getGebruikernaam()) &&
+                Objects.equals(getEmailadres(), gebruiker.getEmailadres());
     }
 
     @Override

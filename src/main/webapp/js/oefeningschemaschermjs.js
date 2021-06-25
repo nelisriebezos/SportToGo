@@ -365,7 +365,6 @@ function maakOefeningOption(myJson, element) {
         options2.innerHTML = oefening.naam;
         select.appendChild(options2);
     }
-
 }
 
 function maakSchemaOption(myJson, element) {

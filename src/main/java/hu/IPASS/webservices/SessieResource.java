@@ -55,6 +55,21 @@ public class SessieResource {
                                 ("error", "Schema is niet gevonden") {
                         }).build();
             }
+
+            if (datum.isBefore(LocalDate.now())) {
+                return Response.status(Response.Status.CONFLICT).entity(
+                        new AbstractMap.SimpleEntry<>
+                                ("error", "Gekozen datum is al geweest") {
+                        }).build();
+            }
+
+            if (beginTijd.isAfter(eindTijd)) {
+                return Response.status(Response.Status.CONFLICT).entity(
+                        new AbstractMap.SimpleEntry<>
+                                ("error", "Gegeven begintijd is later dan eindtijd") {
+                        }).build();
+            }
+
             Sessie newSessie = new Sessie(naam, datum, beginTijd, eindTijd);
             newSessie.setSchema(schemaKeuze);
 

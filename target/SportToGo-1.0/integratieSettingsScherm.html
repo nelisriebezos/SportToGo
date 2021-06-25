@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Integratie</title>
+  <script src="js/integratieSettings.js"></script>
+</head>
+<body>
+<main>
+    <p>Dit zijn alle POST/PUT/DELETE methodes die in mijn IPASS staan: <br/>
+    Het oude wachtwoord moet hetzelfde zijn als het huidige wachtwoord. <br/>
+    Het nieuwe wachtwoord moet anders zijn als het huidige wachtwoord. <br/>
+    De nieuwe wachtwoorden moeten hetzelfde zijn. <br/></p>
+    <div id="wachtwoordwijzigendiv">
+        <h2>Wachtwoord wijzigen</h2>
+        <form id="gegevenswijzigenform">
+            <label for="oudwachtwoord">Oud wachtwoord</label>
+            <input type="password" id="oudwachtwoord" name="oudwachtwoord"><br>
+            <label for="nieuwwachtwoord">Nieuw wachtwoord</label>
+            <input type="password" id="nieuwwachtwoord" name="nieuwwachtwoord"><br>
+            <label for="hernieuwwachtwoord">Herhaling nieuw wachtwoord</label>
+            <input type="password" id="hernieuwwachtwoord" name="hernieuwwachtwoord"><br>
+        </form>
+        <br>
+        <div id="messagediv"></div>
+        <input type="button" id="ok" value="Verander wachtwoord" onclick="stuurWachtwoordOp()">
+    </div>
+    <hr>
+    <input type="button" id="home" value="Home" onclick="location.href='integratieTestHomeScherm.html';">
+</main>
+</body>
+</html>

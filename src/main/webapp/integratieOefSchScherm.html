@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Integratie</title>
+    <script src="js/integratieOefSchScherm.js"></script>
+</head>
+<body>
+<main>
+    <p>Dit zijn de integratie tests van alle oefening en schema POST/PUT/DELETE methodes: <br/>
+        Voordat je een fetch kan opsturen moeten alle gegevens ingevoerd zijn. <br/>
+        Je kan niet meerdere schemas met dezelfde naam hebben. <br/></p>
+    <div id="oefeningtoevoegen">
+        <h2>Voeg oefening toe</h2>
+        <form id="oefeningGegevens">
+            <label for="oefeningkeuze">Kies oefening: </label>
+            <select id="oefeningkeuze" name="oefeningkeuze"></select><br>
+            <label for="schemakeuze">Kies schema: </label>
+            <select id="schemakeuze" name="schemakeuze"></select><br>
+            <label for="gewichtkeuze">Kies gewicht: </label>
+            <input type="number" id="gewichtkeuze" name="gewichtkeuze"><br>
+            <label for="sethoeveelheidkeuze">Kies set hoeveelheid: </label>
+            <input type="number" id="sethoeveelheidkeuze" name="sethoeveelheidkeuze"><br>
+        </form>
+        <br>
+        <div id="oefeningaanmaakdiv"></div>
+        <input type="button" id="voegToe" value="Voeg toe" onclick="voegOefeningToe()">
+    </div>
+
+    <div id="oefeningen">
+        <h2>Oefeningen</h2>
+        <table id="oefeningtabel"></table>
+    </div>
+    <hr>
+    <div>
+        <h2>Verwijder schema</h2>
+        <form id="schemaverwijderform">
+            <label for="schemaverwijderkeuze">Kies Schema: </label>
+            <select id="schemaverwijderkeuze" name="schemaverwijderkeuze"></select>
+        </form>
+        <br>
+        <div id="schemateverwijderen"></div>
+        <input type="button" id="verwijderschemaknop" value="Verwijder Schema" onclick="verwijderSchema()">
+    </div>
+
+    <div>
+        <h2>Maak schema aan</h2>
+        <form id="schemaaanmaakform">
+            <label for="schemanaam">Naam:</label>
+            <input type="text" id="schemanaam" name="schemanaam">
+        </form>
+        <br>
+        <div id="schemaaanmaakdiv"></div>
+        <input type="button" id="maakschemaaan" value="Maak schema aan" onclick="maakSchema()">
+    </div>
+
+    <div>
+        <h2>Verwijder oefening</h2>
+        <form id="verwijderoefeningform">
+            <label for="vwoefeningschema">Kies schema: </label>
+            <select id="vwoefeningschema" name="vwoefeningschema"
+                    onchange="laadOefeningenVanSchema()"></select><br>
+            <label for="oefeningteverwijderen">Kies oefening: </label>
+            <select id="oefeningteverwijderen" name="oefeningteverwijderen"
+                    onchange="laadOefeningTeVerwijderenIn()"></select>
+        </form>
+        <br>
+        <div id="verwijderoefeningdiv"></div>
+        <input type="button" id="verwijderoefening" value="Verwijder oefening" onclick="verwijderOefening()">
+    </div>
+    <hr>
+    <div id="schemadiv" class="schemadiv">
+        <h2>Schema's</h2>
+        <table id="schematabel"></table>
+    </div>
+    <hr>
+    <input type="button" id="home" value="Home" onclick="location.href='integratieTestHomeScherm.html';">
+</main>
+</body>
+</html>
