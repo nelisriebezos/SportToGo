@@ -24,9 +24,6 @@ public class Gebruiker implements Principal ,Serializable {
         this.rol = rol;
     }
 
-    public Gebruiker() {
-    }
-
     public boolean addSchema(Schema s) {
         if (!this.schemaLijst.contains(s)) {
             this.schemaLijst.add(s);

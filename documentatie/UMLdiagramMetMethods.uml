@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>D:/GitHub/SportToGo/src/main/java</OriginalElement>
+  <nodes>
+    <node x="1747.5169413919402" y="880.0">hu.IPASS.persistence.GebruikerData</node>
+    <node x="1496.5169413919402" y="770.0">hu.IPASS.domeinklassen.Sessie</node>
+    <node x="1832.7142857142858" y="2120.0">hu.IPASS.listeners.MyServletContextListener</node>
+    <node x="20.0" y="2243.0">hu.IPASS.security.HttpsFilter</node>
+    <node x="746.5526556776545" y="1425.0">hu.IPASS.persistence.OefeningTypeData</node>
+    <node x="58.5" y="1915.0">hu.IPASS.webservices.OefeningResource</node>
+    <node x="882.406293706294" y="2131.0">hu.IPASS.utils.ObjectenMain</node>
+    <node x="376.567923742924" y="0.0">hu.IPASS.domeinklassen.OefeningType</node>
+    <node x="1795.2142857142858" y="1893.0">hu.IPASS.persistence.PersistenceManager</node>
+    <node x="1111.9782967032966" y="1904.0">hu.IPASS.webservices.SessieResource</node>
+    <node x="768.7282967032966" y="226.0">hu.IPASS.domeinklassen.Oefening</node>
+    <node x="764.4782967032966" y="498.0">hu.IPASS.domeinklassen.Schema</node>
+    <node x="1575.9642857142858" y="1216.0">hu.IPASS.domeinklassen.Gebruiker</node>
+    <node x="467.0" y="2243.0">hu.IPASS.setup.JerseyConfig</node>
+    <node x="2053.214285714286" y="1904.0">hu.IPASS.webservices.GebruikerResource</node>
+    <node x="485.50000000000006" y="1860.0">hu.IPASS.webservices.SchemaResource</node>
+    <node x="2476.214285714286" y="1915.0">hu.IPASS.webservices.AuthenticateResource</node>
+    <node x="2783.214285714286" y="1893.0">hu.IPASS.security.MySecurityContext</node>
+    <node x="2523.3919413919402" y="2131.0">hu.IPASS.security.AuthenticationFilter</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="hu.IPASS.domeinklassen.Oefening" target="hu.IPASS.domeinklassen.OefeningType" relationship="DEPENDENCY">
+      <point x="-61.5" y="-105.0" />
+      <point x="830.2282967032966" y="206.0" />
+      <point x="393.3595904095905" y="206.0" />
+      <point x="393.3595904095905" y="196.0" />
+      <point x="473.067923742924" y="196.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="hu.IPASS.utils.ObjectenMain" target="hu.IPASS.domeinklassen.Sessie" relationship="CREATE">
+      <point x="21.28571428571422" y="-28.0" />
+      <point x="978.1920079920083" y="2079.0" />
+      <point x="1101.4782967032966" y="2079.0" />
+      <point x="1101.4782967032966" y="1194.0" />
+      <point x="1369.5" y="1194.0" />
+      <point x="1369.5" y="1174.0" />
+      <point x="1556.81694139194" y="1174.0" />
+      <point x="-40.200000000000045" y="171.0" />
+    </edge>
+    <edge source="hu.IPASS.webservices.SchemaResource" target="hu.IPASS.domeinklassen.Schema" relationship="CREATE">
+      <point x="0.0" y="-94.0" />
+      <point x="699.0" y="1819.0" />
+      <point x="636.5616300366298" y="1819.0" />
+      <point x="636.5616300366298" y="749.0" />
+      <point x="903.9782967032966" y="749.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="hu.IPASS.utils.ObjectenMain" target="hu.IPASS.domeinklassen.Gebruiker" relationship="CREATE">
+      <point x="42.571428571428555" y="-28.0" />
+      <point x="999.4777222777227" y="2089.0" />
+      <point x="1632.0526556776545" y="2089.0" />
+      <point x="1632.0526556776545" y="1829.0" />
+      <point x="1708.4642857142858" y="1829.0" />
+      <point x="0.0" y="281.0" />
+    </edge>
+    <edge source="hu.IPASS.security.AuthenticationFilter" target="hu.IPASS.domeinklassen.Gebruiker" relationship="DEPENDENCY">
+      <point x="-81.0" y="-28.0" />
+      <point x="2563.8919413919402" y="2099.0" />
+      <point x="2445.714285714286" y="2099.0" />
+      <point x="2445.714285714286" y="1829.0" />
+      <point x="1708.4642857142858" y="1829.0" />
+      <point x="0.0" y="281.0" />
+    </edge>
+    <edge source="hu.IPASS.utils.ObjectenMain" target="hu.IPASS.domeinklassen.Schema" relationship="CREATE">
+      <point x="-21.285714285714334" y="-28.0" />
+      <point x="935.6205794205798" y="2079.0" />
+      <point x="48.0" y="2079.0" />
+      <point x="48.0" y="749.0" />
+      <point x="903.9782967032966" y="749.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="hu.IPASS.security.MySecurityContext" target="hu.IPASS.domeinklassen.Gebruiker" relationship="TO_ONE">
+      <point x="57.25" y="-61.0" />
+      <point x="2954.964285714286" y="1809.0" />
+      <point x="1796.797619047619" y="1809.0" />
+      <point x="88.33333333333326" y="281.0" />
+    </edge>
+    <edge source="hu.IPASS.webservices.AuthenticateResource" target="hu.IPASS.webservices.AuthenticateResource" relationship="DEPENDENCY">
+      <point x="-66.75" y="39.0" />
+      <point x="2542.964285714286" y="2013.0" />
+      <point x="2456.214285714286" y="2013.0" />
+      <point x="2456.214285714286" y="1954.0" />
+      <point x="-133.5" y="-0.0" />
+    </edge>
+    <edge source="hu.IPASS.webservices.SessieResource" target="hu.IPASS.domeinklassen.Schema" relationship="DEPENDENCY">
+      <point x="-153.33333333333348" y="-50.0" />
+      <point x="1188.644963369963" y="1819.0" />
+      <point x="1200.1359890109877" y="1819.0" />
+      <point x="1200.1359890109877" y="749.0" />
+      <point x="903.9782967032966" y="749.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.Gebruiker" target="hu.IPASS.domeinklassen.Schema" relationship="TO_MANY">
+      <point x="113.57142857142844" y="-281.0" />
+      <point x="1822.0357142857142" y="1174.0" />
+      <point x="2006.01694139194" y="1174.0" />
+      <point x="2006.01694139194" y="749.0" />
+      <point x="1777.0675824175823" y="749.0" />
+      <point x="1777.0675824175823" y="739.0" />
+      <point x="996.9782967032965" y="739.0" />
+      <point x="93.0" y="105.0" />
+    </edge>
+    <edge source="hu.IPASS.utils.ObjectenMain" target="hu.IPASS.domeinklassen.OefeningType" relationship="CREATE">
+      <point x="-63.85714285714289" y="-28.0" />
+      <point x="893.0491508491511" y="2099.0" />
+      <point x="26.0" y="2099.0" />
+      <point x="26.0" y="206.0" />
+      <point x="393.3595904095905" y="206.0" />
+      <point x="393.3595904095905" y="196.0" />
+      <point x="473.067923742924" y="196.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="hu.IPASS.security.AuthenticationFilter" target="hu.IPASS.webservices.AuthenticateResource" relationship="DEPENDENCY">
+      <point x="0.0" y="-28.0" />
+      <point x="2644.8919413919402" y="2099.0" />
+      <point x="2676.464285714286" y="2099.0" />
+      <point x="66.75" y="39.0" />
+    </edge>
+    <edge source="hu.IPASS.security.AuthenticationFilter" target="hu.IPASS.security.MySecurityContext" relationship="CREATE">
+      <point x="81.0" y="-28.0" />
+      <point x="2725.8919413919402" y="2099.0" />
+      <point x="2954.964285714286" y="2099.0" />
+      <point x="57.25" y="61.0" />
+    </edge>
+    <edge source="hu.IPASS.persistence.PersistenceManager" target="hu.IPASS.persistence.PersistenceManager" relationship="DEPENDENCY">
+      <point x="-59.5" y="61.0" />
+      <point x="1854.7142857142858" y="2035.0" />
+      <point x="1775.2142857142858" y="2035.0" />
+      <point x="1775.2142857142858" y="1954.0" />
+      <point x="-119.0" y="-0.0" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.Sessie" target="hu.IPASS.domeinklassen.Schema" relationship="DEPENDENCY">
+      <point x="-50.25" y="-171.0" />
+      <point x="1546.7669413919402" y="749.0" />
+      <point x="903.9782967032966" y="749.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="hu.IPASS.webservices.AuthenticateResource" target="hu.IPASS.domeinklassen.Gebruiker" relationship="DEPENDENCY">
+      <point x="0.0" y="-39.0" />
+      <point x="2609.714285714286" y="1829.0" />
+      <point x="1708.4642857142858" y="1829.0" />
+      <point x="0.0" y="281.0" />
+    </edge>
+    <edge source="hu.IPASS.persistence.OefeningTypeData" target="hu.IPASS.domeinklassen.OefeningType" relationship="TO_MANY">
+      <point x="73.5" y="-72.0" />
+      <point x="967.0526556776545" y="1194.0" />
+      <point x="1053.9782967032966" y="1194.0" />
+      <point x="1053.9782967032966" y="206.0" />
+      <point x="1003.6032967032966" y="206.0" />
+      <point x="1003.6032967032966" y="196.0" />
+      <point x="537.4012570762573" y="196.0" />
+      <point x="64.33333333333326" y="83.0" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.Gebruiker" target="hu.IPASS.domeinklassen.Sessie" relationship="DEPENDENCY">
+      <point x="-113.57142857142867" y="-281.0" />
+      <point x="1594.892857142857" y="1194.0" />
+      <point x="1369.5" y="1194.0" />
+      <point x="1369.5" y="1174.0" />
+      <point x="1556.81694139194" y="1174.0" />
+      <point x="-40.200000000000045" y="171.0" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.Sessie" target="hu.IPASS.domeinklassen.Gebruiker" relationship="DEPENDENCY">
+      <point x="40.200000000000045" y="171.0" />
+      <point x="1637.21694139194" y="1164.0" />
+      <point x="1717.3" y="1164.0" />
+      <point x="1717.3" y="1194.0" />
+      <point x="1708.4642857142858" y="1194.0" />
+      <point x="0.0" y="-281.0" />
+    </edge>
+    <edge source="hu.IPASS.webservices.GebruikerResource" target="hu.IPASS.domeinklassen.Gebruiker" relationship="CREATE">
+      <point x="0.0" y="-50.0" />
+      <point x="2244.214285714286" y="1829.0" />
+      <point x="1708.4642857142858" y="1829.0" />
+      <point x="0.0" y="281.0" />
+    </edge>
+    <edge source="hu.IPASS.webservices.SessieResource" target="hu.IPASS.domeinklassen.Gebruiker" relationship="DEPENDENCY">
+      <point x="153.33333333333326" y="-50.0" />
+      <point x="1495.3116300366298" y="1829.0" />
+      <point x="1708.4642857142858" y="1829.0" />
+      <point x="0.0" y="281.0" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.Gebruiker" target="hu.IPASS.persistence.GebruikerData" relationship="DEPENDENCY">
+      <point x="75.71428571428578" y="-281.0" />
+      <point x="1784.1785714285716" y="1184.0" />
+      <point x="1913.742582417582" y="1184.0" />
+      <point x="1913.742582417582" y="1144.0" />
+      <point x="1970.71694139194" y="1144.0" />
+      <point x="99.20000000000005" y="61.0" />
+    </edge>
+    <edge source="hu.IPASS.utils.ObjectenMain" target="hu.IPASS.persistence.PersistenceManager" relationship="DEPENDENCY">
+      <point x="63.85714285714289" y="-28.0" />
+      <point x="1020.7634365634369" y="2099.0" />
+      <point x="1973.7142857142858" y="2099.0" />
+      <point x="59.5" y="61.0" />
+    </edge>
+    <edge source="hu.IPASS.persistence.GebruikerData" target="hu.IPASS.domeinklassen.Gebruiker" relationship="DEPENDENCY">
+      <point x="0.0" y="61.0" />
+      <point x="1871.5169413919402" y="1164.0" />
+      <point x="1717.3" y="1164.0" />
+      <point x="1717.3" y="1194.0" />
+      <point x="1708.4642857142858" y="1194.0" />
+      <point x="0.0" y="-281.0" />
+    </edge>
+    <edge source="hu.IPASS.persistence.PersistenceManager" target="hu.IPASS.persistence.GebruikerData" relationship="DEPENDENCY">
+      <point x="59.5" y="-61.0" />
+      <point x="1973.7142857142858" y="1819.0" />
+      <point x="2017.01694139194" y="1819.0" />
+      <point x="2017.01694139194" y="1184.0" />
+      <point x="1913.742582417582" y="1184.0" />
+      <point x="1913.742582417582" y="1144.0" />
+      <point x="1970.71694139194" y="1144.0" />
+      <point x="99.20000000000005" y="61.0" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.Schema" target="hu.IPASS.domeinklassen.Oefening" relationship="TO_MANY">
+      <point x="69.75" y="-105.0" />
+      <point x="82.0" y="105.0" />
+    </edge>
+    <edge source="hu.IPASS.webservices.OefeningResource" target="hu.IPASS.persistence.OefeningTypeData" relationship="DEPENDENCY">
+      <point x="81.39999999999998" y="-39.0" />
+      <point x="343.4" y="1839.0" />
+      <point x="991.5526556776545" y="1839.0" />
+      <point x="98.0" y="72.0" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.Gebruiker" target="hu.IPASS.domeinklassen.Gebruiker" relationship="DEPENDENCY">
+      <point x="-88.33333333333337" y="281.0" />
+      <point x="1620.1309523809523" y="1798.0" />
+      <point x="1555.9642857142858" y="1798.0" />
+      <point x="1555.9642857142858" y="1497.0" />
+      <point x="-132.5" y="-0.0" />
+    </edge>
+    <edge source="hu.IPASS.webservices.OefeningResource" target="hu.IPASS.domeinklassen.Schema" relationship="DEPENDENCY">
+      <point x="0.0" y="-39.0" />
+      <point x="262.0" y="1839.0" />
+      <point x="194.82829670329647" y="1839.0" />
+      <point x="194.82829670329647" y="749.0" />
+      <point x="903.9782967032966" y="749.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="hu.IPASS.security.MySecurityContext" target="hu.IPASS.domeinklassen.Gebruiker" relationship="DEPENDENCY">
+      <point x="-57.25" y="-61.0" />
+      <point x="2840.464285714286" y="1829.0" />
+      <point x="1708.4642857142858" y="1829.0" />
+      <point x="0.0" y="281.0" />
+    </edge>
+    <edge source="hu.IPASS.persistence.GebruikerData" target="hu.IPASS.persistence.GebruikerData" relationship="CREATE">
+      <point x="-49.60000000000002" y="61.0" />
+      <point x="1821.91694139194" y="1032.0" />
+      <point x="1717.5169413919402" y="1032.0" />
+      <point x="1717.5169413919402" y="910.5" />
+      <point x="-124.0" y="-30.5" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.OefeningType" target="hu.IPASS.domeinklassen.OefeningType" relationship="DEPENDENCY">
+      <point x="-64.33333333333337" y="83.0" />
+      <point x="408.7345904095906" y="186.0" />
+      <point x="356.567923742924" y="186.0" />
+      <point x="356.567923742924" y="83.0" />
+      <point x="-96.5" y="-0.0" />
+    </edge>
+    <edge source="hu.IPASS.security.MySecurityContext" target="hu.IPASS.security.MySecurityContext" relationship="DEPENDENCY">
+      <point x="-57.25" y="61.0" />
+      <point x="2840.464285714286" y="2035.0" />
+      <point x="2763.214285714286" y="2035.0" />
+      <point x="2763.214285714286" y="1954.0" />
+      <point x="-114.5" y="-0.0" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.Oefening" target="hu.IPASS.domeinklassen.OefeningType" relationship="TO_ONE">
+      <point x="61.5" y="-105.0" />
+      <point x="953.2282967032966" y="206.0" />
+      <point x="1003.6032967032966" y="206.0" />
+      <point x="1003.6032967032966" y="196.0" />
+      <point x="537.4012570762573" y="196.0" />
+      <point x="64.33333333333326" y="83.0" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.Sessie" target="hu.IPASS.domeinklassen.Sessie" relationship="DEPENDENCY">
+      <point x="-80.39999999999998" y="171.0" />
+      <point x="1516.6169413919401" y="1132.0" />
+      <point x="1476.5169413919402" y="1132.0" />
+      <point x="1476.5169413919402" y="941.0" />
+      <point x="-100.5" y="-0.0" />
+    </edge>
+    <edge source="hu.IPASS.webservices.OefeningResource" target="hu.IPASS.domeinklassen.OefeningType" relationship="DEPENDENCY">
+      <point x="-162.79999999999995" y="-39.0" />
+      <point x="99.20000000000005" y="1839.0" />
+      <point x="116.90265567765448" y="1839.0" />
+      <point x="116.90265567765448" y="206.0" />
+      <point x="393.3595904095905" y="206.0" />
+      <point x="393.3595904095905" y="196.0" />
+      <point x="473.067923742924" y="196.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="hu.IPASS.persistence.OefeningTypeData" target="hu.IPASS.domeinklassen.OefeningType" relationship="DEPENDENCY">
+      <point x="-73.5" y="-72.0" />
+      <point x="820.0526556776545" y="1194.0" />
+      <point x="733.9782967032966" y="1194.0" />
+      <point x="733.9782967032966" y="206.0" />
+      <point x="393.3595904095905" y="206.0" />
+      <point x="393.3595904095905" y="196.0" />
+      <point x="473.067923742924" y="196.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="hu.IPASS.utils.ObjectenMain" target="hu.IPASS.domeinklassen.Oefening" relationship="CREATE">
+      <point x="-42.571428571428555" y="-28.0" />
+      <point x="914.3348651348656" y="2089.0" />
+      <point x="37.0" y="2089.0" />
+      <point x="37.0" y="477.0" />
+      <point x="339.7345904095905" y="477.0" />
+      <point x="339.7345904095905" y="467.0" />
+      <point x="891.7282967032966" y="467.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="hu.IPASS.listeners.MyServletContextListener" target="hu.IPASS.persistence.PersistenceManager" relationship="DEPENDENCY">
+      <point x="0.0" y="-39.0" />
+      <point x="59.5" y="61.0" />
+    </edge>
+    <edge source="hu.IPASS.webservices.SchemaResource" target="hu.IPASS.domeinklassen.Oefening" relationship="DEPENDENCY">
+      <point x="-142.33333333333337" y="-94.0" />
+      <point x="556.6666666666667" y="1819.0" />
+      <point x="562.9679237429237" y="1819.0" />
+      <point x="562.9679237429237" y="477.0" />
+      <point x="339.7345904095905" y="477.0" />
+      <point x="339.7345904095905" y="467.0" />
+      <point x="891.7282967032966" y="467.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.Gebruiker" target="hu.IPASS.domeinklassen.Schema" relationship="DEPENDENCY">
+      <point x="-75.71428571428578" y="-281.0" />
+      <point x="1632.75" y="1184.0" />
+      <point x="1466.0169413919402" y="1184.0" />
+      <point x="1466.0169413919402" y="749.0" />
+      <point x="903.9782967032966" y="749.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.Sessie" target="hu.IPASS.domeinklassen.Gebruiker" relationship="TO_ONE">
+      <point x="80.39999999999986" y="171.0" />
+      <point x="1677.4169413919399" y="1154.0" />
+      <point x="1816.3" y="1154.0" />
+      <point x="1816.3" y="1194.0" />
+      <point x="1746.3214285714287" y="1194.0" />
+      <point x="37.85714285714289" y="-281.0" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.Gebruiker" target="hu.IPASS.domeinklassen.Sessie" relationship="TO_MANY">
+      <point x="-37.85714285714289" y="-281.0" />
+      <point x="1670.607142857143" y="1174.0" />
+      <point x="1597.0169413919402" y="1174.0" />
+      <point x="0.0" y="171.0" />
+    </edge>
+    <edge source="hu.IPASS.persistence.PersistenceManager" target="hu.IPASS.persistence.OefeningTypeData" relationship="DEPENDENCY">
+      <point x="-59.5" y="-61.0" />
+      <point x="1854.7142857142858" y="1839.0" />
+      <point x="991.5526556776545" y="1839.0" />
+      <point x="98.0" y="72.0" />
+    </edge>
+    <edge source="hu.IPASS.security.HttpsFilter" target="hu.IPASS.security.HttpsFilter" relationship="DEPENDENCY">
+      <point x="0.0" y="28.0" />
+      <point x="221.0" y="2319.0" />
+      <point x="0.0" y="2319.0" />
+      <point x="0.0" y="2271.0" />
+      <point x="-201.0" y="-0.0" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.Sessie" target="hu.IPASS.domeinklassen.Schema" relationship="TO_ONE">
+      <point x="50.25" y="-171.0" />
+      <point x="1647.2669413919402" y="749.0" />
+      <point x="1777.0675824175823" y="749.0" />
+      <point x="1777.0675824175823" y="739.0" />
+      <point x="996.9782967032965" y="739.0" />
+      <point x="93.0" y="105.0" />
+    </edge>
+    <edge source="hu.IPASS.webservices.SessieResource" target="hu.IPASS.domeinklassen.Sessie" relationship="CREATE">
+      <point x="0.0" y="-50.0" />
+      <point x="1341.9782967032966" y="1819.0" />
+      <point x="1270.8116300366298" y="1819.0" />
+      <point x="1270.8116300366298" y="1194.0" />
+      <point x="1369.5" y="1194.0" />
+      <point x="1369.5" y="1174.0" />
+      <point x="1556.81694139194" y="1174.0" />
+      <point x="-40.200000000000045" y="171.0" />
+    </edge>
+    <edge source="hu.IPASS.webservices.OefeningResource" target="hu.IPASS.domeinklassen.Oefening" relationship="CREATE">
+      <point x="-81.39999999999998" y="-39.0" />
+      <point x="180.60000000000002" y="1839.0" />
+      <point x="127.90265567765448" y="1839.0" />
+      <point x="127.90265567765448" y="477.0" />
+      <point x="339.7345904095905" y="477.0" />
+      <point x="339.7345904095905" y="467.0" />
+      <point x="891.7282967032966" y="467.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.Schema" target="hu.IPASS.domeinklassen.Schema" relationship="DEPENDENCY">
+      <point x="-93.0" y="105.0" />
+      <point x="810.9782967032966" y="728.0" />
+      <point x="744.4782967032966" y="728.0" />
+      <point x="744.4782967032966" y="603.0" />
+      <point x="-139.5" y="-0.0" />
+    </edge>
+    <edge source="hu.IPASS.utils.ObjectenMain" target="hu.IPASS.persistence.OefeningTypeData" relationship="DEPENDENCY">
+      <point x="0.0" y="-28.0" />
+      <point x="956.906293706294" y="2069.0" />
+      <point x="991.5526556776545" y="2069.0" />
+      <point x="98.0" y="72.0" />
+    </edge>
+    <edge source="hu.IPASS.persistence.GebruikerData" target="hu.IPASS.persistence.GebruikerData" relationship="TO_ONE">
+      <point x="-99.20000000000005" y="61.0" />
+      <point x="1772.31694139194" y="1022.0" />
+      <point x="1727.5169413919402" y="1022.0" />
+      <point x="1727.5169413919402" y="971.5" />
+      <point x="-124.0" y="30.5" />
+    </edge>
+    <edge source="hu.IPASS.persistence.OefeningTypeData" target="hu.IPASS.persistence.OefeningTypeData" relationship="TO_ONE">
+      <point x="-98.0" y="72.0" />
+      <point x="795.5526556776545" y="1589.0" />
+      <point x="726.5526556776545" y="1589.0" />
+      <point x="726.5526556776545" y="1533.0" />
+      <point x="-147.0" y="36.0" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.Schema" target="hu.IPASS.domeinklassen.Oefening" relationship="DEPENDENCY">
+      <point x="-69.75" y="-105.0" />
+      <point x="834.2282967032966" y="477.0" />
+      <point x="339.7345904095905" y="477.0" />
+      <point x="339.7345904095905" y="467.0" />
+      <point x="891.7282967032966" y="467.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="hu.IPASS.webservices.OefeningResource" target="hu.IPASS.domeinklassen.Gebruiker" relationship="DEPENDENCY">
+      <point x="162.8" y="-39.0" />
+      <point x="424.8" y="1829.0" />
+      <point x="1708.4642857142858" y="1829.0" />
+      <point x="0.0" y="281.0" />
+    </edge>
+    <edge source="hu.IPASS.persistence.OefeningTypeData" target="hu.IPASS.persistence.OefeningTypeData" relationship="CREATE">
+      <point x="0.0" y="72.0" />
+      <point x="893.5526556776545" y="1599.0" />
+      <point x="716.5526556776545" y="1599.0" />
+      <point x="716.5526556776545" y="1461.0" />
+      <point x="-147.0" y="-36.0" />
+    </edge>
+    <edge source="hu.IPASS.domeinklassen.Oefening" target="hu.IPASS.domeinklassen.Oefening" relationship="DEPENDENCY">
+      <point x="-82.0" y="105.0" />
+      <point x="809.7282967032966" y="456.0" />
+      <point x="748.7282967032966" y="456.0" />
+      <point x="748.7282967032966" y="331.0" />
+      <point x="-123.0" y="-0.0" />
+    </edge>
+    <edge source="hu.IPASS.persistence.GebruikerData" target="hu.IPASS.domeinklassen.Gebruiker" relationship="TO_MANY">
+      <point x="49.59999999999991" y="61.0" />
+      <point x="1921.1169413919401" y="1154.0" />
+      <point x="1816.3" y="1154.0" />
+      <point x="1816.3" y="1194.0" />
+      <point x="1746.3214285714287" y="1194.0" />
+      <point x="37.85714285714289" y="-281.0" />
+    </edge>
+    <edge source="hu.IPASS.webservices.SchemaResource" target="hu.IPASS.domeinklassen.Gebruiker" relationship="DEPENDENCY">
+      <point x="142.33333333333337" y="-94.0" />
+      <point x="841.3333333333335" y="1829.0" />
+      <point x="1708.4642857142858" y="1829.0" />
+      <point x="0.0" y="281.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.3659683625480975" showDependencies="true" x="1506.5" y="1149.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

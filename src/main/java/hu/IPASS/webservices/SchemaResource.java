@@ -134,6 +134,13 @@ public class SchemaResource {
                         }).build();
             }
 
+            if (gekozenSchema.getOefeningLijst().size() < 1) {
+                return Response.status(Response.Status.CONFLICT).entity(
+                        new AbstractMap.SimpleEntry<>
+                                ("error", "De lijst is leeg") {
+                        }).build();
+            }
+
             return Response.ok(gekozenSchema).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(

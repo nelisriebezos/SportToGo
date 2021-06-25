@@ -137,6 +137,7 @@ function maakOefeningOption(myJson, element) {
 function laadVOefeningInNullFunctie() {
     let select = document.getElementById("oefeningteverwijderen");
     let options = document.createElement("option");
+    document.getElementById("verwijderoefeningdiv").innerHTML = "";
 
     for (let i = select.length - 1; i >= 0; i--) {
         select.remove(i);
@@ -174,9 +175,16 @@ function laadOefeningenVanSchema() {
 function laadOefeningVanSchemaStatusHandler(status, myJson) {
     if (status === 200) {
         maakVOefeningOption(myJson, "oefeningteverwijderen");
+        laadOefeningTeVerwijderenIn();
         return myJson;
     }
-    else if (status === 409) return console.log(myJson.error)
+    else if (status === 409) {
+        if (myJson.error === "De lijst is leeg") {
+            console.log(myJson.error)
+            laadVOefeningInNullFunctie();
+        }
+        else return console.log(myJson.error)
+    }
     else if (status === 401) return console.log(myJson.error)
     else return console.log("Er ging iets fout")
 }
@@ -378,7 +386,10 @@ function voegOefeningToeStatusHandler(status, myJson) {
         laadPaginaIn();
         return myJson;
     }
-    else if (status === 409) return console.log(myJson.error)
+    else if (status === 409) {
+        document.getElementById("oefeningaanmaakdiv").innerHTML = myJson.error
+        return console.log(myJson.error)
+    }
     else if (status === 401) return console.log(myJson.error)
     else return console.log("Er gaat iets fout")
 }

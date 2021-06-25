@@ -62,11 +62,11 @@
                     onchange="laadOefeningenVanSchema()"></select><br>
             <label for="oefeningteverwijderen">Kies oefening: </label>
             <select id="oefeningteverwijderen" name="oefeningteverwijderen"
-                    onchange="laadOefeningTeVerwijderenIn()"></select>
+                    onclick="laadOefeningTeVerwijderenIn()"></select>
         </form>
         <br>
         <div id="verwijderoefeningdiv"></div>
-        <input type="button" id="verwijderoefening" value="Verwijder oefening" onclick="verwijderOefening()">
+        <input type="button" id="verwijderoefening" value="Verwijder oefening" onchange="verwijderOefening()">
     </div>
     <hr>
     <div id="schemadiv" class="schemadiv">

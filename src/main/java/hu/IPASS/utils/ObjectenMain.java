@@ -7,8 +7,7 @@ import hu.IPASS.persistence.PersistenceManager;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class ObjectenMain
-{
+public class ObjectenMain {
     public static void main( String[] args ) {
         Gebruiker geb1 = new Gebruiker("Niels Riezebos", "niels.riezebos@student.hu.nl", "w", "gebruiker");
         Gebruiker geb2 = new Gebruiker("admin", "admin@email.nl", "admin", "admin");
