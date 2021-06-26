@@ -14,11 +14,14 @@ body {
 #menubuttonsdiv {
     float: left;
     position: relative;
-    background-color: grey;
+}
+
+.menublok {
+    display: inline-block;
 }
 
 #oppersessiediv {
-    background-color: lightgray;
+    transform: translateX(-90px);
 }
 
 .menubuttons {
