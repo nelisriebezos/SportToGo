@@ -34,7 +34,7 @@ public class SchemaResource {
     @RolesAllowed({"admin", "gebruiker"})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response verwijderSessie(@Context SecurityContext sc,
+    public Response verwijderSchema(@Context SecurityContext sc,
                                     @FormParam("schemaverwijderkeuze") String schemanaam) {
         if (sc.getUserPrincipal() instanceof Gebruiker) {
             Gebruiker currentUser = (Gebruiker) sc.getUserPrincipal();
@@ -50,7 +50,7 @@ public class SchemaResource {
             if (currentUser.verwijderSchema(SchemaTeVerwijderen)) {
                 return Response.ok().entity(
                         new AbstractMap.SimpleEntry<>
-                                ("message", "Sessie verwijderd")
+                                ("message", "Schema verwijderd")
                 ).build();
             }
 
@@ -83,33 +83,6 @@ public class SchemaResource {
                     new AbstractMap.SimpleEntry<>
                             ("error", "Schema bestaat al") {
                     }).build();
-        }
-        return Response.status(Response.Status.UNAUTHORIZED).entity(
-                new AbstractMap.SimpleEntry<>
-                        ("error", "Gebruiker niet geauthoriseerd") {
-                }).build();
-    }
-
-    @DELETE
-    @Path("/verwijderoefening")
-    @RolesAllowed({"admin", "gebruiker"})
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response verwijderOefening(@Context SecurityContext sc,
-                                      @FormParam("vwoefeningschema") String schemaKeuze,
-                                      @FormParam("oefeningteverwijderen") String oefeningKeuze) {
-        if (sc.getUserPrincipal() instanceof Gebruiker) {
-            Gebruiker currentUser = (Gebruiker) sc.getUserPrincipal();
-            Schema gekozenSchema = currentUser.getSchema(schemaKeuze);
-
-            if (gekozenSchema == null) {
-                return Response.status(Response.Status.CONFLICT).entity(
-                        new AbstractMap.SimpleEntry<>
-                                ("error", "Schema is niet gevonden") {
-                        }).build();
-            }
-
-//            gekozenSchema.
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(
                 new AbstractMap.SimpleEntry<>
