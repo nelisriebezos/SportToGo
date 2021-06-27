@@ -13,7 +13,6 @@ body {
 
 #menubuttonsdiv {
     float: left;
-    position: relative;
 }
 
 .menublok {
@@ -50,5 +49,6 @@ body {
 }
 
 .dialog {
+    z-index: 1;
     background-color: aliceblue;
 }
