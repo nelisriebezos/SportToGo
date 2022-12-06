@@ -1,6 +1,7 @@
 # SportToGo
 Welkom in de readme van SportToGo.
 In deze readme zal ik uitleggen hoe je dit project werkende kan krijgen op jouw eigen pc/laptop, waar de integratie tests te vinden zijn en hoe je gebruik maakt van de website.
+SportToGo is mijn eindproject van leerjaar 1 HBO-ICT.
 
 # Tomcat
 Om te beginnen moet je Tomcat instellen in IntelliJ. Start IntelliJ op nadat je Tomcat hebt geinstalleerd en ergens apart hebt staan. In het start-up scherm druk op 'Customize' -> ' All settings' ->  'Build, Execution, Deployment' -> Application Servers. Druk hier op de + en voeg Tomcat Server toe (als het goed is weet je zelf waar je Tomcat op je pc hebt staan). Druk dan op OK.
